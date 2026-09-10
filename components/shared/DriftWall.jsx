@@ -1,25 +1,35 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import './DriftWall.css';
 
+export const toWallThumb = (pathStr) => {
+  if (!pathStr || typeof pathStr !== 'string') return pathStr;
+  if (pathStr.startsWith('/wall/') && !pathStr.includes('/thumbs/')) {
+    const filename = pathStr.replace('/wall/', '');
+    const nameWithoutExt = filename.substring(0, filename.lastIndexOf('.')) || filename;
+    return `/wall/thumbs/thumb_${nameWithoutExt}.webp`;
+  }
+  return pathStr;
+};
+
 const DEFAULT_WALL_IMAGES = [
-  '/wall/fahmida_with_lal_background.jpeg',
-  '/wall/fahmida_with_purdue.jpeg',
-  '/wall/fahmida_with_robot.jpeg',
-  '/wall/fahmida_with_show_pice.jpeg',
-  '/wall/fahmida_with_car.jpeg',
-  '/wall/fahmida_with_ddn.jpeg',
-  '/wall/fahmida_blog.jpeg',
-  '/wall/fahmida_blog_2.jpeg',
-  '/wall/fahmida_blog_3.jpeg',
-  '/wall/fahmida_blog_4.jpeg',
-  '/wall/up_1.jpeg',
-  '/wall/up_2.jpeg',
-  '/wall/up_3.jpeg',
-  '/wall/up_4.jpeg',
-  '/wall/research_1.jpg',
-  '/wall/research_4.jpg',
-  '/wall/college.jpeg',
-  '/wall/undergrad.jpeg'
+  '/wall/thumbs/thumb_fahmida_with_lal_background.webp',
+  '/wall/thumbs/thumb_fahmida_with_purdue.webp',
+  '/wall/thumbs/thumb_fahmida_with_robot.webp',
+  '/wall/thumbs/thumb_fahmida_with_show_pice.webp',
+  '/wall/thumbs/thumb_fahmida_with_car.webp',
+  '/wall/thumbs/thumb_fahmida_with_ddn.webp',
+  '/wall/thumbs/thumb_fahmida_blog.webp',
+  '/wall/thumbs/thumb_fahmida_blog_2.webp',
+  '/wall/thumbs/thumb_fahmida_blog_3.webp',
+  '/wall/thumbs/thumb_fahmida_blog_4.webp',
+  '/wall/thumbs/thumb_up_1.webp',
+  '/wall/thumbs/thumb_up_2.webp',
+  '/wall/thumbs/thumb_up_3.webp',
+  '/wall/thumbs/thumb_up_4.webp',
+  '/wall/thumbs/thumb_research_1.webp',
+  '/wall/thumbs/thumb_research_4.webp',
+  '/wall/thumbs/thumb_college.webp',
+  '/wall/thumbs/thumb_undergrad.webp'
 ];
 
 const DEFAULT_ITEMS = DEFAULT_WALL_IMAGES.map((img, i) => ({
@@ -79,6 +89,23 @@ const DriftWall = ({
   const [activeId, setActiveId] = useState(null);
   const activeIdRef = useRef(null);
   const [reduced, setReduced] = useState(false);
+  const isVisibleRef = useRef(true);
+
+  // Pause RAF loop when hero wall is scrolled off-screen
+  useEffect(() => {
+    if (!containerRef.current || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          lastTsRef.current = null; // Reset delta time to prevent jumping upon resume
+        }
+      },
+      { rootMargin: '120px' }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     setReduced(prefersReducedMotion());
@@ -89,7 +116,11 @@ const DriftWall = ({
   }, []);
 
   const safeItems = useMemo(() => {
-    return items && items.length > 0 ? items : DEFAULT_ITEMS;
+    const raw = items && items.length > 0 ? items : DEFAULT_ITEMS;
+    return raw.map(item => ({
+      ...item,
+      image: toWallThumb(item.image)
+    }));
   }, [items]);
 
   const columnItems = useMemo(() => {
@@ -143,6 +174,11 @@ const DriftWall = ({
 
   useEffect(() => {
     const animate = ts => {
+      if (!isVisibleRef.current) {
+        rafRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       if (lastTsRef.current === null) lastTsRef.current = ts;
       const dt = Math.min(0.05, Math.max(0, ts - lastTsRef.current) / 1000);
       lastTsRef.current = ts;
@@ -266,7 +302,11 @@ const DriftWall = ({
           decoding="async"
           draggable={false}
           onError={(e) => {
-            // Fallback placeholder gradient if a local image doesn't exist yet
+            // If thumb fails, try to fallback to original image
+            if (e.currentTarget.src.includes('/thumbs/thumb_')) {
+              e.currentTarget.src = e.currentTarget.src.replace('/thumbs/thumb_', '/').replace('.webp', '.jpeg');
+              return;
+            }
             e.currentTarget.style.display = 'none';
           }}
         />

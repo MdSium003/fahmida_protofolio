@@ -50,12 +50,25 @@ const Layout = ({ children }) => {
     return () => { document.body.style.overflow = ''; };
   }, [isMenuOpen]);
 
+  const prefetchRoute = (path) => {
+    switch (path) {
+      case '/career': import('../../pages/CareerPage'); break;
+      case '/projects': import('../../pages/ProjectsPage'); break;
+      case '/research': import('../../pages/ResearchPage'); break;
+      case '/awards': import('../../pages/AwardsPage'); break;
+      case '/skills': import('../../pages/SkillsPage'); break;
+      case '/blog': import('../../pages/BlogPage'); break;
+      case '/': import('../../pages/Homepage'); break;
+      default: break;
+    }
+  };
+
   return (
     <div className="page-layout">
       {/* Navigation */}
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
-          <Link to="/" className="nav-logo">
+          <Link to="/" className="nav-logo" onMouseEnter={() => prefetchRoute('/')}>
             <span className="logo-text">Fahmida</span>
           </Link>
 
@@ -66,6 +79,8 @@ const Layout = ({ children }) => {
                 key={item.path}
                 to={item.path}
                 className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                onMouseEnter={() => prefetchRoute(item.path)}
+                onTouchStart={() => prefetchRoute(item.path)}
               >
                 {item.label}
               </Link>

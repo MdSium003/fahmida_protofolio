@@ -37,6 +37,7 @@ const ProjectCard = ({ project, onOpenProject }) => {
               alt={project.title}
               className="card-media-img"
               loading="lazy"
+              decoding="async"
             />
             <div className="card-media-overlay" />
           </div>

@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import '../../styles/PortfolioPreloader.css';
-import profileImage from '../../images/fahmida.png';
+import profileImage from '../../images/fahmida.webp';
 
-// Critical Drift Wall assets visible in the initial hero viewport
+// Critical Drift Wall assets visible in the initial hero viewport (WebP thumbnails)
 const CRITICAL_HERO_IMAGES = [
   profileImage,
-  '/wall/fahmida_with_lal_background.jpeg',
-  '/wall/fahmida_with_purdue.jpeg',
-  '/wall/fahmida_with_robot.jpeg',
-  '/wall/fahmida_with_show_pice.jpeg',
-  '/wall/fahmida_with_car.jpeg',
-  '/wall/fahmida_with_ddn.jpeg'
+  '/wall/thumbs/thumb_fahmida_with_lal_background.webp',
+  '/wall/thumbs/thumb_fahmida_with_purdue.webp',
+  '/wall/thumbs/thumb_fahmida_with_robot.webp',
+  '/wall/thumbs/thumb_fahmida_with_show_pice.webp',
+  '/wall/thumbs/thumb_fahmida_with_car.webp',
+  '/wall/thumbs/thumb_fahmida_with_ddn.webp'
 ];
 
 /**

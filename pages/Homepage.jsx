@@ -22,29 +22,29 @@ import {
   loadSocialLinksData, 
   loadMomentsData 
 } from '../src/utils/csvLoader';
-import profileImage from '../images/fahmida.png';
+import profileImage from '../images/fahmida.webp';
 import PortfolioPreloader from '../components/shared/PortfolioPreloader';
 
 // Fallback Drift Wall Real Portfolio Assets if moments data empty
 const DEFAULT_WALL_IMAGES = [
-  '/wall/fahmida_with_lal_background.jpeg',
-  '/wall/fahmida_with_purdue.jpeg',
-  '/wall/fahmida_with_robot.jpeg',
-  '/wall/fahmida_with_show_pice.jpeg',
-  '/wall/fahmida_with_car.jpeg',
-  '/wall/fahmida_with_ddn.jpeg',
-  '/wall/fahmida_blog.jpeg',
-  '/wall/fahmida_blog_2.jpeg',
-  '/wall/fahmida_blog_3.jpeg',
-  '/wall/fahmida_blog_4.jpeg',
-  '/wall/up_1.jpeg',
-  '/wall/up_2.jpeg',
-  '/wall/up_3.jpeg',
-  '/wall/up_4.jpeg',
-  '/wall/research_1.jpg',
-  '/wall/research_4.jpg',
-  '/wall/college.jpeg',
-  '/wall/undergrad.jpeg'
+  '/wall/thumbs/thumb_fahmida_with_lal_background.webp',
+  '/wall/thumbs/thumb_fahmida_with_purdue.webp',
+  '/wall/thumbs/thumb_fahmida_with_robot.webp',
+  '/wall/thumbs/thumb_fahmida_with_show_pice.webp',
+  '/wall/thumbs/thumb_fahmida_with_car.webp',
+  '/wall/thumbs/thumb_fahmida_with_ddn.webp',
+  '/wall/thumbs/thumb_fahmida_blog.webp',
+  '/wall/thumbs/thumb_fahmida_blog_2.webp',
+  '/wall/thumbs/thumb_fahmida_blog_3.webp',
+  '/wall/thumbs/thumb_fahmida_blog_4.webp',
+  '/wall/thumbs/thumb_up_1.webp',
+  '/wall/thumbs/thumb_up_2.webp',
+  '/wall/thumbs/thumb_up_3.webp',
+  '/wall/thumbs/thumb_up_4.webp',
+  '/wall/thumbs/thumb_research_1.webp',
+  '/wall/thumbs/thumb_research_4.webp',
+  '/wall/thumbs/thumb_college.webp',
+  '/wall/thumbs/thumb_undergrad.webp'
 ];
 
 const HomePage = () => {
@@ -171,6 +171,33 @@ const HomePage = () => {
     }
   };
 
+  // Idle background pre-fetching of remaining CSV datasets for instant navigation
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      const idleId = window.requestIdleCallback(() => {
+        import('../src/utils/csvLoader').then(({ loadSkillsData, loadEducationData, loadExperienceData, loadVolunteerData }) => {
+          loadSkillsData().catch(() => {});
+          loadEducationData().catch(() => {});
+          loadExperienceData().catch(() => {});
+          loadVolunteerData().catch(() => {});
+        });
+      }, { timeout: 3500 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+  }, []);
+
+  const prefetchRoute = (path) => {
+    switch (path) {
+      case '/career': import('./CareerPage'); break;
+      case '/projects': import('./ProjectsPage'); break;
+      case '/research': import('./ResearchPage'); break;
+      case '/awards': import('./AwardsPage'); break;
+      case '/skills': import('./SkillsPage'); break;
+      case '/blog': import('./BlogPage'); break;
+      default: break;
+    }
+  };
+
   return (
     <div className="homepage">
       {showPreloader && (
@@ -194,7 +221,13 @@ const HomePage = () => {
 
           <div className="nav-links">
             {navItems.map(item => (
-              <Link key={item.path} to={item.path} className="nav-link">
+              <Link 
+                key={item.path} 
+                to={item.path} 
+                className="nav-link"
+                onMouseEnter={() => prefetchRoute(item.path)}
+                onTouchStart={() => prefetchRoute(item.path)}
+              >
                 {item.label}
               </Link>
             ))}

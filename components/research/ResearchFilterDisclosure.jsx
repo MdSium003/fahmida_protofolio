@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { PiFunnelSimpleBold } from 'react-icons/pi';
-import { BsCheckLg } from 'react-icons/bs';
 import { 
   X, RotateCcw, BookOpen, 
-  SlidersHorizontal, Tag
+  SlidersHorizontal, Tag, Filter, Check
 } from 'lucide-react';
 import '../../styles/ResearchFilterDisclosure.css';
 
@@ -80,7 +78,7 @@ const ResearchFilterDisclosure = ({
           aria-label="Open filter options"
         >
           <div className="trigger-icon-wrap">
-            <PiFunnelSimpleBold size={18} className="funnel-icon" />
+            <Filter size={18} className="funnel-icon" />
           </div>
           <span className="trigger-label-text">
             {totalActiveCount > 0 ? `Filters (${totalActiveCount})` : 'Filter Publications'}
@@ -172,7 +170,7 @@ const ResearchFilterDisclosure = ({
                         className={`filter-chip-btn ${isSelected ? 'is-selected' : ''}`}
                       >
                         <span className="chip-label">{item.label}</span>
-                        {isSelected && <BsCheckLg size={11} className="chip-check" />}
+                        {isSelected && <Check size={11} className="chip-check" />}
                       </button>
                     );
                   })}
@@ -199,7 +197,7 @@ const ResearchFilterDisclosure = ({
                       >
                         <div className={`checkbox-dot ${isSelected ? 'checked' : ''}`} />
                         <span className="status-label">{item.label}</span>
-                        {isSelected && <BsCheckLg size={11} className="check-icon-mini" />}
+                        {isSelected && <Check size={11} className="check-icon-mini" />}
                       </button>
                     );
                   })}

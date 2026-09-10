@@ -1,0 +1,717 @@
+/* ==========================================================================
+   SkillsPage.css — Visual Editorial Map & Image-First Technical Identity
+   Strict Dark Palette:
+   #1E1B18 (Bg), #292420 (Surface), #E8FCC2 (Text),
+   #829399 (Muted), #B1CC74 (Accent), #D0F4EA (Tint)
+   ========================================================================== */
+
+.skills-page-container {
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 6rem;
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   1. Hero Section (Centered Editorial)
+   ========================================================================== */
+.skills-hero-section {
+  padding: 1.5rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.85rem;
+}
+
+.skills-hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--color-text);
+  margin: 0 auto;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.skills-hero-title .title-accent {
+  color: var(--color-accent);
+}
+
+.skills-hero-description {
+  max-width: 720px;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.skills-hero-divider {
+  width: 100%;
+  max-width: 640px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(177, 204, 116, 0.25) 50%, transparent 100%);
+  margin: 0.75rem auto 0;
+}
+
+/* ==========================================================================
+   2. Common Section Wrappers & Headers
+   ========================================================================== */
+.skills-section {
+  margin-bottom: 4rem;
+}
+
+.section-header-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   3. 01 — Core Expertise & Architecture Map (Unified Iconic Domain Grid)
+   ========================================================================== */
+.core-expertise-merged-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.15rem;
+}
+
+.core-domain-card {
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.4rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.core-domain-card:hover,
+.core-domain-card.card-active {
+  transform: translateY(-3px);
+  border-color: var(--color-accent);
+  background: #312b26;
+  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.55);
+}
+
+.domain-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.domain-num-badge {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  opacity: 0.9;
+}
+
+.domain-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(177, 204, 116, 0.1);
+  border: 1px solid rgba(177, 204, 116, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  transition: transform 0.25s ease;
+}
+
+.core-domain-card:hover .domain-icon-wrapper {
+  transform: scale(1.08);
+  background: rgba(177, 204, 116, 0.18);
+}
+
+.domain-card-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.domain-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.domain-card-scope {
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.domain-tech-branches {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid rgba(130, 147, 153, 0.15);
+  margin-top: auto;
+}
+
+.tech-branch-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.tech-branch-line {
+  width: 12px;
+  height: 1px;
+  background: rgba(177, 204, 116, 0.4);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.tech-branch-line::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -2px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.tech-branch-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text);
+  letter-spacing: 0.01em;
+  transition: color 0.2s ease;
+}
+
+.core-domain-card:hover .tech-branch-label {
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   4. 02 — Technology Stack (Dominant Typographic Clusters)
+   ========================================================================== */
+.tech-stack-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.tech-cluster-group {
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: border-color 0.2s ease;
+}
+
+.tech-cluster-group:hover {
+  border-color: rgba(177, 204, 116, 0.35);
+}
+
+.cluster-header {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.cluster-icon {
+  color: var(--color-accent);
+}
+
+.cluster-category-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.cluster-tags-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.tech-pill {
+  font-family: 'Syne', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.tech-pill-primary {
+  background: rgba(30, 27, 24, 0.95);
+  border: 1px solid rgba(177, 204, 116, 0.35);
+  color: var(--color-text);
+}
+
+.tech-pill-primary:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  transform: translateY(-2px);
+}
+
+.tech-pill-secondary {
+  background: rgba(30, 27, 24, 0.6);
+  border: 1px solid var(--border);
+  color: var(--color-text-muted);
+}
+
+.tech-pill-secondary:hover {
+  border-color: rgba(177, 204, 116, 0.3);
+  color: var(--color-text);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   5. 03 — Skills In Practice (Image-First Project Showcase)
+   ========================================================================== */
+.practice-showcase-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* 1 Dominant Feature Hero Card */
+.practice-hero-card {
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  transition: all 0.25s ease;
+}
+
+.practice-hero-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-accent);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6);
+}
+
+.practice-hero-media-wrapper {
+  position: relative;
+  height: 100%;
+  min-height: 280px;
+  overflow: hidden;
+  background: #141210;
+}
+
+.practice-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.practice-hero-card:hover .practice-hero-image {
+  transform: scale(1.04);
+}
+
+.practice-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(30, 27, 24, 0.1) 0%, rgba(30, 27, 24, 0.75) 100%);
+  pointer-events: none;
+}
+
+.practice-category-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 5px;
+  background: rgba(30, 27, 24, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  color: var(--color-accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.practice-hero-content {
+  padding: 2rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.practice-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.practice-pill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.18rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(30, 27, 24, 0.8);
+  border: 1px solid var(--border);
+  color: var(--color-text-muted);
+}
+
+.practice-hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.practice-hero-summary {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.practice-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.8rem;
+  background: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  width: fit-content;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.practice-action-link:hover,
+.practice-hero-card:hover .practice-action-link,
+.practice-card:hover .practice-action-link {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+}
+
+/* 3 Supporting Cards Grid */
+.practice-supporting-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.practice-card {
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+
+.practice-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-accent);
+  box-shadow: 0 14px 30px -8px rgba(0, 0, 0, 0.5);
+}
+
+.practice-card-media-wrapper {
+  position: relative;
+  width: 100%;
+  height: 170px;
+  overflow: hidden;
+  background: #141210;
+}
+
+.practice-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.practice-card:hover .practice-card-image {
+  transform: scale(1.05);
+}
+
+.practice-card-content {
+  padding: 1.25rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.practice-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.practice-card-summary {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin: 0;
+  flex: 1;
+}
+
+.practice-card-content .practice-action-link {
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+/* ==========================================================================
+   6. Closing Invitation CTA
+   ========================================================================== */
+.skills-cta-section {
+  margin-top: 2rem;
+}
+
+.skills-cta-card {
+  background: linear-gradient(180deg, var(--color-surface) 0%, #221e1a 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem 1.8rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6);
+}
+
+.cta-icon-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(177, 204, 116, 0.12);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+}
+
+.cta-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.cta-subheading {
+  max-width: 540px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.cta-buttons-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 0.35rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.cta-btn.primary-cta {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 4px 14px rgba(177, 204, 116, 0.25);
+}
+
+.cta-btn.primary-cta:hover {
+  background: #c5df8b;
+  box-shadow: 0 6px 20px rgba(177, 204, 116, 0.4);
+  transform: translateY(-2px);
+}
+
+.cta-btn.secondary-cta {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--border);
+}
+
+.cta-btn.secondary-cta:hover {
+  background: var(--color-surface);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   7. Loading State
+   ========================================================================== */
+.skills-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  gap: 1rem;
+  color: var(--color-text-muted);
+}
+
+.skills-loader {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(177, 204, 116, 0.2);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   8. Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .core-expertise-merged-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .practice-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-hero-media-wrapper {
+    min-height: 220px;
+  }
+
+  .practice-supporting-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-page-container {
+    padding: 1.5rem 1rem 5rem;
+  }
+
+  .skills-section {
+    margin-bottom: 3rem;
+  }
+
+  .core-expertise-merged-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .practice-supporting-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-cta-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .cta-buttons-row {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .cta-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 520px) {
+  .skills-page-container {
+    padding: 1rem 0.75rem 4rem;
+  }
+
+  .skills-hero-title {
+    font-size: 1.85rem;
+  }
+
+  .core-expertise-merged-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-hero-content {
+    padding: 1.25rem 1.15rem;
+  }
+
+  .tech-cluster-group {
+    padding: 1rem 1.15rem;
+  }
+}

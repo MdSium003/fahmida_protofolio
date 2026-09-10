@@ -1,0 +1,1572 @@
+/* ==========================================================================
+   AwardsPage.css — Art-Directed Editorial Awards & Recognition Theme
+   Strict Dark Palette: #1E1B18 (Bg), #292420 (Surface), #E8FCC2 (Text),
+   #829399 (Muted), #B1CC74 (Accent), #D0F4EA (Tint)
+   ========================================================================== */
+
+.awards-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 6rem;
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   1. Awards Hero Section
+   ========================================================================== */
+.awards-hero-section {
+  padding: 1.5rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.85rem;
+}
+
+.awards-hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--color-text);
+  margin: 0 auto;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.title-accent {
+  color: var(--color-accent);
+}
+
+.awards-hero-description {
+  max-width: 720px;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ==========================================================================
+   2. Recognition Statistics Strip
+   ========================================================================== */
+.recognition-stats-section {
+  margin: 1rem 0 3.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem 1.75rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+}
+
+.stats-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.stat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stat-icon {
+  color: var(--color-accent);
+}
+
+.stat-value {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.stat-value.year-value {
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  letter-spacing: -0.01em;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 42px;
+  background: var(--border);
+}
+
+/* ==========================================================================
+   3. Common Section Headers
+   ========================================================================== */
+.section-header-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   4. Featured Recognition Centerpiece (Visual & Auto-Slideshow)
+   ========================================================================== */
+.featured-awards-section {
+  margin-bottom: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* 4A. Dominant Hero Award */
+.featured-hero-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6);
+}
+
+.featured-hero-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(177, 204, 116, 0.25);
+}
+
+.featured-hero-media {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  background: var(--color-bg);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Slideshow crossfading images */
+.slideshow-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out, transform 0.5s ease;
+}
+
+.slideshow-img.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.featured-hero-media:hover .slideshow-img.active {
+  transform: scale(1.04);
+}
+
+
+.featured-hero-media-fallback {
+  width: 100%;
+  min-height: 380px;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+}
+
+.featured-hero-content {
+  padding: 2.2rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  justify-content: center;
+}
+
+.featured-card-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.15rem;
+}
+
+.featured-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+}
+
+.featured-year-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(30, 27, 24, 0.85);
+  color: var(--color-text-muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+
+.featured-hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.3rem, 1.8vw, 1.65rem);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.featured-org {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-accent);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.featured-org.small {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.featured-hero-desc {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.featured-hero-footer {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Explore Details Button with Glowing Hover */
+.btn-featured-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.3rem;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-featured-action:hover {
+  background: #cbf080;
+  color: var(--color-bg);
+  border-color: #cbf080;
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(177, 204, 116, 0.65), 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* 4B. Supporting Visual Awards (3-Column Grid) */
+.supporting-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+}
+
+.supporting-visual-card {
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.supporting-visual-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-accent);
+  box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.55);
+}
+
+.supporting-card-media {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: var(--color-bg);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.supporting-card-media:hover .slideshow-img.active {
+  transform: scale(1.05);
+}
+
+.supporting-card-media-fallback {
+  width: 100%;
+  height: 140px;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+}
+
+.supporting-card-body {
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.supporting-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.35;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.supporting-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(177, 204, 116, 0.1);
+}
+
+.btn-supporting-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.8rem;
+  background: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-supporting-action:hover {
+  background: rgba(177, 204, 116, 0.15);
+  border-color: var(--color-accent);
+}
+
+/* Placement Ranking Badges */
+.rank-champion {
+  background: rgba(232, 252, 194, 0.15);
+  color: var(--color-text);
+  border-color: rgba(177, 204, 116, 0.4);
+}
+
+.rank-winner {
+  background: rgba(177, 204, 116, 0.18);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.rank-runnerup {
+  background: rgba(130, 147, 153, 0.2);
+  color: #cfdbe0;
+  border-color: rgba(130, 147, 153, 0.35);
+}
+
+.rank-impact {
+  background: rgba(208, 244, 234, 0.15);
+  color: var(--color-tint);
+  border-color: rgba(208, 244, 234, 0.35);
+}
+
+.rank-finalist {
+  background: rgba(41, 36, 32, 0.9);
+  color: var(--color-text);
+  border-color: var(--border);
+}
+
+.rank-scholarship {
+  background: rgba(177, 204, 116, 0.12);
+  color: var(--color-accent);
+  border-color: var(--border);
+}
+
+.rank-fellow {
+  background: rgba(208, 244, 234, 0.12);
+  color: var(--color-tint);
+  border-color: rgba(208, 244, 234, 0.3);
+}
+
+.rank-default {
+  background: rgba(30, 27, 24, 0.8);
+  color: var(--color-text-muted);
+  border-color: var(--border);
+}
+
+/* ==========================================================================
+   5. Selected Recognition (Curated 2-Column Grid with Thumbnails)
+   ========================================================================== */
+.selected-awards-section {
+  margin-bottom: 4.5rem;
+}
+
+.selected-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.selected-card {
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.15rem 1.3rem;
+  display: flex;
+  align-items: stretch;
+  gap: 1.1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.selected-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-accent);
+  box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.5);
+}
+
+.selected-card-thumb-frame {
+  position: relative;
+  width: 95px;
+  min-height: 95px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-bg);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.selected-card-thumb-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.selected-card:hover .selected-card-thumb-frame img {
+  transform: scale(1.08);
+}
+
+.selected-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.selected-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.selected-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+}
+
+.selected-year {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.selected-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.selected-org {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+}
+
+.selected-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(177, 204, 116, 0.1);
+}
+
+.selected-category-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-text-muted);
+  font-size: 0.74rem;
+}
+
+/* Box Button for Selected Awards Details */
+.selected-detail-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.8rem;
+  background: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.selected-detail-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+}
+
+/* ==========================================================================
+   6. Complete Award Archive (Chronological Rows)
+   ========================================================================== */
+.award-archive-section {
+  margin-bottom: 2rem;
+}
+
+.archive-filters-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.archive-category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.archive-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.85rem;
+  background: rgba(30, 27, 24, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.archive-filter-btn:hover {
+  color: var(--color-text);
+  border-color: var(--color-accent);
+  background: #38322c;
+}
+
+.archive-filter-btn.active {
+  background: rgba(177, 204, 116, 0.18);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.archive-year-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(177, 204, 116, 0.1);
+}
+
+.archive-year-btn {
+  padding: 0.25rem 0.65rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.archive-year-btn:hover {
+  color: var(--color-text);
+}
+
+.archive-year-btn.active {
+  background: rgba(177, 204, 116, 0.15);
+  color: var(--color-accent);
+  border-color: var(--border);
+}
+
+/* Timeline & Year Grouping */
+.archive-timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.archive-year-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.archive-year-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.year-number {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.year-count {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.year-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.archive-rows-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+/* Archive Row Item */
+.archive-row-item {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.85rem 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.archive-row-item:hover {
+  background: #38322c;
+  border-color: var(--color-accent);
+  transform: translateX(4px);
+}
+
+.archive-row-placement {
+  display: flex;
+  align-items: center;
+}
+
+.archive-placement-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.archive-row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.archive-row-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.archive-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.archive-meta-org,
+.archive-meta-topic {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+
+.archive-meta-org {
+  color: var(--color-text-muted);
+}
+
+.archive-meta-topic {
+  color: var(--color-accent);
+}
+
+.archive-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.archive-row-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.65rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--color-text);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.archive-row-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+}
+
+.archive-empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--color-text-muted);
+}
+
+.btn-reset-filters {
+  margin-top: 1rem;
+  padding: 0.4rem 1rem;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border: none;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   7. Award Detail Modal
+   ========================================================================== */
+.award-modal-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(18, 15, 13, 0.88);
+  backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+.award-modal-container {
+  position: relative;
+  max-width: 680px;
+  width: 100%;
+  max-height: 88vh;
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.85);
+  overflow: hidden;
+  box-sizing: border-box;
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.award-modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(30, 27, 24, 0.85);
+  border: 1px solid var(--border);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.award-modal-close-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+  transform: rotate(90deg);
+}
+
+.award-modal-scrollable {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 2.25rem 2.5rem 3rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.award-modal-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-right: 2.5rem;
+}
+
+.award-modal-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.award-modal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.award-modal-badge.year-badge {
+  background: rgba(30, 27, 24, 0.8);
+  border: 1px solid var(--border);
+  color: var(--color-text-muted);
+}
+
+.award-modal-badge.category-badge {
+  background: rgba(177, 204, 116, 0.15);
+  border: 1px solid rgba(177, 204, 116, 0.35);
+  color: var(--color-accent);
+}
+
+.award-modal-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.4rem, 2.5vw, 1.95rem);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.25;
+  margin: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.award-modal-org {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.award-modal-org .org-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.award-modal-org .org-link:hover {
+  text-decoration: underline;
+}
+
+.award-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Top Media Showcase in Modal */
+.award-modal-showcase {
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #151311;
+  position: relative;
+}
+
+.award-modal-media-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  flex-shrink: 0;
+  background: #0f0d0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.award-modal-slideshow-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.award-modal-slide-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.award-modal-slide-wrapper.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Ambient blurred backdrop */
+.award-modal-slide-bg {
+  position: absolute;
+  inset: -20px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(28px) brightness(0.3);
+  opacity: 0.85;
+  transform: scale(1.15);
+  pointer-events: none;
+}
+
+/* Foreground full uncropped image */
+.award-modal-slide-img {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  pointer-events: auto;
+}
+
+.award-modal-video-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 2;
+}
+
+.award-modal-video-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Modal Showcase Left/Right Nav */
+.modal-showcase-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(18, 15, 13, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.award-modal-showcase:hover .modal-showcase-nav {
+  opacity: 1;
+}
+
+.modal-showcase-nav.prev {
+  left: 12px;
+}
+
+.modal-showcase-nav.next {
+  right: 12px;
+}
+
+.modal-showcase-nav:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* Modal Showcase Controls (Compact Slim Floating Pill) */
+.modal-showcase-controls {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.2rem 0.55rem;
+  height: 22px;
+  background: rgba(18, 15, 13, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(177, 204, 116, 0.25);
+  border-radius: 100px;
+  z-index: 5;
+  white-space: nowrap;
+  pointer-events: auto;
+  box-sizing: border-box;
+}
+
+.modal-showcase-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.28rem;
+  flex-shrink: 0;
+}
+
+.modal-showcase-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.modal-showcase-dot .dot-circle {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(232, 252, 194, 0.35);
+  transition: all 0.2s ease;
+}
+
+.modal-showcase-dot:hover .dot-circle {
+  background: var(--color-accent);
+  transform: scale(1.25);
+}
+
+.modal-showcase-dot.active .dot-circle {
+  background: var(--color-accent);
+  width: 10px;
+  border-radius: 3px;
+}
+
+.modal-showcase-dot.active {
+  color: var(--color-accent);
+}
+
+.modal-showcase-counter {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+  padding-left: 0.35rem;
+  border-left: 1px solid rgba(177, 204, 116, 0.25);
+  white-space: nowrap;
+  line-height: 1;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.section-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin: 0 0 0.75rem;
+}
+
+.award-modal-description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.description-para {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.description-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--color-text);
+}
+
+.bullet-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   8. Media Lightbox
+   ========================================================================== */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 15, 13, 0.95);
+  backdrop-filter: blur(14px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.lightbox-close:hover {
+  color: var(--color-accent);
+}
+
+.lightbox-media {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-media img {
+  max-width: 100%;
+  max-height: 68vh;
+  border-radius: 12px;
+  object-fit: contain;
+  border: 1px solid var(--border);
+}
+
+.lightbox-media iframe {
+  width: 100%;
+  height: 65vh;
+  max-width: 800px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.lightbox-nav:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.lightbox-prev { left: -55px; }
+.lightbox-next { right: -55px; }
+
+.lightbox-thumbs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 0.5rem 0;
+}
+
+.lightbox-thumb {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--color-surface);
+  cursor: pointer;
+  opacity: 0.6;
+  padding: 0;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.lightbox-thumb.active {
+  opacity: 1;
+  border-color: var(--color-accent);
+  transform: scale(1.08);
+}
+
+.lightbox-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lightbox-counter {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   9. Loading State
+   ========================================================================== */
+.awards-loading-state {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.skeleton-block {
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  height: 140px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ==========================================================================
+   10. Responsive Design
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .featured-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-hero-media {
+    min-height: 280px;
+    height: 280px;
+  }
+
+  .supporting-featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .awards-page-container {
+    padding: 1.5rem 1rem 5rem;
+    overflow-x: hidden;
+  }
+
+  .stats-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .stat-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .featured-hero-content {
+    padding: 1.5rem 1.4rem;
+  }
+
+  .supporting-featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .selected-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .selected-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+
+  .selected-card-thumb-frame {
+    width: 100%;
+    height: 160px;
+  }
+
+  .selected-card-content {
+    width: 100%;
+  }
+
+  .archive-filters-wrapper {
+    padding: 1rem;
+  }
+
+  .archive-row-item {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+    padding: 0.85rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .archive-row-actions {
+    justify-content: flex-end;
+  }
+
+  .lightbox-nav {
+    display: none;
+  }
+
+  .award-modal-overlay {
+    padding: 0.75rem;
+  }
+
+  .award-modal-container {
+    max-height: 94vh;
+    border-radius: 14px;
+    width: 100%;
+  }
+
+  .award-modal-header {
+    padding: 1.25rem 1.15rem 0.85rem;
+    padding-right: 3.25rem;
+  }
+
+  .award-modal-body {
+    padding: 1rem 1.15rem 1.4rem;
+    gap: 1.1rem;
+  }
+
+  .modal-showcase-nav {
+    opacity: 0.9;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .awards-page-container {
+    padding: 1rem 0.75rem 4rem;
+  }
+
+  .awards-hero-title {
+    font-size: 1.85rem;
+  }
+
+  .featured-hero-media {
+    min-height: 220px;
+    height: 220px;
+  }
+
+  .award-modal-overlay {
+    padding: 0.4rem;
+  }
+
+  .award-modal-container {
+    max-height: 96vh;
+    border-radius: 12px;
+  }
+
+  .award-modal-header {
+    padding: 1rem 0.9rem 0.75rem;
+    padding-right: 2.8rem;
+  }
+
+  .award-modal-title {
+    font-size: 1.15rem;
+  }
+
+  .award-modal-close-btn {
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .award-modal-body {
+    padding: 0.85rem 0.9rem 1.25rem;
+    gap: 0.95rem;
+  }
+
+  .archive-category-filters,
+  .archive-year-filters {
+    gap: 0.35rem;
+  }
+
+  .archive-filter-btn {
+    padding: 0.3rem 0.65rem;
+    font-size: 0.75rem;
+  }
+}

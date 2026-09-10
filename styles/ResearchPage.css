@@ -1,0 +1,1072 @@
+/* ==========================================================================
+   ResearchPage.css — Visual Research Portfolio & Publications Showcase
+   Strict Dark Palette:
+   #1E1B18 (Bg), #292420 (Surface), #E8FCC2 (Text),
+   #829399 (Muted), #B1CC74 (Accent), #D0F4EA (Tint)
+   ========================================================================== */
+
+.research-page-wrapper {
+  max-width: 1240px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 6rem;
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   1. Hero Section (Centered, Editorial, Spacious)
+   ========================================================================== */
+.research-hero-section {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.85rem;
+}
+
+.research-hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.28rem 0.85rem;
+  background: rgba(177, 204, 116, 0.12);
+  border: 1px solid rgba(177, 204, 116, 0.3);
+  border-radius: 20px;
+  color: var(--color-accent);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.research-hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--color-text);
+  margin: 0 auto;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.research-hero-title .title-accent {
+  color: var(--color-accent);
+}
+
+.research-hero-description {
+  max-width: 660px;
+  font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ==========================================================================
+   2. Research Statistics Strip (Compact & Elegant 4-Item Row)
+   ========================================================================== */
+.research-stats-section {
+  max-width: 880px;
+  margin: 0 auto 2.25rem;
+  width: 100%;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1.1fr auto 0.9fr;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.1rem 1.75rem;
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.45);
+}
+
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.stat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.stat-icon {
+  color: var(--color-accent);
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.65rem;
+  font-weight: 900;
+  color: var(--color-text);
+  line-height: 1.1;
+}
+
+.stat-value.year-value {
+  font-size: 1.35rem;
+  color: var(--color-accent);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 38px;
+  background: rgba(177, 204, 116, 0.18);
+  margin: 0 0.5rem;
+}
+
+/* ==========================================================================
+   3. Subtle Research Area Navigation Strip
+   ========================================================================== */
+.research-areas-strip-wrapper {
+  max-width: 960px;
+  margin: 0 auto 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.research-areas-container {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+  background: rgba(30, 27, 24, 0.6);
+  border: 1px solid rgba(177, 204, 116, 0.15);
+}
+
+.research-area-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.research-area-pill-btn:hover {
+  color: var(--color-text);
+  background: rgba(177, 204, 116, 0.1);
+}
+
+.research-area-pill-btn.active {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-weight: 700;
+}
+
+.area-separator {
+  color: var(--color-text-muted);
+  opacity: 0.35;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   4. Filter Trigger Section
+   ========================================================================== */
+.lunit-filter-disclosure-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+/* ==========================================================================
+   5. Unified Bento Publication Grid Architecture
+   ========================================================================== */
+.lunit-research-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.research-unified-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Base Bento Tile Styling */
+.research-bento-tile {
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.55);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.research-bento-tile:hover {
+  border-color: rgba(177, 204, 116, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 42px -10px rgba(0, 0, 0, 0.75), 0 0 20px rgba(177, 204, 116, 0.12);
+}
+
+/* Column Spans */
+.bento-col-12 {
+  grid-column: span 12;
+  min-height: 360px;
+}
+
+.bento-col-8 {
+  grid-column: span 8;
+  min-height: 340px;
+}
+
+.bento-col-7 {
+  grid-column: span 7;
+  min-height: 380px;
+}
+
+.bento-col-6 {
+  grid-column: span 6;
+  min-height: 340px;
+}
+
+.bento-col-5 {
+  grid-column: span 5;
+  min-height: 380px;
+}
+
+.bento-col-4 {
+  grid-column: span 4;
+  min-height: 330px;
+}
+
+/* Tile Media & Background */
+.tile-media-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #141210;
+}
+
+.tile-image-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tile-figure-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.research-bento-tile:hover .tile-figure-img {
+  transform: scale(1.05);
+}
+
+.tile-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 13, 11, 0.82) 0%, rgba(15, 13, 11, 0.45) 40%, rgba(15, 13, 11, 0.96) 100%);
+  pointer-events: none;
+}
+
+.tile-video-indicator {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 4px;
+  background: rgba(177, 204, 116, 0.9);
+  color: var(--color-bg);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  z-index: 3;
+}
+
+/* Tile Foreground Overlay Content */
+.tile-overlay-body {
+  position: relative;
+  z-index: 2;
+  padding: 1.4rem 1.5rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tile-top-metadata {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  flex-shrink: 0;
+  margin-bottom: auto;
+}
+
+.tile-domain-kicker {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tile-status-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.tile-status-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.18rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(30, 27, 24, 0.85);
+  border: 1px solid var(--border);
+}
+
+.tile-status-tag.status-published {
+  background: rgba(177, 204, 116, 0.15);
+  border-color: rgba(177, 204, 116, 0.35);
+  color: var(--color-accent);
+}
+
+.tile-status-tag.status-preprint {
+  background: rgba(208, 244, 234, 0.12);
+  border-color: rgba(208, 244, 234, 0.3);
+  color: var(--color-tint);
+}
+
+.tile-status-tag.status-ongoing {
+  background: rgba(130, 147, 153, 0.15);
+  border-color: rgba(130, 147, 153, 0.3);
+  color: var(--color-text-muted);
+}
+
+.tile-year-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.tile-bottom-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+  width: 100%;
+}
+
+.tile-paper-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.35;
+  margin: 0;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bento-featured .tile-paper-title {
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+}
+
+.tile-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(177, 204, 116, 0.12);
+}
+
+.tile-action-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
+}
+
+.research-bento-tile:hover .tile-action-label {
+  color: var(--color-text);
+}
+
+.tile-arrow-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(30, 27, 24, 0.85);
+  border: 1px solid var(--border);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.research-bento-tile:hover .tile-arrow-circle {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+  transform: translate(2px, -2px);
+}
+
+/* ==========================================================================
+   6. Pure Aesthetic Blueprint Schematic Fallback
+   ========================================================================== */
+.research-blueprint-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1d1916 0%, #12100e 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blueprint-pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.blueprint-pattern.agent-graph {
+  background-size: 28px 28px;
+  background-image: 
+    radial-gradient(circle, rgba(177, 204, 116, 0.15) 1.5px, transparent 1.5px),
+    linear-gradient(to right, rgba(177, 204, 116, 0.05) 1px, transparent 1px);
+}
+
+.blueprint-pattern.brain-mesh {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(177, 204, 116, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(177, 204, 116, 0.08) 1px, transparent 1px);
+}
+
+.blueprint-pattern.diffusion-fourier {
+  background-size: 32px 32px;
+  background-image: 
+    radial-gradient(rgba(177, 204, 116, 0.14) 1px, transparent 0),
+    linear-gradient(45deg, rgba(177, 204, 116, 0.04) 25%, transparent 25%);
+}
+
+.blueprint-pattern.dna-channel {
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(208, 244, 234, 0.08) 1px, transparent 1px);
+}
+
+.blueprint-pattern.cross-attention {
+  background-size: 22px 22px;
+  background-image: 
+    radial-gradient(circle, rgba(177, 204, 116, 0.12) 1px, transparent 1px);
+}
+
+.blueprint-pattern.pyramid-flow {
+  background-size: 26px 26px;
+  background-image: 
+    linear-gradient(to right, rgba(177, 204, 116, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(177, 204, 116, 0.06) 1px, transparent 1px);
+}
+
+.blueprint-pattern.dialogue-tree {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to bottom, rgba(177, 204, 116, 0.06) 1px, transparent 1px);
+}
+
+.blueprint-pattern.generic-neural {
+  background-size: 26px 26px;
+  background-image: 
+    linear-gradient(to right, rgba(177, 204, 116, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(177, 204, 116, 0.06) 1px, transparent 1px);
+}
+
+.blueprint-ambient-glow {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(177, 204, 116, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.blueprint-watermark-icon {
+  color: var(--color-accent);
+  opacity: 0.14;
+  pointer-events: none;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.research-bento-tile:hover .blueprint-watermark-icon {
+  transform: scale(1.1);
+  opacity: 0.22;
+}
+
+/* ==========================================================================
+   7. Research Threads & Cross-Connection Banner
+   ========================================================================== */
+.research-threads-banner-section {
+  margin-top: 5rem;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #24201c 0%, #171412 100%);
+  border: 1px solid var(--border);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
+}
+
+.threads-banner-container {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.threads-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  background: rgba(177, 204, 116, 0.12);
+  border: 1px solid rgba(177, 204, 116, 0.3);
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.threads-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.4rem, 2.5vw, 1.95rem);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.threads-description {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.threads-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.threads-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.35rem;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.threads-action-btn.primary {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.threads-action-btn.primary:hover {
+  background: var(--color-text);
+  transform: translateY(-2px);
+}
+
+.threads-action-btn.secondary {
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  color: var(--color-text);
+}
+
+.threads-action-btn.secondary:hover {
+  border-color: var(--color-accent);
+  background: #312b26;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   8. Loading & Empty States
+   ========================================================================== */
+.lunit-loading-container,
+.lunit-empty-state {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  color: var(--color-text-muted);
+}
+
+.lunit-spinner {
+  width: 38px;
+  height: 38px;
+  border: 3px solid rgba(177, 204, 116, 0.2);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1.25rem;
+}
+
+.empty-icon {
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   9. Unified Detail Modal
+   ========================================================================== */
+.research-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(14px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+.research-modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  max-height: 88vh;
+  margin: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.research-modal-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(30, 27, 24, 0.85);
+  border: 1px solid var(--border);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.research-modal-close-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+  transform: rotate(90deg);
+}
+
+.research-modal-scrollable {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 2.25rem 2.5rem 3rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.research-modal-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-right: 2.5rem;
+}
+
+.research-modal-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.research-modal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.research-modal-badge.year-badge {
+  background: rgba(30, 27, 24, 0.8);
+  border: 1px solid var(--border);
+  color: var(--color-text-muted);
+}
+
+.research-modal-badge.topic-badge {
+  background: rgba(177, 204, 116, 0.15);
+  border: 1px solid rgba(177, 204, 116, 0.35);
+  color: var(--color-accent);
+}
+
+.research-modal-badge.status-badge {
+  background: rgba(177, 204, 116, 0.15);
+  border: 1px solid rgba(177, 204, 116, 0.35);
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+.research-modal-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.4rem, 2.5vw, 1.95rem);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.25;
+  margin: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.research-modal-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  color: var(--color-text-muted);
+  font-size: 0.84rem;
+}
+
+.research-meta-authors {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.research-meta-authors .meta-icon {
+  color: var(--color-accent);
+}
+
+.research-meta-award {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* Modal Media Showcase */
+.research-modal-showcase {
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #151311;
+  position: relative;
+}
+
+.research-modal-media-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  flex-shrink: 0;
+  background: #0f0d0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.research-modal-video-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 2;
+}
+
+.research-modal-video-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.research-modal-slide-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.research-modal-slide-wrapper.active {
+  opacity: 1;
+}
+
+.research-modal-slide-bg {
+  position: absolute;
+  inset: -20px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(28px) brightness(0.3);
+  opacity: 0.85;
+  transform: scale(1.15);
+  pointer-events: none;
+}
+
+.research-modal-slide-img {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.research-showcase-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(30, 27, 24, 0.8);
+  border: 1px solid var(--border);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.2s ease;
+}
+
+.research-showcase-nav.prev { left: 0.75rem; }
+.research-showcase-nav.next { right: 0.75rem; }
+
+.research-showcase-nav:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.research-modal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.section-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+.section-text-para {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.highlight-bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.highlight-bullet-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  margin-top: 0.55rem;
+  flex-shrink: 0;
+}
+
+.research-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.research-action-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: rgba(30, 27, 24, 0.8);
+  border: 1px solid var(--border);
+  color: var(--color-text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.research-action-link-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   10. Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 992px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .bento-col-12,
+  .bento-col-8,
+  .bento-col-7,
+  .bento-col-6,
+  .bento-col-5,
+  .bento-col-4 {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 768px) {
+  .research-page-wrapper {
+    padding: 1.5rem 1rem 4.5rem;
+  }
+
+  .research-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .research-unified-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .bento-col-12,
+  .bento-col-8,
+  .bento-col-7,
+  .bento-col-6,
+  .bento-col-5,
+  .bento-col-4 {
+    grid-column: span 1;
+    min-height: 260px;
+  }
+
+  .research-modal-scrollable {
+    padding: 1.5rem 1.25rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .research-hero-title {
+    font-size: 1.95rem;
+  }
+
+  .tile-overlay-body {
+    padding: 1.15rem;
+  }
+}

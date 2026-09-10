@@ -8,6 +8,7 @@ import SelectedAwards from '../components/awards/SelectedAwards';
 import AwardArchive from '../components/awards/AwardArchive';
 import AwardDetailModal from '../components/awards/AwardDetailModal';
 import AwardMediaLightbox from '../components/awards/AwardMediaLightbox';
+import ScrollReveal from '../components/shared/ScrollReveal';
 import '../styles/AwardsPage.css';
 
 const AwardsPage = () => {
@@ -111,21 +112,27 @@ const AwardsPage = () => {
       ) : (
         <>
           {/* 2. Recognition Statistics Strip */}
-          <RecognitionStats awards={awards} />
+          <ScrollReveal threshold={0} margin="0px 0px -20px 0px">
+            <RecognitionStats awards={awards} />
+          </ScrollReveal>
 
           {/* 3. Featured Recognition Centerpiece */}
-          <FeaturedAwards 
-            awards={awards}
-            onSelectAward={handleOpenAwardModal}
-            onOpenMedia={handleOpenMediaFromAward}
-          />
+          <ScrollReveal threshold={0} margin="0px 0px -20px 0px">
+            <FeaturedAwards 
+              awards={awards}
+              onSelectAward={handleOpenAwardModal}
+              onOpenMedia={handleOpenMediaFromAward}
+            />
+          </ScrollReveal>
 
           {/* 4. Selected Recognition (Curated 2-Column Grid) */}
-          <SelectedAwards 
-            awards={awards}
-            onSelectAward={handleOpenAwardModal}
-            onOpenMedia={handleOpenMediaFromAward}
-          />
+          <ScrollReveal threshold={0} margin="0px 0px -20px 0px">
+            <SelectedAwards 
+              awards={awards}
+              onSelectAward={handleOpenAwardModal}
+              onOpenMedia={handleOpenMediaFromAward}
+            />
+          </ScrollReveal>
 
           {/* 5. Complete Chronological Award Archive */}
           <AwardArchive 

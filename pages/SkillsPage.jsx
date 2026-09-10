@@ -4,6 +4,7 @@ import CoreExpertise from '../components/skills/CoreExpertise';
 import TechnologyStack from '../components/skills/TechnologyStack';
 import SkillsInPractice from '../components/skills/SkillsInPractice';
 import SkillsCTA from '../components/skills/SkillsCTA';
+import ScrollReveal from '../components/shared/ScrollReveal';
 import { loadSkillsData, loadProjectsData, loadResearchData } from '../src/utils/csvLoader';
 import '../styles/SkillsPage.css';
 
@@ -47,16 +48,24 @@ const SkillsPage = () => {
       ) : (
         <>
           {/* 01 — Core Expertise & Architecture (Merged Iconic Domain & Tech Tree) */}
-          <CoreExpertise skills={skills} />
+          <ScrollReveal>
+            <CoreExpertise skills={skills} />
+          </ScrollReveal>
 
           {/* 02 — Technology Stack (Typographic clusters) */}
-          <TechnologyStack skills={skills} />
+          <ScrollReveal delay={0.05}>
+            <TechnologyStack skills={skills} />
+          </ScrollReveal>
 
           {/* 03 — Skills In Practice (Image-First Proof of Work) */}
-          <SkillsInPractice projects={projects} research={research} />
+          <ScrollReveal delay={0.05}>
+            <SkillsInPractice projects={projects} research={research} />
+          </ScrollReveal>
 
           {/* Closing Strip */}
-          <SkillsCTA />
+          <ScrollReveal delay={0.05}>
+            <SkillsCTA />
+          </ScrollReveal>
         </>
       )}
     </div>

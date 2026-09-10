@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import '../styles/Homepage.css';
 import DriftWall from '../components/shared/DriftWall';
@@ -22,6 +23,7 @@ import {
   loadMomentsData 
 } from '../src/utils/csvLoader';
 import profileImage from '../images/fahmida.png';
+import PortfolioPreloader from '../components/shared/PortfolioPreloader';
 
 // Fallback Drift Wall Real Portfolio Assets if moments data empty
 const DEFAULT_WALL_IMAGES = [
@@ -56,6 +58,20 @@ const HomePage = () => {
   const [socialLinks, setSocialLinks] = useState([]);
   const [cvLink, setCvLink] = useState('');
   const [loading, setLoading] = useState(true);
+
+  // Preloader session state and hero coordination
+  const [showPreloader, setShowPreloader] = useState(() => {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      return !window.sessionStorage.getItem('portfolio_preloader_seen');
+    }
+    return true;
+  });
+  const [isHeroRevealed, setIsHeroRevealed] = useState(() => {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      return !!window.sessionStorage.getItem('portfolio_preloader_seen');
+    }
+    return false;
+  });
 
   const navItems = [
     { label: 'Home', path: '/' },
@@ -157,6 +173,18 @@ const HomePage = () => {
 
   return (
     <div className="homepage">
+      {showPreloader && (
+        <PortfolioPreloader 
+          onRevealHero={() => setIsHeroRevealed(true)}
+          onComplete={() => {
+            setShowPreloader(false);
+            try {
+              sessionStorage.setItem('portfolio_preloader_seen', 'true');
+            } catch (e) {}
+          }}
+        />
+      )}
+
       {/* 1. Header Navigation */}
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
@@ -233,7 +261,12 @@ const HomePage = () => {
         {/* Foreground Hero Content */}
         <div className="hero-container">
           {/* Profile Portrait */}
-          <div className="hero-profile-column">
+          <motion.div
+            className="hero-profile-column"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isHeroRevealed ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
             <div className="profile-card-wrapper">
               <div className="profile-ambient-glow" />
               <div className="profile-card">
@@ -247,29 +280,49 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Name & Identity */}
           <div className="hero-content-column">
-            <div className="hero-intro-lead">
+            <motion.div
+              className="hero-intro-lead"
+              initial={{ opacity: 0, y: 18 }}
+              animate={isHeroRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+              transition={{ duration: 0.6, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
               <span className="lead-dash" />
               <span className="lead-text">This is</span>
-            </div>
+            </motion.div>
 
-            <h1 className="hero-name-title">
+            <motion.h1
+              className="hero-name-title"
+              initial={{ opacity: 0, y: 18 }}
+              animate={isHeroRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+              transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
               <span className="hero-name-gradient">Mst. Fahmida Sultana Naznin</span>
-            </h1>
+            </motion.h1>
 
-            <div className="hero-role-line">
+            <motion.div
+              className="hero-role-line"
+              initial={{ opacity: 0, y: 18 }}
+              animate={isHeroRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+              transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
               <span className="role-segment role-primary">ACCA Candidate</span>
               <span className="role-dot">•</span>
               <span className="role-segment">Finance & Strategy</span>
               <span className="role-dot">•</span>
               <span className="role-segment">Strategic Analyst</span>
-            </div>
+            </motion.div>
 
             {/* CTAs */}
-            <div className="hero-actions-row">
+            <motion.div
+              className="hero-actions-row"
+              initial={{ opacity: 0, y: 18 }}
+              animate={isHeroRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+              transition={{ duration: 0.6, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
               <button onClick={scrollToFirstSection} className="btn-hero-primary" type="button">
                 <span>Explore My Work</span>
                 <ArrowRight size={16} />
@@ -285,20 +338,23 @@ const HomePage = () => {
                   <ChevronRight size={16} />
                 </Link>
               )}
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* Subtle Scroll Indicator */}
-        <button 
+        <motion.button 
           className="hero-scroll-indicator" 
           onClick={scrollToFirstSection}
           aria-label="Scroll to explore"
           type="button"
+          initial={{ opacity: 0 }}
+          animate={isHeroRevealed ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6, delay: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <span className="scroll-text">SCROLL TO EXPLORE</span>
           <ArrowDown size={14} className="scroll-arrow-anim" />
-        </button>
+        </motion.button>
       </section>
 
       {/* 3. Section 01: Positioning Statement */}

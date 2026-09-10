@@ -1,18 +1,34 @@
 import React from 'react';
+import { motion } from 'motion/react';
 
 const SkillsHero = () => {
   return (
     <section className="skills-hero-section" aria-label="Skills and Technical Identity">
-      <h1 className="skills-hero-title">
+      <motion.h1 
+        className="skills-hero-title"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
         Skills & <span className="title-accent">Expertise</span>
-      </h1>
+      </motion.h1>
 
-      <p className="skills-hero-description">
+      <motion.p 
+        className="skills-hero-description"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
         Engineering intelligent systems across artificial intelligence, computer vision, 
         spatial computing, and embedded architectures.
-      </p>
+      </motion.p>
 
-      <div className="skills-hero-divider" />
+      <motion.div 
+        className="skills-hero-divider"
+        initial={{ opacity: 0, scaleX: 0.8 }}
+        animate={{ opacity: 1, scaleX: 1 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+      />
     </section>
   );
 };

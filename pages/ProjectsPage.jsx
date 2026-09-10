@@ -8,6 +8,8 @@ import FeaturedProjectHero from '../components/projects/FeaturedProjectHero';
 import ProjectBentoGrid from '../components/projects/ProjectBentoGrid';
 import ProjectCard from '../components/projects/ProjectCard';
 import ProjectDetailModal from '../components/projects/ProjectDetailModal';
+import ScrollReveal from '../components/shared/ScrollReveal';
+import StaggerReveal from '../components/shared/StaggerReveal';
 import '../styles/ProjectsPage.css';
 
 const ProjectsPage = () => {
@@ -119,30 +121,36 @@ const ProjectsPage = () => {
         <div className="projects-sections-container">
           {/* 3. Hero Project Showcase (Only when viewing All and no search) */}
           {selectedCategory === 'all' && !searchQuery && featuredFlagship && (
-            <FeaturedProjectHero 
-              project={featuredFlagship}
-              onOpenProject={(p) => setActiveModalProject(p)}
-            />
+            <ScrollReveal threshold={0} margin="0px 0px -20px 0px">
+              <FeaturedProjectHero 
+                project={featuredFlagship}
+                onOpenProject={(p) => setActiveModalProject(p)}
+              />
+            </ScrollReveal>
           )}
 
           {/* 4. Highlight Systems Bento Grid (Only when viewing All and no search) */}
           {selectedCategory === 'all' && !searchQuery && bentoProjects.length > 0 && (
-            <ProjectBentoGrid 
-              projects={bentoProjects}
-              onOpenProject={(p) => setActiveModalProject(p)}
-            />
+            <ScrollReveal threshold={0} margin="0px 0px -20px 0px">
+              <ProjectBentoGrid 
+                projects={bentoProjects}
+                onOpenProject={(p) => setActiveModalProject(p)}
+              />
+            </ScrollReveal>
           )}
 
           {/* 5. Complete Curated Project Collection */}
           <section className="curated-collection-section" aria-label="Engineered Project Collection">
-            <div className="section-header-compact">
-              <h2 className="section-title">
-                {selectedCategory === 'all' && !searchQuery ? 'All Engineering Projects' : `Filtered Projects (${filteredProjects.length})`}
-              </h2>
-            </div>
+            <ScrollReveal threshold={0} margin="0px 0px -20px 0px">
+              <div className="section-header-compact">
+                <h2 className="section-title">
+                  {selectedCategory === 'all' && !searchQuery ? 'All Engineering Projects' : `Filtered Projects (${filteredProjects.length})`}
+                </h2>
+              </div>
+            </ScrollReveal>
 
             {filteredProjects.length > 0 ? (
-              <div className="curated-projects-grid">
+              <StaggerReveal className="curated-projects-grid" staggerDelay={0.04} threshold={0} margin="0px 0px -20px 0px">
                 {filteredProjects.map((project) => (
                   <ProjectCard 
                     key={project.id}
@@ -150,7 +158,7 @@ const ProjectsPage = () => {
                     onOpenProject={(p) => setActiveModalProject(p)}
                   />
                 ))}
-              </div>
+              </StaggerReveal>
             ) : (
               <div className="projects-empty-state">
                 <p>No projects match your filter criteria.</p>
@@ -159,28 +167,30 @@ const ProjectsPage = () => {
           </section>
 
           {/* 6. Cross-Connection Bottom Banner */}
-          <section className="projects-bottom-explore-banner" aria-label="Cross-portfolio exploration">
-            <div className="bottom-banner-content">
-              <h3 className="bottom-banner-title">
-                Explore the research behind these systems
-              </h3>
-              <p className="bottom-banner-desc">
-                Dive into peer-reviewed research publications, dataset benchmarks, and academic honors.
-              </p>
-              <div className="bottom-banner-actions">
-                <Link to="/research" className="bottom-banner-btn primary">
-                  <BookOpen size={15} />
-                  <span>View Research Papers</span>
-                  <ArrowRight size={14} />
-                </Link>
-                <Link to="/awards" className="bottom-banner-btn secondary">
-                  <Award size={15} />
-                  <span>Awards & Recognition</span>
-                  <ArrowRight size={14} />
-                </Link>
+          <ScrollReveal threshold={0} margin="0px 0px -20px 0px">
+            <section className="projects-bottom-explore-banner" aria-label="Cross-portfolio exploration">
+              <div className="bottom-banner-content">
+                <h3 className="bottom-banner-title">
+                  Explore the research behind these systems
+                </h3>
+                <p className="bottom-banner-desc">
+                  Dive into peer-reviewed research publications, dataset benchmarks, and academic honors.
+                </p>
+                <div className="bottom-banner-actions">
+                  <Link to="/research" className="bottom-banner-btn primary">
+                    <BookOpen size={15} />
+                    <span>View Research Papers</span>
+                    <ArrowRight size={14} />
+                  </Link>
+                  <Link to="/awards" className="bottom-banner-btn secondary">
+                    <Award size={15} />
+                    <span>Awards & Recognition</span>
+                    <ArrowRight size={14} />
+                  </Link>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </ScrollReveal>
         </div>
       )}
 

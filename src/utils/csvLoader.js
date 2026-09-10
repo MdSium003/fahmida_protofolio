@@ -15,6 +15,31 @@ export function normalizeBoolean(val) {
 }
 
 /**
+ * Normalizes image paths so users can write "public/image.png", "/wall/img.jpg",
+ * "wall/img.jpg", or external URLs "https://..." interchangeably.
+ */
+export function normalizeImagePath(pathStr) {
+  if (!pathStr || typeof pathStr !== 'string') return '';
+  const trimmed = pathStr.trim();
+  if (!trimmed) return '';
+  // Return web URLs or data URIs as-is
+  if (/^(https?:|\/\/|data:|blob:)/i.test(trimmed)) {
+    return trimmed;
+  }
+  // Strip any leading "public/" or "/public/"
+  let clean = trimmed.replace(/^\/?public\//i, '/');
+  // Strip leading "./"
+  if (clean.startsWith('./')) {
+    clean = clean.slice(1);
+  }
+  // Ensure leading slash
+  if (!clean.startsWith('/')) {
+    clean = `/${clean}`;
+  }
+  return clean;
+}
+
+/**
  * Loads and parses a CSV file from /data/<name>.csv
  * @param {string} fileName - Name of the CSV file (with or without .csv extension)
  * @returns {Promise<Array<Object>>} - Parsed array of row objects
@@ -226,8 +251,12 @@ export function parseMedia(mediaStr) {
       caption = parts.slice(1).join('|').trim();
     }
 
-    if (media_type === 'image' && (/youtu\.be|youtube\.com/.test(media_url))) {
-      media_type = 'youtube';
+    if (media_type === 'image') {
+      if (/youtu\.be|youtube\.com/.test(media_url)) {
+        media_type = 'youtube';
+      } else {
+        media_url = normalizeImagePath(media_url);
+      }
     }
 
     return {
@@ -263,13 +292,16 @@ export async function loadProjectsData() {
       categoryId = 'ai';
     }
 
+    const normalizedImg = normalizeImagePath(p.thumbnail_url);
+
     return {
       ...p,
       id: String(p.id),
       category,
       categoryId,
       technologies: rawKeywords,
-      image: p.thumbnail_url || '',
+      thumbnail_url: normalizedImg,
+      image: normalizedImg,
       isFeatured: normalizeBoolean(p.is_featured),
       featuredOrder: Number(p.featured_order) || 999,
       sourcesList: parseSources(p.sources)
@@ -289,6 +321,7 @@ export async function loadResearchData() {
   const raw = await loadCsv('research');
   const processed = (raw || []).map(p => {
     const topics = parseList(p.topics);
+    const normalizedImg = normalizeImagePath(p.thumbnail_url);
     return {
       ...p,
       id: String(p.id),
@@ -297,7 +330,8 @@ export async function loadResearchData() {
       linksList: parseLinks(p.links),
       mediaList: parseMedia(p.media),
       kicker: topics[0] || 'Medical AI',
-      displayImg: p.thumbnail_url && !p.thumbnail_url.includes('example.com') ? p.thumbnail_url : '',
+      thumbnail_url: normalizedImg,
+      displayImg: normalizedImg && !normalizedImg.includes('example.com') ? normalizedImg : '',
       isFeatured: normalizeBoolean(p.is_featured),
       featuredOrder: Number(p.featured_order) || 999
     };
@@ -343,11 +377,14 @@ export async function loadBlogsData() {
       coverImg = firstImg ? firstImg.media_url : '/wall/fahmida_blog.jpeg';
     }
 
+    const normalizedCover = normalizeImagePath(coverImg);
+
     return {
       ...item,
       id: String(item.id),
       isVlog,
-      coverImage: coverImg,
+      thumbnail_url: normalizeImagePath(item.thumbnail_url),
+      coverImage: normalizedCover,
       isFeatured: normalizeBoolean(item.is_featured),
       featuredOrder: Number(item.featured_order) || 999,
       mediaList: parseMedia(item.media),
@@ -376,11 +413,16 @@ export async function loadSkillsData() {
 
 export async function loadMomentsData() {
   const raw = await loadCsv('moments');
-  return (raw || []).map(m => ({
-    ...m,
-    id: String(m.id),
-    displayOrder: Number(m.display_order) || 999
-  })).sort((a, b) => a.displayOrder - b.displayOrder);
+  return (raw || []).map(m => {
+    const norm = normalizeImagePath(m.image_url);
+    return {
+      ...m,
+      id: String(m.id),
+      image_url: norm,
+      image: norm,
+      displayOrder: Number(m.display_order) || 999
+    };
+  }).sort((a, b) => a.displayOrder - b.displayOrder);
 }
 
 export async function loadSocialLinksData() {
@@ -397,6 +439,7 @@ export async function loadExperienceData() {
   return (raw || []).map(e => ({
     ...e,
     id: String(e.id),
+    logo_url: normalizeImagePath(e.logo_url),
     sortOrder: Number(e.sort_order) || 999
   })).sort((a, b) => new Date(a.start_date || 0) - new Date(b.start_date || 0));
 }
@@ -406,6 +449,7 @@ export async function loadEducationData() {
   return (raw || []).map(e => ({
     ...e,
     id: String(e.id),
+    logo_url: normalizeImagePath(e.logo_url),
     sortOrder: Number(e.sort_order) || 999
   })).sort((a, b) => (Number(b.start_year) || 0) - (Number(a.start_year) || 0));
 }
@@ -415,6 +459,7 @@ export async function loadVolunteerData() {
   return (raw || []).map(v => ({
     ...v,
     id: String(v.id),
+    logo_url: normalizeImagePath(v.logo_url),
     sortOrder: Number(v.sort_order) || 999
   })).sort((a, b) => new Date(b.start_date || 0) - new Date(a.start_date || 0));
 }

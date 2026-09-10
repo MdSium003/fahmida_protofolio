@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Trophy, ArrowRight, ArrowUpRight, Building2, Medal, Award, Globe2, GraduationCap } from 'lucide-react';
 import { cleanAwardTitle, getAllAwardImages, getPlacementBadge } from '../awards/FeaturedAwards';
+import ScrollReveal from '../shared/ScrollReveal';
+import StaggerReveal from '../shared/StaggerReveal';
 
 const HomeRecognitionPreview = ({ awards = [] }) => {
   if (!awards || awards.length === 0) return null;
@@ -16,15 +18,17 @@ const HomeRecognitionPreview = ({ awards = [] }) => {
     <section className="home-section home-recognition-section" aria-label="Recognition & Distinctions">
       <div className="home-section-container">
         {/* Section Header */}
-        <div className="home-section-header">
-          <h2 className="home-section-title">Honors & Academic Distinctions</h2>
-          <p className="home-section-subtitle">
-            International travel grants, national champions, and selective academic scholarships.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="home-section-header">
+            <h2 className="home-section-title">Honors & Academic Distinctions</h2>
+            <p className="home-section-subtitle">
+              International travel grants, national champions, and selective academic scholarships.
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* 3-Column Visual Distinctions Grid */}
-        <div className="home-awards-preview-grid">
+        <StaggerReveal className="home-awards-preview-grid" staggerDelay={0.1}>
           {curatedAwards.map((award) => {
             const placement = getPlacementBadge(award.title);
             const images = getAllAwardImages(award);
@@ -76,15 +80,17 @@ const HomeRecognitionPreview = ({ awards = [] }) => {
               </article>
             );
           })}
-        </div>
+        </StaggerReveal>
 
         {/* Section Action: View All Awards */}
-        <div className="home-section-bottom-action">
-          <Link to="/awards" className="home-view-all-link">
-            <span>View All Awards & Honors</span>
-            <ArrowUpRight size={15} />
-          </Link>
-        </div>
+        <ScrollReveal>
+          <div className="home-section-bottom-action">
+            <Link to="/awards" className="home-view-all-link">
+              <span>View All Awards & Honors</span>
+              <ArrowUpRight size={15} />
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

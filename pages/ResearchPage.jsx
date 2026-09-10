@@ -5,6 +5,7 @@ import ResearchStats from '../components/research/ResearchStats';
 import ResearchFilterDisclosure from '../components/research/ResearchFilterDisclosure';
 import LunitResearchGrid from '../components/research/LunitResearchGrid';
 import ResearchThreads from '../components/research/ResearchThreads';
+import ScrollReveal from '../components/shared/ScrollReveal';
 import '../styles/ResearchPage.css';
 
 const ResearchPage = () => {
@@ -35,7 +36,11 @@ const ResearchPage = () => {
       <ResearchHero />
 
       {/* 2. Research Statistics Strip */}
-      {!loading && <ResearchStats papers={papers} />}
+      {!loading && (
+        <ScrollReveal>
+          <ResearchStats papers={papers} />
+        </ScrollReveal>
+      )}
 
       {/* 3. Main Research Content */}
       <main className="research-main-content">
@@ -60,7 +65,9 @@ const ResearchPage = () => {
         </section>
 
         {/* 5. Bottom Research Pipeline & Threads Banner */}
-        <ResearchThreads />
+        <ScrollReveal>
+          <ResearchThreads />
+        </ScrollReveal>
       </main>
     </div>
   );

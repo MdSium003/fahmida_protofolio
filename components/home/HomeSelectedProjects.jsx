@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FolderGit2, ArrowRight, ArrowUpRight, Play, Eye } from 'lucide-react';
 import ProjectGraphicFallback from '../projects/ProjectGraphicFallback';
+import ScrollReveal from '../shared/ScrollReveal';
+import StaggerReveal from '../shared/StaggerReveal';
 
 const getYouTubeEmbedUrl = (url) => {
   if (!url) return '';
@@ -45,16 +47,18 @@ const HomeSelectedProjects = ({ projects = [] }) => {
     <section className="home-section home-selected-projects" aria-label="Selected Projects">
       <div className="home-section-container">
         {/* Section Header */}
-        <div className="home-section-header">
-          <h2 className="home-section-title">Flagship Systems & Engineering</h2>
-          <p className="home-section-subtitle">
-            A curated selection of technical software, computer vision architectures, and interactive tools.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="home-section-header">
+            <h2 className="home-section-title">Flagship Systems & Engineering</h2>
+            <p className="home-section-subtitle">
+              A curated selection of technical software, computer vision architectures, and interactive tools.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        {/* 1. Large Dominant Flagship Project */}
-        <article className="home-flagship-card">
-          <div className="home-flagship-media">
+        <ScrollReveal delay={0.1}>
+          <article className="home-flagship-card">
+            <div className="home-flagship-media">
             {flagshipMedia.hasValidImage ? (
               <div className="home-flagship-img-wrap">
                 <img 
@@ -103,10 +107,11 @@ const HomeSelectedProjects = ({ projects = [] }) => {
             </div>
           </div>
         </article>
+      </ScrollReveal>
 
         {/* 2. Supporting Projects 2-Column Grid */}
         {supporting.length > 0 && (
-          <div className="home-supporting-projects-grid">
+          <StaggerReveal className="home-supporting-projects-grid" staggerDelay={0.1}>
             {supporting.map((proj) => {
               const media = getMediaInfo(proj);
               const techList = parseKeywords(proj.keywords).slice(0, 3);
@@ -154,16 +159,18 @@ const HomeSelectedProjects = ({ projects = [] }) => {
                 </article>
               );
             })}
-          </div>
+          </StaggerReveal>
         )}
 
         {/* Section Action: View All Projects */}
-        <div className="home-section-bottom-action">
-          <Link to="/projects" className="home-view-all-link">
-            <span>View All Projects</span>
-            <ArrowUpRight size={15} />
-          </Link>
-        </div>
+        <ScrollReveal>
+          <div className="home-section-bottom-action">
+            <Link to="/projects" className="home-view-all-link">
+              <span>View All Projects</span>
+              <ArrowUpRight size={15} />
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

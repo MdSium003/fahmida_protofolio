@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { motion } from 'motion/react';
 import { 
   Calendar, MapPin, ExternalLink, Award, CheckCircle2, 
   ArrowUpRight, Plus
 } from 'lucide-react';
 import { loadExperienceData, loadEducationData, loadVolunteerData } from '../src/utils/csvLoader';
+import ScrollReveal from '../components/shared/ScrollReveal';
 import profileImage from '../images/fahmida.png';
 import '../styles/CareerPage.css';
 
@@ -102,7 +104,12 @@ const CareerPage = () => {
       <div className="career-ambient-orb orb-2" aria-hidden="true" />
 
       {/* Motivational Hero Section: "She Never Stops." with Profile Picture */}
-      <header className="career-hero-split">
+      <motion.header 
+        className="career-hero-split"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
         <div className="career-hero-left">
           <h1 className="career-hero-quote">
             <span className="quote-lead">She Never</span>
@@ -137,7 +144,7 @@ const CareerPage = () => {
             </div>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {loading ? (
         <div className="career-loading-state">
@@ -150,12 +157,13 @@ const CareerPage = () => {
           {/* =================================================================
               1. EDUCATION (ON TOP — ATHOS ROW DESIGN + DOWNWARD REVEAL ONLY)
              ================================================================= */}
-          <section className="career-block education-block">
-            <div className="block-header">
-              <div className="block-header-left">
-                <h2 className="block-title">Education</h2>
+          <ScrollReveal>
+            <section className="career-block education-block">
+              <div className="block-header">
+                <div className="block-header-left">
+                  <h2 className="block-title">Education</h2>
+                </div>
               </div>
-            </div>
 
             {/* Athos-Dark Minimalist Row List (Locked 100% Width) */}
             <div className="athos-list-container">
@@ -224,10 +232,12 @@ const CareerPage = () => {
               })}
             </div>
           </section>
+        </ScrollReveal>
 
           {/* =================================================================
               2. EXPERIENCE (CONTINUOUS TIMELINE + DYNAMIC CURSOR HOVER CARD)
              ================================================================= */}
+        <ScrollReveal delay={0.05}>
           <section className="career-block experience-block">
             <div className="block-header">
               <div className="block-header-left">
@@ -479,10 +489,12 @@ const CareerPage = () => {
               </div>
             )}
           </section>
+        </ScrollReveal>
 
           {/* =================================================================
               3. VOLUNTEER & COMMUNITY (PREMIUM UPGRADED CARDS)
              ================================================================= */}
+        <ScrollReveal delay={0.05}>
           <section className="career-block volunteer-block">
             <div className="block-header">
               <div className="block-header-left">
@@ -580,6 +592,7 @@ const CareerPage = () => {
               })}
             </div>
           </section>
+        </ScrollReveal>
 
         </div>
       )}

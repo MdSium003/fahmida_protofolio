@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, ArrowRight, ArrowUpRight, Activity } from 'lucide-react';
 import ResearchFigureFallback from '../research/ResearchFigureFallback';
+import ScrollReveal from '../shared/ScrollReveal';
+import StaggerReveal from '../shared/StaggerReveal';
 
 const HomeResearchSpotlight = ({ papers = [] }) => {
   if (!papers || papers.length === 0) return null;
@@ -31,15 +33,17 @@ const HomeResearchSpotlight = ({ papers = [] }) => {
     <section className="home-section home-research-spotlight" aria-label="Research Spotlight">
       <div className="home-section-container">
         {/* Section Header */}
-        <div className="home-section-header">
-          <h2 className="home-section-title">Scientific Publications & Models</h2>
-          <p className="home-section-subtitle">
-            Advancing clinical AI, multimodal multi-agent reasoning, and medical image segmentation.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="home-section-header">
+            <h2 className="home-section-title">Scientific Publications & Models</h2>
+            <p className="home-section-subtitle">
+              Advancing clinical AI, multimodal multi-agent reasoning, and medical image segmentation.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        {/* 1. Large Dominant Lead Research Card */}
-        <article className="home-research-lead-card">
+        <ScrollReveal delay={0.1}>
+          <article className="home-research-lead-card">
           <div className="home-research-figure-frame">
             {leadMedia.hasValidImage ? (
               <div className="home-research-img-wrapper">
@@ -89,10 +93,11 @@ const HomeResearchSpotlight = ({ papers = [] }) => {
             </div>
           </div>
         </article>
+      </ScrollReveal>
 
         {/* 2. Supporting Papers 2-Column Grid */}
         {supportingPapers.length > 0 && (
-          <div className="home-supporting-papers-grid">
+          <StaggerReveal className="home-supporting-papers-grid" staggerDelay={0.1}>
             {supportingPapers.map((paper) => {
               const media = getMediaInfo(paper);
               const kicker = paper.kicker || (paper.topics ? paper.topics.split(',')[0] : 'MEDICAL AI');
@@ -139,16 +144,18 @@ const HomeResearchSpotlight = ({ papers = [] }) => {
                 </article>
               );
             })}
-          </div>
+          </StaggerReveal>
         )}
 
         {/* Section Action: View All Research */}
-        <div className="home-section-bottom-action">
-          <Link to="/research" className="home-view-all-link">
-            <span>View All Research & Publications</span>
-            <ArrowUpRight size={15} />
-          </Link>
-        </div>
+        <ScrollReveal>
+          <div className="home-section-bottom-action">
+            <Link to="/research" className="home-view-all-link">
+              <span>View All Research & Publications</span>
+              <ArrowUpRight size={15} />
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -1,0 +1,186 @@
+/* ==========================================================================
+   PORTFOLIO PRELOADER — CINEMATIC LOADING EXPERIENCE
+   ========================================================================== */
+
+.portfolio-preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for modern mobile browsers */
+  z-index: 999999;
+  background-color: var(--color-bg, #1E1B18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s ease;
+  will-change: opacity;
+}
+
+/* Container exit fade */
+.portfolio-preloader.preloader-exiting {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Ambient subtle background glow */
+.preloader-backdrop-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  max-width: 90vw;
+  max-height: 90vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(177, 204, 116, 0.08) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Center Stage */
+.preloader-center-stage {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 960px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.preloader-identity-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  will-change: transform, opacity;
+}
+
+/* 1. Kicker / Lead Line */
+.preloader-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.preloader-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-accent, #B1CC74);
+  box-shadow: 0 0 12px rgba(177, 204, 116, 0.6);
+}
+
+.preloader-kicker-text {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.75rem, 1.6vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-accent, #B1CC74);
+}
+
+.preloader-line {
+  width: 24px;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--color-accent, #B1CC74), transparent);
+  border-radius: 2px;
+}
+
+/* 2. Main Name Typographic Statement */
+.preloader-name-display {
+  font-family: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: clamp(2rem, 5.2vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.5rem;
+  color: var(--color-text, #E8FCC2);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+}
+
+.preloader-name-gradient {
+  display: inline-block;
+  background: linear-gradient(
+    115deg,
+    var(--color-text, #E8FCC2) 0%,
+    var(--color-accent, #B1CC74) 40%,
+    var(--color-tint, #D0F4EA) 70%,
+    var(--color-text, #E8FCC2) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.preloader-name-break {
+  display: inline;
+}
+
+/* 3. Subtle Identity Meta Tag */
+.preloader-meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.4rem 1.1rem;
+  border-radius: 9999px;
+  background: rgba(41, 36, 32, 0.6);
+  border: 1px solid var(--border, rgba(177, 204, 116, 0.18));
+  backdrop-filter: blur(10px);
+}
+
+.preloader-meta-subtext {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.68rem, 1.2vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--color-text-muted, #829399);
+}
+
+/* Responsive adjustments for mobile & tablet */
+@media (max-width: 640px) {
+  .preloader-name-display {
+    font-size: clamp(1.85rem, 8vw, 2.5rem);
+    line-height: 1.2;
+  }
+  
+  .preloader-name-break {
+    display: block; /* Natural wrap for mobile */
+    height: 0;
+  }
+
+  .preloader-kicker {
+    margin-bottom: 0.85rem;
+  }
+
+  .preloader-center-stage {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+/* Accessibility: Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-preloader {
+    transition: opacity 0.2s ease !important;
+  }
+
+  .preloader-identity-wrapper {
+    transform: none !important;
+    transition: opacity 0.2s ease !important;
+  }
+
+  .preloader-name-gradient {
+    animation: none !important;
+  }
+}

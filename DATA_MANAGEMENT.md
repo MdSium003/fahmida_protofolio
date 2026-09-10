@@ -238,11 +238,12 @@ Items with `is_featured=true` are sorted by `featured_order` ascending, then by 
 
 ## 12. Images & Media Guidelines
 
-- **Location**: Static assets live in `public/wall/` or `public/images/`.
-- **References**: Reference local assets as root-relative URLs:
-  - `/wall/fahmida_with_robot.jpeg`
-  - `/wall/research_1.jpg`
-  - External CDN/Supabase images with full HTTPS URLs (`https://...`) are also supported.
+- **Location**: Static assets live in `public/wall/`, `public/images/`, or directly in `public/`.
+- **References & Path Normalization**:
+  - Local root paths: `/wall/fahmida_with_robot.jpeg` (Recommended)
+  - Public prefix paths: `public/wall/fahmida_with_robot.jpeg` or `public/image.png` (Automatically normalized)
+  - Direct filenames: `image.png` or `wall/image.jpg` (Automatically normalized to `/image.png` and `/wall/image.jpg`)
+  - External CDN / Supabase images: Full HTTPS URLs (`https://...`) are fully supported.
 - **Formats**: `.jpeg`, `.jpg`, `.png`, `.webp`.
 - **Aspect Ratios**:
   - Project Cards: 16:9 or 4:3 (minimum 800x450px).

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Search, ArrowUpDown, Video, BookOpen, Layers } from 'lucide-react';
 
 const BlogHero = ({ 
@@ -13,16 +14,31 @@ const BlogHero = ({
   return (
     <section className="blog-hero-section" aria-label="Blog and Vlogs Journal Introduction">
       {/* Centered Editorial Title */}
-      <h1 className="blog-hero-title">
+      <motion.h1 
+        className="blog-hero-title"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
         Blog & <span className="title-accent">Vlogs</span>
-      </h1>
+      </motion.h1>
 
-      <p className="blog-hero-description">
+      <motion.p 
+        className="blog-hero-description"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
         Notes from the journey — things I build, research, learn, and experience through video logs and technical articles.
-      </p>
+      </motion.p>
 
       {/* Editorial Category Filter Pills */}
-      <div className="blog-category-nav">
+      <motion.div 
+        className="blog-category-nav"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.16, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
         <button 
           className={`category-pill ${selectedCategory === 'all' ? 'active' : ''}`}
           onClick={() => onSelectCategory('all')}
@@ -46,10 +62,15 @@ const BlogHero = ({
           <BookOpen size={13} />
           <span>Articles ({counts.articles})</span>
         </button>
-      </div>
+      </motion.div>
 
       {/* Sleek Minimal Toolbar */}
-      <div className="blog-toolbar">
+      <motion.div 
+        className="blog-toolbar"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.24, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
         <div className="blog-search-box">
           <Search size={15} className="blog-search-icon" />
           <input 
@@ -79,7 +100,7 @@ const BlogHero = ({
           <ArrowUpDown size={14} />
           <span>{sortOrder === 'latest' ? 'Latest' : 'Oldest'}</span>
         </button>
-      </div>
+      </motion.div>
     </section>
   );
 };

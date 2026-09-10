@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Newspaper, ArrowRight, ArrowUpRight, Play, Calendar } from 'lucide-react';
 import { parseMedia } from '../../src/utils/csvLoader';
+import ScrollReveal from '../shared/ScrollReveal';
+import StaggerReveal from '../shared/StaggerReveal';
 
 const HomeJournalPreview = ({ blogs = [] }) => {
   if (!blogs || blogs.length === 0) return null;
@@ -25,15 +27,17 @@ const HomeJournalPreview = ({ blogs = [] }) => {
     <section className="home-section home-journal-section" aria-label="Journal and Publications">
       <div className="home-section-container">
         {/* Section Header */}
-        <div className="home-section-header">
-          <h2 className="home-section-title">Field Notes, Vlogs & Reflections</h2>
-          <p className="home-section-subtitle">
-            Insights on engineering workflows, UI/UX systems, and technical explorations.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="home-section-header">
+            <h2 className="home-section-title">Field Notes, Vlogs & Reflections</h2>
+            <p className="home-section-subtitle">
+              Insights on engineering workflows, UI/UX systems, and technical explorations.
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* 3-Column Editorial Journal Grid */}
-        <div className="home-journal-grid">
+        <StaggerReveal className="home-journal-grid" staggerDelay={0.1}>
           {entries.map((post) => {
             const { hasVideo, displayImg } = getMediaInfo(post);
 
@@ -86,15 +90,17 @@ const HomeJournalPreview = ({ blogs = [] }) => {
               </article>
             );
           })}
-        </div>
+        </StaggerReveal>
 
         {/* Section Action: Read The Journal */}
-        <div className="home-section-bottom-action">
-          <Link to="/blog" className="home-view-all-link">
-            <span>Explore The Full Journal</span>
-            <ArrowUpRight size={15} />
-          </Link>
-        </div>
+        <ScrollReveal>
+          <div className="home-section-bottom-action">
+            <Link to="/blog" className="home-view-all-link">
+              <span>Explore The Full Journal</span>
+              <ArrowUpRight size={15} />
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

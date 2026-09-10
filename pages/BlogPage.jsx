@@ -6,6 +6,7 @@ import CoverStory from '../components/blog/CoverStory';
 import JournalTimeline from '../components/blog/JournalTimeline';
 import MomentsStrip from '../components/blog/MomentsStrip';
 import BlogDetailModal from '../components/blog/BlogDetailModal';
+import ScrollReveal from '../components/shared/ScrollReveal';
 import '../styles/BlogPage.css';
 
 const BlogPage = () => {
@@ -111,10 +112,12 @@ const BlogPage = () => {
         <>
           {/* 2. Magazine Cover Story (Dominant Visual Feature) */}
           {!searchQuery && coverStory && (
-            <CoverStory 
-              story={coverStory} 
-              onOpenStory={(story) => setActiveStory(story)} 
-            />
+            <ScrollReveal threshold={0} margin="0px 0px -20px 0px">
+              <CoverStory 
+                story={coverStory} 
+                onOpenStory={(story) => setActiveStory(story)} 
+              />
+            </ScrollReveal>
           )}
 
           {/* 3. Chronological Visual Journal Timeline */}
@@ -124,7 +127,9 @@ const BlogPage = () => {
           />
 
           {/* 4. Moments From The Journey (Visual Media Strip) */}
-          <MomentsStrip />
+          <ScrollReveal threshold={0} margin="0px 0px -20px 0px">
+            <MomentsStrip />
+          </ScrollReveal>
         </>
       )}
 

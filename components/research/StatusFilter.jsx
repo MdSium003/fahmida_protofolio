@@ -24,8 +24,8 @@ const StatusFilter = ({ selectedStatus, onStatusChange }) => {
         ))}
       </div>
       <p className="status-hint">
-        <span className="hint-icon">✨</span>
-        (click on the <span className="hint-highlight">✨</span> icons to view details on each work)
+        <span className="hint-icon"></span>
+        (click on the <span className="hint-highlight"></span> icons to view details on each work)
       </p>
     </div>
   );

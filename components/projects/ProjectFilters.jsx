@@ -53,7 +53,7 @@ const ProjectFilters = ({
             onClick={() => onSearchChange('')}
             aria-label="Clear search"
           >
-            ✕
+            
           </button>
         )}
       </div>

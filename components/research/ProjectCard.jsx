@@ -123,7 +123,7 @@ const ProjectCard = ({ project, index }) => {
           )}
           {project.award && (
             <div className="award-badge">
-              🏆 {project.award}
+               {project.award}
             </div>
           )}
         </div>

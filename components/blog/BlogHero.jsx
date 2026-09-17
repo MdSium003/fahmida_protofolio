@@ -87,7 +87,7 @@ const BlogHero = ({
               onClick={() => onSearchChange('')}
               aria-label="Clear search"
             >
-              ✕
+              
             </button>
           )}
         </div>

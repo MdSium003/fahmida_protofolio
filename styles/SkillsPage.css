@@ -29,7 +29,7 @@
 }
 
 .skills-hero-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: clamp(2.2rem, 4.5vw, 3.4rem);
   font-weight: 800;
   line-height: 1.15;
@@ -86,7 +86,7 @@
 }
 
 .section-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: clamp(1.4rem, 2.2vw, 1.85rem);
   font-weight: 700;
   color: var(--color-text);
@@ -130,7 +130,7 @@
 }
 
 .domain-num-badge {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: 0.88rem;
   font-weight: 800;
   color: var(--color-accent);
@@ -162,7 +162,7 @@
 }
 
 .domain-card-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--color-text);
@@ -258,7 +258,7 @@
 }
 
 .cluster-category-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: 0.82rem;
   font-weight: 800;
   color: var(--color-text-muted);
@@ -275,7 +275,7 @@
 }
 
 .tech-pill {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   display: inline-flex;
   align-items: center;
   padding: 0.45rem 0.9rem;
@@ -406,7 +406,7 @@
 }
 
 .practice-hero-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: clamp(1.25rem, 1.8vw, 1.55rem);
   font-weight: 800;
   color: var(--color-text);
@@ -498,7 +498,7 @@
 }
 
 .practice-card-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: 1.02rem;
   font-weight: 700;
   color: var(--color-text);
@@ -552,7 +552,7 @@
 }
 
 .cta-heading {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: clamp(1.4rem, 2.2vw, 1.85rem);
   font-weight: 800;
   color: var(--color-text);

@@ -44,7 +44,7 @@
 }
 
 .projects-hero-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: clamp(2.4rem, 5vw, 3.8rem);
   font-weight: 900;
   line-height: 1.1;
@@ -91,7 +91,7 @@
 .metric-chip strong {
   color: var(--color-text);
   font-weight: 800;
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
 }
 
 .metric-icon {
@@ -238,7 +238,7 @@
 }
 
 .section-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: clamp(1.25rem, 2.2vw, 1.65rem);
   font-weight: 800;
   color: var(--color-text);
@@ -395,7 +395,7 @@
 }
 
 .featured-flagship-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: clamp(1.4rem, 2.2vw, 1.95rem);
   font-weight: 800;
   color: var(--color-text);
@@ -617,7 +617,7 @@
 }
 
 .bento-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--color-text);
@@ -796,7 +796,7 @@
 }
 
 .card-project-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: 1.15rem;
   font-weight: 800;
   color: var(--color-text);
@@ -978,7 +978,7 @@
 }
 
 .fallback-tech-watermark {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -1048,7 +1048,7 @@
 }
 
 .bottom-banner-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: clamp(1.4rem, 2.5vw, 1.95rem);
   font-weight: 800;
   color: var(--color-text);
@@ -1230,7 +1230,7 @@
 }
 
 .project-modal-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: clamp(1.4rem, 2.5vw, 1.95rem);
   font-weight: 800;
   color: var(--color-text);
@@ -1333,7 +1333,7 @@
 }
 
 .section-subheading {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;

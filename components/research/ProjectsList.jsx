@@ -69,7 +69,7 @@ const ProjectsList = ({ selectedTopic, selectedStatus }) => {
     return (
       <div className="projects-list">
         <div className="no-projects">
-          <span className="no-projects-icon">📚</span>
+          <span className="no-projects-icon"></span>
           <h3>No projects found</h3>
           <p>Try selecting a different topic or status filter</p>
         </div>

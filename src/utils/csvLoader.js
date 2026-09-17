@@ -53,7 +53,8 @@ export async function loadCsv(fileName) {
   }
 
   try {
-    const response = await fetch(url);
+    const fetchUrl = import.meta.env?.DEV ? `${url}?t=${Date.now()}` : url;
+    const response = await fetch(fetchUrl);
     if (!response.ok) {
       console.warn(`CSV file not found: ${url}`);
       return [];
@@ -73,7 +74,7 @@ export async function loadCsv(fileName) {
     const data = result.data || [];
 
     // Dev-mode validation check
-    if (process.env.NODE_ENV !== 'production') {
+    if (import.meta.env?.DEV) {
       validateDataset(cleanName, data);
     }
 
@@ -441,7 +442,7 @@ export async function loadExperienceData() {
     id: String(e.id),
     logo_url: normalizeImagePath(e.logo_url),
     sortOrder: Number(e.sort_order) || 999
-  })).sort((a, b) => new Date(a.start_date || 0) - new Date(b.start_date || 0));
+  })).sort((a, b) => new Date(b.start_date || 0) - new Date(a.start_date || 0));
 }
 
 export async function loadEducationData() {
@@ -461,5 +462,15 @@ export async function loadVolunteerData() {
     id: String(v.id),
     logo_url: normalizeImagePath(v.logo_url),
     sortOrder: Number(v.sort_order) || 999
+  })).sort((a, b) => new Date(b.start_date || 0) - new Date(a.start_date || 0));
+}
+
+export async function loadLeadershipData() {
+  const raw = await loadCsv('leadership');
+  return (raw || []).map(l => ({
+    ...l,
+    id: String(l.id),
+    logo_url: normalizeImagePath(l.logo_url),
+    sortOrder: Number(l.sort_order) || 999
   })).sort((a, b) => new Date(b.start_date || 0) - new Date(a.start_date || 0));
 }

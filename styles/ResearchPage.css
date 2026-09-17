@@ -46,7 +46,7 @@
 }
 
 .research-hero-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: clamp(2.4rem, 5vw, 3.8rem);
   font-weight: 900;
   line-height: 1.1;
@@ -114,7 +114,7 @@
 }
 
 .stat-value {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: 1.65rem;
   font-weight: 900;
   color: var(--color-text);
@@ -400,7 +400,7 @@
 }
 
 .tile-paper-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: 1.15rem;
   font-weight: 800;
   color: var(--color-text);
@@ -594,7 +594,7 @@
 }
 
 .threads-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: clamp(1.4rem, 2.5vw, 1.95rem);
   font-weight: 800;
   color: var(--color-text);
@@ -790,7 +790,7 @@
 }
 
 .research-modal-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: clamp(1.4rem, 2.5vw, 1.95rem);
   font-weight: 800;
   color: var(--color-text);
@@ -940,7 +940,7 @@
 }
 
 .section-label {
-  font-family: 'Syne', sans-serif;
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;

@@ -19,8 +19,8 @@ const SkillsHero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
-        Engineering intelligent systems across artificial intelligence, computer vision, 
-        spatial computing, and embedded architectures.
+        Specialized in Biomedical AI, Natural Language Processing, Computer Vision, Bioinformatics, 
+        and full-stack software architectures.
       </motion.p>
 
       <motion.div 

@@ -225,11 +225,11 @@ const PortfolioPreloader = ({ onRevealHero, onComplete }) => {
           }}
         >
           {/* Subtle Accent Intro */}
-          <div className="preloader-kicker">
+          {/* <div className="preloader-kicker">
             <span className="preloader-dot" />
             <span className="preloader-kicker-text">HI, I AM</span>
             <span className="preloader-line" />
-          </div>
+          </div> */}
 
           {/* Full Name Typographic Statement */}
           <h1 className="preloader-name-display">

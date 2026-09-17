@@ -1,0 +1,295 @@
+--- PAGE 1 ---
+Mst. Fahmida Sultana Naznin
+Department of Computer Science and Engineering
+Bangladesh University Of Engineering and Technology,Dhaka,Bangladesh
++8801740480386 | nazninfahmidasultana@gmail.com
+/linkedinLinkedin | /githubgithub
+RESEARCH INTERESTS
+My research domain is AI in Healthcare, with a strong focus on Natural Language Processing, Computer
+Vision, and Bioinformatics. I am particularly interested in integrating demographic and historical data to
+improve contextual insights.
+WORK EXPERIENCE
+• Stamford University Bangladesh[/gl⌢be] Sep 2026 - Present
+Lecturer in Department of Computer Science and Engineering (CSE) Dhaka, Bangladesh
+◦ Teach undergraduate courses totaling 30 credits, developing course materials, assessments, and hands-on
+activities aligned with outcome-based education (OBE) objectives.
+◦ Support student learning and academic development through project supervision, practical instruction,
+workshops, seminars, and curriculum enhancement.
+• Bangladesh University of Engineering and Technology (BUET)[/gl⌢be] Sep 2026 - Present
+Research Assistant Dhaka, Bangladesh
+Supervisors: Dr. Sadia Sharmin,, Dr. Atif Hasan Rahman
+◦ Work under UGC-ICSETEP Research and Development Grant (RDG) project on Graph Machine Learning
+and Networks, focusing on GNN–LLM integration.
+◦ Contributed to research on patient-specific clinical deterioration pathway discovery from irregular
+longitudinal ICU data by developing multimodal, continuous-time event graphs to identify dynamic
+clinical relationships and validate their necessity for mortality prediction.
+• School of Computing, National University of Singapore[/gl⌢be] June 2026 - August 2026
+Visiting Scholar under SRI program (In person) Singapore
+◦ Developed ContiFuse-MM, a continuous-time multimodal for short-term ICU mortality prediction using
+irregular EHR time-series and chest X-ray data from MIMIC-IV and MIMIC-CXR.
+◦ Designed SHAP-based explainability analysis to surface important physiological features, modality
+contributions, and horizon-specific temporal patterns.
+• PinkLifeLine[/gl⌢be] May 2024 - Present
+Founder & Chief Executive Officer Dhaka, Bangladesh
+◦ Founded and lead PinkLifeLine, developing an LED-based deep learning framework for early breast
+cancer detection and risk prediction using longitudinal spatiotemporal imaging.
+◦ Directed planning and execution across four flagship initiatives – Bright Beginnings, PinkTalks,
+PinkSpark, and Research for Hope – reaching 243 school students with sanitary product distribution and
+over 500,000 people community-wide.
+• Biomedical Science and Engineering Research Center (BIOSE)[/gl⌢be] Jul 2024 - Present
+Student Researcher Dhaka, Bangladesh
+Supervisors: Dr. Md. Golam Rabiul Alam,, Dr. Md Rakibul Hasan, Md. Mehedi Hasan Shawon
+◦ Led research on context-driven sequential transfer learning for abstractive radiology report
+summarization, published in ACL 2025 Findings as the first author.
+◦ Investigated selective visual attention to high-importance regions for multimodal radiology
+summarization; manuscript submitted to ACL ARR in March 2026.
+◦ Developed a foundation model for robust epilepsy detection, focusing on Asian demographic data;
+manuscript currently in preparation for journal submission.
+• Esolumate [/gl⌢be] Oct 2022 - Feb 2024
+Senior Human Resources Coordinator Dhaka, Bangladesh
+◦ Contributed to the design of an AI-based skill-sharing platform.
+◦ Managed member onboarding, work distribution, and performance reporting.
+
+--- PAGE 2 ---
+EDUCATION
+• Bangladesh University of Engineering and Technology 2022 - Present
+B.Sc, Computer Science & Engineering Dhaka, Bangladesh
+◦ GPA: 3.78/4.00
+PUBLICATION C=C ONFERENCE , J=J OURNAL
+REFEREED CONFERENCE AND JOURNAL PUBLICATIONS
+[C.1] CBRS: Cognitive Blood Request System with Bilingual Dataset and Dual-Layer Filtering for Multi-Platform
+Social Streams, by Mst. Fahmida Sultana Naznin, Anik Saha, Zia Ul Hassan Abdullah, Anisa Binte Asad, K G
+Subarno Bithi, and A. B. M. Alim Al Islam. 2026. In Findings of The 64rd Annual Meeting of the Association
+for Computational Linguistics (ACL 2026). DOI:preprint.
+[C.2] CSTRL: Context-Driven Sequential Transfer Learning for Abstractive Radiology Report Summarization, by
+Mst. Fahmida Sultana Naznin, Adnan Ibney Faruq, Mostafa Rifat Tazwar, Md Jobayer, Md. Mehedi Hasan
+Shawon, and Md Rakibul Hasan. 2025. In Findings of The 63rd Annual Meeting of the Association for
+Computational Linguistics (ACL 2025). DOI:10.18653/v1/2025.findings-acl.1360.
+[C.3] MedCAR: Conflict-Aware Multi-Agent Reasoning for Multimodal Clinical AI, by Mst. Fahmida Sultana
+Naznin, Niloy Kumar Mondal, Mohammad Ninad Mahmud Nobo, Abrar Zahin Raihan, and Sheikh Azizul
+Hakim. 2025. Manuscript accepted at International Conference on AI in Healthcare.
+[C.4] Seg2Reg-Net: An Explainable AI Analysis of Predictive Limitations in Cattle Weight Estimation, by Mst.
+Fahmida Sultana Naznin, Arnab Dey, Debojit Pandit, Ahanaf Ferdous, Rakib Islam, Hasan Ibna Akbar,
+Jannatun Noor, and A.B.M. Alim Al Islam. 2025. In The 12th International Conference on Next-generation
+computing, communication, Systems and Security (12th NSysS 2025). DOI:10.1145/3777555.3777559.
+UNDER REVIEW
+[C.1] Less Is More? Selective Visual Attention to High-Importance Regions for Multimodal Radiology
+Summarization, by Mst. Fahmida Sultana Naznin, Adnan Ibney Faruq, Mushfiqur Rahman, Abrar Zahin
+Raihan, Niloy Kumar Mondal, Md. Mehedi Hasan Shawon, and Md Rakibul Hasan. 2025. Manuscript
+submitted to ACL ARR, March 2026. DOI:preprint.
+[C.2] ContiFuse-MM: Continuous-Time Multimodal Modeling for Short-Horizon ICU Mortality in Cardiac
+Dysrhythmias, by Mst. Fahmida Sultana Naznin, and Mohammad Neamul KABIR. 2026. Manuscript
+submitted to Nuerips workshops 2026.
+[C.2] DocTalkBN: A Novel Dataset of Expert Telemedicine Conversations in Bengali, byMst. Fahmida Sultana
+Naznin, Anik Saha, Sadatul Islam Sadi, Ananya Shahrin Promi, Wahid Al Azad Navid, and Rifat Shahriyar.
+2025. Manuscript submitted to ACL ARR, March 2026.
+[C.3] PAN-ICA YOLO: Pyramid-Aware Neighbor-Only Inter-Channel Attention with Dense Optical Flow
+Mid-Fusion for Video Object Localization, by Adnan Ibney Faruq, and Mst. Fahmida Sultana Naznin. 2025.
+Manuscript submitted to WACV 2026.
+[J.1] BIGTNet: Anatomical Relational Reasoning for 3D Brain Tumor Segmentation, by SM Nuruzzaman Nobel,
+Mst. Fahmida Sultana Naznin, Maxine Tan, Asmaa Soliman Al-Moisheer, and Mohammad Ali Moni. 2025.
+Manuscript submitted to IEEE Transactions on Medical Imaging.
+[J.2] A Diffusion-Driven Intermediate Feature Fusion for Multi-Scale Structured Pattern Segmentation, by SM
+Nuruzzaman Nobel, Mst. Fahmida Sultana Naznin, Maxine Tan, Asmaa Soliman Al-Moisheer, and
+Mohammad Ali Moni. 2025. Manuscript submitted to Artificial Intelligence In Medicine.
+[J.3] MedSegNet-X: Hybrid Noise-Enhanced Diffusion based Medical Image Segmentation with ConvNeXt
+Transformer, by SM Nuruzzaman Nobel,Mst. Fahmida Sultana Naznin, Md All Moon Tasir, Asmaa Soliman
+Al-Moisheer, and Mohammad Ali Moni. 2025. Manuscript submitted to IEEE Transactions on Multimedia.
+[J.4] Relational Anatomical Reasoning for Anatomically Consistent 3D Brain Tumor Segmentation, by SM
+Nuruzzaman Nobel, Mst. Fahmida Sultana Naznin, Maxine Tan, and Mohammad Ali Moni. 2026.
+Manuscript submitted to IEEE Transactions on Medical Imaging.
+WORKSHOPS & POSTERS
+[1] DDS-E-Sim: A Transformer-based Probabilistic Generative Framework for Simulating Error-Prone DNA
+Sequences for DNA Data Storage, by Mst. Fahmida Sultana Naznin, Swarup Sidhartho Mondol, Adnan Ibney
+Faruq, Debashmita Saha, Ahmed Mahir Sultan Rumi, and A. B. M. Alim Al Islam. 2025. NeurIPS 2025
+Workshop SPIGM. DOI:10.1101/2025.02.14.637785v2.
+
+--- PAGE 3 ---
+ONGOING WORKS
+• Political Bias Analysis Nov 2025 - Present
+Advisor: Sharifa Sultana, Assistant Professor, Dept. of Computer Science, University of Illinois Urbana-Champaign Google Scholar
+◦ Bias Emergence in LLM-Generated Summaries and Text Transformations from Neutral Sources in Low-Resource
+Settings.
+• Temporal Empathy Analysis under Uncertainty May 2026 - Present
+Advisor: Md Rakibul Hasan, Associate Lecturer (Research & Teaching) , Curtin University Google Scholar
+◦ Temporal-Level Multimodal Empathy Analysis under Uncertainty: Hidden Vulnerability Detection in Counseling
+Conversations.
+• Expert Telemedicine Conversations Jan 2026 - Present
+Advisor: Rifat Shahriyar, Professor, Dept. of Computer Science & Engineering, BUET Google Scholar
+◦ Built a large-scale Bengali telemedicine conversation dataset from public TV call-in shows, using LLMs to
+reconstruct and annotate structured doctor–patient dialogues from noisy ASR transcripts for benchmarking
+medical NLP and QA tasks in low-resource settings.
+• Brain Computer Interface May 2025 - Present
+Advisor: Md. Golam Rabiul Alam , Professor, Dept. of Computer Science & Engineering, BRAC University Google Scholar
+◦ Foundation Model for Robust Epilepsy Detection with Focus on Asian Demographic Data.
+• Jan 2025 - Present
+Advisor: Dr. A.B.M. Alim Al Islam , Professor, Dept. of Computer Science & Engineering, BUET Google Scholar
+◦ Contrastive Self-Supervised Learning with Explainable AI for Epilepsy Detection from EEG Spectrograms.
+• Longitudinal Mammogram Risk Prediction May 2025 - Present
+Advisor: Dr. A.B.M. Alim Al Islam , Professor, Dept. of Computer Science & Engineering, BUET Google Scholar
+◦ The More, The Better? Impact of Longitudinal Spatiotemporal Context in Mammograms for Improved Breast
+Cancer Risk Prediction and Tumor Localization.
+• AI-Based Self-Testing Device for Breast Cancer Patients Oct 2024 - Present
+Advisor: Dr. M Sohel Rahman , Professor, Dept. of Computer Science & Engineering, BUET Google Scholar
+◦ Breast Cancer Lump Detection Using Deep Learning on LED Image Data.
+PROJECTS
+• Plastic4Perks: [Plastic Recycling and Gamification Platform with Carbon Tracking] Nov 2025 - Jan 2026
+Tools: [React, pygame] [/github]
+◦ Developed educational games integrated with QR-based plastic collection system.
+• Speakio: [AI-powered multi-language learning platform] Sep 2025 - Nov 2025
+Tools: [React] [/github]
+◦ Developed AI for lesson generation, designed software architecture, and strategized the business model.
+• QuickSolve: [AI-powered, blockchain-backed platform for complaint management] Jul 2025 - Aug 2025
+Tools: [Smart contracts, React, Node.js] [/github]
+◦ Developed AI for meta data analysis, designed software architecture, and strategized the business model.
+• PinKlifeline: [AI focused breast cancer care platform] May 2024 - Present
+Tools: [Spring Boot, React, WebSocket, RabbitMq, JUnit, TestContainers, Docker, Kubernetes, Terraform, GCP , GitHub Actions] [/github]
+◦ Developed AI for mammogram analysis, designed software architecture, and strategized the business model.
+• GreenBlox: [Blockchain based solution for Carbon Credit Market] Sep 2024
+Tools: [Celo, IoT, Smart contracts, React, Node.js] [/github]
+◦ Developed ML model with XGBoost for solar irradiance prediction, designed algorithms for carbon reduction in
+solar plants, and led system architecture design.
+SKILLS
+• Programming Languages: Python, C, C++, Java
+• Web and Database:HTML, CSS, React, Oracle, mongoDB
+• Data Science & Machine Learning: Pandas, Numpy, MatPlotLib, Seaborn, scikit-learn, PyTorch
+• Specialized Area: Natural Language Processing, Computer Vision, Bioinformatics
+• Soft Skills: Presentation, Problem Solving, Creative Writing, Mentoring & Collaborating
+
+--- PAGE 4 ---
+HONOURS AND AWARDS
+CS competitions:
+2026
+• IEEE WIE Big Idea Pitch Competition (Global) – Best Transformative Business Idea Pitch
+Awarded USD 1000.
+• Southeast Bank PLC. Presents Entrepret Season 3 – 1st Runner Up
+Awarded USD 1500, 1 gram Gold, and a Sylhet round-trip ticket co-sponsored by Gold Kinen, powered by Krishibid
+Group, driven by AIA Ventures Ltd., and in association with Noor Unique Builders.
+• MonkMoney Pty LTD Hult Prize at the University of Dhaka – 2nd Runner Up
+Awarded USD 200 out of 311 teams, powered by HeadStart and co-powered by ExploreEd Ventures.
+• EBL Women Banking Presents Undergrad Startup Challenge 2025 Powered By AMA Coffee – Champion
+Awarded USD 1200; hosted by BUEDF in association with Wanpy Bangladesh.
+2025
+• Blockchain Olympiad Bangladesh (Blockchain & AI Category) – Honorable Mention
+• 2nd ISETS–ESCAP & 3rd ISETS Global Competition of Youth Voice on Energy Transition (Global)– 2nd prize
+Fully funded trip to UN-ESCAP Headquarters in Bangkok out of 105 projects.
+• PITCH | PROPEL | PROSPER – A Startup Showcase by SustainLaunch Labs – Champion
+Awarded USD 1000.
+• Idea Innovation 5.0 by Interactive Cares – 1st Runner Up
+Awarded USD 400.
+• Huawei Seeds For The Future Bangladesh – Finalist (Top 21)
+• 2025 Johns Hopkins Healthcare Design Competition (Global) – Champion
+Awarded USD 5000 out of 440 projects from 203 universities across 44 countries, sponsored by J & J MedTech.
+• Youth Startup Summit 2025 – 2nd Runner Up
+Awarded USD 1000 out of 75,000 participants.
+• Hult Prize On Campus – 1st Runner Up
+2024
+• ISETS-ESCAP Youth Voice Competition (Global)– South Asia Divisional 2nd
+Invited to Youth Dialogue at UN ESCAP , Bangkok; selected from 300 applicants across 77 teams.
+• IEEE WIE Big Idea Pitch Competition (Global) – Best Impact Prize
+Awarded USD 500.
+• Orange Corner Bangladesh presents IDEATION CHALLENGE 3.0 – Champion
+Awarded BDT 100,000 out of 236 applications from 700+ participants.
+• Luminous Teen Presents THRIVE INNOV ATION CHALLENGE 1.0– Champion
+Awarded USD 100.
+• Lean Sprint 2.0 – 2nd Runner Up
+• Hult Prize On Campus – Finalist (Top 5)
+• ISCEA Prize Global Case Competition
+Awarded USD 770 as a 70% scholarship (Top 50).
+• Blockchain Olympiad Bangladesh (AI Category) – Finalist (Top 16)
+• Creaventure 3.0 – Finalist (Top 8)
+2023
+• IEEE WIE Big Idea Pitch Competition (Global) – Best Impact Prize
+Awarded USD 300.
+• SympSIST: Humanitarian Project Design Idea Competition in ICCIT – Champion
+• IEEE BUP Branch Fest – 2nd Runner Up
+• Ennovators 7.0 – Finalist (Top-5)
+Offered an internship out of 35,000 contestants from 153 universities.
+2022
+• Entrepreneurship Idea Contest & Boot-Camp, INDCON, ICCIT – 2nd Runner Up
+Research and Fellowships:
+
+--- PAGE 5 ---
+2025 SIGHPC Immersion Program for SC25
+(16 Nov 2025 - 21 Nov 2025) - ACM SIGHPC Immersion Travel Grant to attend SC 2025, the International
+Conference on High Performance Computing, Networking, Storage, and Analysis in St. Louis, Missouri.
+BUET UIHP Cohort-5 by Research and Innovation Centre for Science and Engineering
+(May 2025 - August 2025) - awarded USD 300
+2024 Global Changemaker Fellowship Cohort-4 (Sep 2024 - Jun 2025) - top 33 out of 7,000 from 115 countries
+Womentor 5.0 by Banglalink (Jul 2024 - Dec 2024) - top 15 STEM student out of 400+ applicants
+Writing Competitions:
+2023 National Essay Competition (Digital Bangladesh Fair-2023) - 1st;
+2021 The Queen’s Commonwealth Essay Competition (Global) - Bronze;
+2020 National Human Rights Essay Competition - 4th (Dhaka Division - 1st);
+2019 Eastern University Essay Competition - 13th;
+2018 Talent Hunt Competition (Dhaka Divisional Best Student in Language and Literature 2018,
+Thana Best Student 2014-2018);
+National Essay Competition on 7th March by Ideal College - 1st;
+2017 International Customs Day Essay Competition - 1st;
+National Children Day Essay Competition - 1st;
+2016 Bangladesh Association for the Aged and Institute of Geriatric Medicine Essay Competition - 2nd;
+TIB Essay Competition - Honourable Mention
+2015 Essay Competition on National Mourning Day - 1st Runner Up;
+National Wash Story Writing Contest - 2nd Runner Up;
+2014 Essay Competition on National Energy Security - 3rd;
+Nazrul Institute Essay Competition - 2nd;
+Dhaka Imperial College Essay Competition - 1st;
+Olympiads:
+2019 1st LCGHS Inter School and College Fair’19 - Extempore Speech - 2nd; Earth Olympiad - 1st, Math - 3rd.
+2018 Holy Cross College 17th Inter College Science Festival’18 - Chemistry Olympiad - 2nd;
+2017 1st DGBHS Inter School Science Festival ’17 - Chemistry Olympiad - 2nd, Extempore Speech - 1st;
+10th ISTARC Science and Technology Festival ’17 - Extempore Speech - 1st, Nature Olympiad - 1st;
+2015 Junior Science Olympiads ’15 (Regional) - 1st;
+Academic Scholarships:
+2022 Dean’s Award For Academic Excellence;
+2015-2016 The Scholars Forum;
+2014-2015 Haji Shahab Uddin Memory Scholarship;
+2013-2016 The Students Welfare Foundation;
+2013, 2015 Sher-E-Bangla Memorial Scholarship;
+2013 Nur MD. Sir Memory Scholarship, BICAL Foundation;
+2011-2016 Bangladesh Cadet Academy.
+LEADERSHIP EXPERIENCE
+1. Campus Leader, Interactive Cares May 2025 - Sep 2025
+2. Dir. of Outreach Management, Bangladeshi Women in Computer Science and Engineering Apr 2025 - Present
+3. Assistant General Secretary Dec 2024 - Present
+Membership Development Coordinator Jan 2024 - Dec 2024
+IEEE BUET Student Branch WIE Affinity Group
+4. Logistic Secretary Sep 2024 - Present
+Information Secretary Apr 2023 - Sep 2024
+BUET Debating Club
+5. Campus Ambassador, IEEEXtreme 18.0 May 2024 - Mar 2025
+6. Campus Ambassador, Youth Opportunities Jan 2023 - Dec 2023
+7. Campus Ambassador, AppLink Oct 2022 - Dec 2023
+8. Co-ordinating Secretary, Holy Cross College English Language Club Aug 2019 - Apr 2020
+
+--- PAGE 6 ---
+VOLUNTEER EXPERIENCE
+• Volunteer Feb 2024 - present
+Agami Education Foundation [/gl⌢be]
+◦ Working on "Library Project" for underprivileged, distributed books for AAlok Shikkhaloy, and judged IET 2024.
+• Volunteer Oct 2020 - Dec 2023
+Evolution 360 [/gl⌢be]
+◦ Created campaign content, online in charge "Shreyasi", and joined Project YED by MJF.
+• Volunteer Dec 2022 - Jan 2024
+FOLV - Forum Of Liberal Volunteers [/gl⌢be]
+◦ Supported "USHNOTA" project, raising funds for winter clothing.
+REFERENCES
+1. Dr. A.B.M Alim Al Islam
+Ph.D. in Computer Engineering, School of ECE, Purdue University, USA
+Professor, Department of Computer Science & Engineering
+Bangladesh University of Engineering and Tech nology, Bangladesh
+Email: razi_bd@yahoo.com
+Relationship: [Advisor, Research Supervisor]
+2. Dr. Mohammad Ali Moni
+Ph.D. in Artificial Intelligence & Data Science, University of Cambridge
+Senior Research Fellow, School of Health & Rehabilitation Sciences
+The University of Queensland, Australia
+Email: m.moni@uq.edu.au
+Relationship: [Research Supervisor]
+3. Dr. Mohammad Neamul Kabir
+Ph.D. in Computer Science, National University of Singapore
+Lecturer (Educator Track), Department of Information Systems & Analytics
+School of Computing, National University of Singapore, Singapore
+Email: kabir.neamul@nus.edu.sg
+Relationship: [Research Supervisor, NUS SRI Visiting Scholar Program]
+

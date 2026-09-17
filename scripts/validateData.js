@@ -48,10 +48,16 @@ const DATA_CONFIGS = [
     fileName: 'experience.csv',
     requiredFields: ['id', 'job_title', 'company'],
     booleanFields: [],
-    numericFields: [],
+    numericFields: ['sort_order'],
   },
   {
     fileName: 'volunteer.csv',
+    requiredFields: ['id', 'role', 'organization'],
+    booleanFields: [],
+    numericFields: ['sort_order'],
+  },
+  {
+    fileName: 'leadership.csv',
     requiredFields: ['id', 'role', 'organization'],
     booleanFields: [],
     numericFields: ['sort_order'],

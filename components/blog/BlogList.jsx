@@ -84,7 +84,7 @@ const BlogList = () => {
       <div className="blog-list">
         <div className="blog-list-header">
           <h2 className="blog-list-title">
-            <span className="blog-title-icon">📝</span> Blog & Vlogs
+            <span className="blog-title-icon"></span> Blog & Vlogs
           </h2>
           <p className="blog-list-subtitle">Insights, tutorials, and creative content</p>
         </div>
@@ -112,7 +112,7 @@ const BlogList = () => {
         <div className="blog-header-top">
           <div>
             <h2 className="blog-list-title">
-              <span className="blog-title-icon">📝</span> Blog & Vlogs
+              <span className="blog-title-icon"></span> Blog & Vlogs
             </h2>
             <p className="blog-list-subtitle">
               Insights, tutorials, and creative content · {blogs.length} posts
@@ -180,7 +180,7 @@ const BlogList = () => {
         </div>
       ) : (
         <div className="blog-empty-state">
-          <span className="blog-empty-icon">🔍</span>
+          <span className="blog-empty-icon"></span>
           <h3>No blogs found</h3>
           <p>
             {debouncedQuery 

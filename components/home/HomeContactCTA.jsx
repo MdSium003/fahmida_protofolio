@@ -23,7 +23,9 @@ const HomeContactCTA = () => {
 
               <div className="home-contact-actions-row">
                 <a 
-                  href="mailto:fahmidasultana4444@gmail.com" 
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=nazninfahmidasultana@gmail.com" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="home-contact-primary-btn"
                 >
                   <Send size={16} />

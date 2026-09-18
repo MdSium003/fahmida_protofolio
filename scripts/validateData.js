@@ -74,6 +74,12 @@ const DATA_CONFIGS = [
     booleanFields: [],
     numericFields: ['display_order'],
   },
+  {
+    fileName: 'news.csv',
+    requiredFields: ['id', 'title'],
+    booleanFields: ['is_featured'],
+    numericFields: ['sort_order'],
+  },
 ];
 
 function validateBoolean(val) {

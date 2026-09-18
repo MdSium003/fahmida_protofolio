@@ -1,25 +1,28 @@
 import React from 'react';
 import { Building2, ArrowRight, Tag } from 'lucide-react';
-import { getAllAwardImages, cleanAwardTitle, getPlacementBadge } from './FeaturedAwards';
+import { cleanAwardTitle, getPlacementBadge } from './FeaturedAwards';
 
 const SelectedAwards = ({ awards = [], onSelectAward, onOpenMedia }) => {
-  // Exclude items featured in the top section
+  // Exclude items featured in the top Premier Accomplishments section (Johns Hopkins)
   const selectedList = awards
     .filter(a => !(a.isFeatured || a.is_featured === true || String(a.is_featured).toLowerCase() === 'true'))
     .filter(a => {
-      const text = `${a.title || ''} ${a.description || ''}`.toLowerCase();
+      const text = `${a.title || ''} ${a.description || ''} ${a.topic || ''}`.toLowerCase();
       return (
-        text.includes('champion') ||
-        text.includes('1st runner up') ||
-        text.includes('2nd runner up') ||
-        text.includes('scholarship') ||
-        text.includes('finalist') ||
-        text.includes('best impact') ||
-        text.includes('johns hopkins') ||
-        text.includes('orange corner')
+        text.includes('sighpc') ||
+        text.includes('changemaker') ||
+        text.includes('global') ||
+        text.includes('isets') ||
+        text.includes('wie') ||
+        text.includes('iscea') ||
+        text.includes('commonwealth') ||
+        text.includes('startup') ||
+        text.includes('fellowship') ||
+        text.includes('orange corner') ||
+        text.includes('womentor') ||
+        text.includes('hult')
       );
-    })
-    .slice(0, 6);
+    });
 
   if (selectedList.length === 0) return null;
 
@@ -32,26 +35,20 @@ const SelectedAwards = ({ awards = [], onSelectAward, onOpenMedia }) => {
       <div className="selected-grid">
         {selectedList.map((award) => {
           const placement = getPlacementBadge(award.title);
-          const images = getAllAwardImages(award);
-          const img = images.length > 0 ? images[0] : null;
+          const cleanDesc = (award.description || '')
+            .replace(/^[-•>]\s*/gm, '')
+            .replace(/\n+/g, ' ')
+            .trim();
 
           return (
             <article 
               key={award.id} 
               className="selected-card"
               onClick={() => onSelectAward(award)}
+              tabIndex={0}
+              role="button"
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onSelectAward(award); }}
             >
-              {img && (
-                <div 
-                  className="selected-card-thumb-frame"
-                  onClick={(e) => { e.stopPropagation(); onSelectAward(award); }}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <img src={img} alt={cleanAwardTitle(award.title)} loading="lazy" />
-                </div>
-              )}
-
               <div className="selected-card-content">
                 <div className="selected-card-top">
                   <span className={`selected-badge ${placement.rankClass}`}>
@@ -70,13 +67,19 @@ const SelectedAwards = ({ awards = [], onSelectAward, onOpenMedia }) => {
                   </div>
                 )}
 
+                {cleanDesc && (
+                  <p className="selected-desc">
+                    {cleanDesc.length > 150 ? `${cleanDesc.slice(0, 150)}...` : cleanDesc}
+                  </p>
+                )}
+
                 <div className="selected-card-footer">
-                  {award.topic && (
+                  {award.topic ? (
                     <span className="selected-category-tag">
                       <Tag size={12} />
                       <span>{award.topic}</span>
                     </span>
-                  )}
+                  ) : <span />}
 
                   <button 
                     className="selected-detail-btn"
@@ -96,4 +99,5 @@ const SelectedAwards = ({ awards = [], onSelectAward, onOpenMedia }) => {
   );
 };
 
-export default SelectedAwards;
+export default React.memo(SelectedAwards);
+

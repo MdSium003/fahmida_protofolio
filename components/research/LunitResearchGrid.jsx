@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { ArrowUpRight, BookOpen, Play } from 'lucide-react';
+import { ArrowUpRight, BookOpen, Play, BookCheck, FlaskConical } from 'lucide-react';
 import { loadCsv, parseList, parseAuthors, parseLinks, parseMedia } from '../../src/utils/csvLoader';
+import { matchesResearchCategory } from './ResearchFilters';
 import ResearchFigureFallback from './ResearchFigureFallback';
 import ResearchDetailModal from './ResearchDetailModal';
 
@@ -49,6 +50,8 @@ const getBentoSpanClass = (index, total) => {
 const LunitResearchGrid = ({ 
   papers = null, 
   loading = false, 
+  selectedCategory = 'all',
+  searchQuery = '',
   selectedTopics = [], 
   selectedStatuses = [] 
 }) => {
@@ -107,9 +110,24 @@ const LunitResearchGrid = ({
     }
   };
 
-  // Multi-select filtering by topics & statuses
+  // Category & Search Query filtering
   const filteredProjects = useMemo(() => {
     let list = [...projects];
+
+    if (selectedCategory && selectedCategory !== 'all') {
+      list = list.filter(p => matchesResearchCategory(p, selectedCategory));
+    }
+
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      list = list.filter(p => 
+        (p.title || '').toLowerCase().includes(q) || 
+        (p.description || '').toLowerCase().includes(q) ||
+        (p.abstract || '').toLowerCase().includes(q) ||
+        (p.topics || '').toLowerCase().includes(q) ||
+        (p.authors || '').toLowerCase().includes(q)
+      );
+    }
 
     if (selectedStatuses.length > 0) {
       list = list.filter(p => {
@@ -129,7 +147,17 @@ const LunitResearchGrid = ({
     }
 
     return list;
-  }, [projects, selectedTopics, selectedStatuses]);
+  }, [projects, selectedCategory, searchQuery, selectedTopics, selectedStatuses]);
+
+  // Section 1: Published Works
+  const publishedProjects = useMemo(() => {
+    return filteredProjects.filter(p => (p.status || '').toLowerCase() === 'published');
+  }, [filteredProjects]);
+
+  // Section 2: Ongoing & Preprint Researches
+  const ongoingAndPreprintProjects = useMemo(() => {
+    return filteredProjects.filter(p => (p.status || '').toLowerCase() !== 'published');
+  }, [filteredProjects]);
 
   if (isLoading) {
     return (
@@ -145,18 +173,17 @@ const LunitResearchGrid = ({
       <div className="lunit-empty-state">
         <BookOpen size={44} className="empty-icon" />
         <h3>No research publications found</h3>
-        <p>Try clearing your active topic or status filters.</p>
+        <p>Try clearing your active category or search query.</p>
       </div>
     );
   }
 
-  const totalCount = filteredProjects.length;
+  const renderBentoGrid = (items) => {
+    const totalCount = items.length;
 
-  return (
-    <div className="lunit-research-layout">
-      {/* Unified Seamless Bento Grid (All items in one cohesive 12-column grid) */}
+    return (
       <div className="research-unified-bento-grid">
-        {filteredProjects.map((project, idx) => {
+        {items.map((project, idx) => {
           const isVideo = project.thumbnail_url && (project.thumbnail_url.includes('youtube') || project.thumbnail_url.includes('youtu.be'));
           const videoThumb = isVideo ? getYouTubeEmbedUrl(project.thumbnail_url) : '';
           const rawImage = project.displayImg || project.thumbnail_url;
@@ -176,6 +203,9 @@ const LunitResearchGrid = ({
               key={project.id || idx}
               className={`research-bento-tile ${spanClass}`}
               onClick={() => setActiveModalProject(project)}
+              tabIndex={0}
+              role="button"
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActiveModalProject(project); }}
             >
               {/* Visual Background Layer: Pure Photo or Pure Blueprint (Zero conflicting text) */}
               <div className="tile-media-backdrop">
@@ -236,6 +266,50 @@ const LunitResearchGrid = ({
           );
         })}
       </div>
+    );
+  };
+
+  return (
+    <div className="lunit-research-layout">
+      {/* 1. First Section: Published Works */}
+      {publishedProjects.length > 0 && (
+        <section className="research-status-group published-group" aria-label="Published Works">
+          <div className="research-group-header">
+            {/* <div className="research-group-badge published-badge">
+              <BookCheck size={14} />
+              <span>Peer-Reviewed & Published</span>
+            </div> */}
+            <h2 className="research-group-title">
+              Published <span className="text-highlight">Works</span>
+            </h2>
+            <p className="research-group-subtitle">
+              Peer-reviewed conference proceedings, journal papers, and archival publications. ({publishedProjects.length})
+            </p>
+          </div>
+
+          {renderBentoGrid(publishedProjects)}
+        </section>
+      )}
+
+      {/* 2. Second Section: Preprints & Ongoing Researches */}
+      {ongoingAndPreprintProjects.length > 0 && (
+        <section className="research-status-group ongoing-group" aria-label="Preprints and Ongoing Research">
+          <div className="research-group-header">
+            {/* <div className="research-group-badge ongoing-badge">
+              <FlaskConical size={14} />
+              <span>Under Review & In Progress</span>
+            </div> */}
+            <h2 className="research-group-title">
+              Preprints & <span className="text-highlight">Ongoing Researches</span>
+            </h2>
+            <p className="research-group-subtitle">
+              Active lab models, ongoing clinical validations, and preprints under peer review. ({ongoingAndPreprintProjects.length})
+            </p>
+          </div>
+
+          {renderBentoGrid(ongoingAndPreprintProjects)}
+        </section>
+      )}
 
       {/* Case Study Detail Modal */}
       {activeModalProject && (

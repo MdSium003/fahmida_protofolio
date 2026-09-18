@@ -188,22 +188,179 @@
 }
 
 /* ==========================================================================
-   4. Filter Trigger Section
+   4. Research Discovery Filters & Search (Same as Projects Page)
    ========================================================================== */
-.lunit-filter-disclosure-section {
-  display: flex;
-  justify-content: center;
+.research-filters-section {
+  width: 100%;
   margin-bottom: 2.5rem;
 }
 
+.research-filters-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin: 0.5rem auto 2.5rem;
+  width: 100%;
+}
+
+.research-category-pills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.research-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.48rem 0.95rem;
+  border-radius: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.research-filter-pill:hover {
+  border-color: rgba(177, 204, 116, 0.4);
+  color: var(--color-text);
+  background: #332c26;
+  transform: translateY(-1px);
+}
+
+.research-filter-pill.active {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(177, 204, 116, 0.28);
+}
+
+.research-search-box {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.research-search-icon {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.research-search-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.52rem 2.2rem 0.52rem 2.4rem;
+  color: var(--color-text);
+  font-size: 0.84rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.research-search-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(177, 204, 116, 0.15);
+}
+
+.research-search-clear {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.research-search-clear:hover {
+  color: var(--color-accent);
+}
+
 /* ==========================================================================
-   5. Unified Bento Publication Grid Architecture
+   5. Two-Section Research Architecture (Published vs. Preprints & Ongoing)
    ========================================================================== */
 .lunit-research-layout {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 4.5rem;
   margin-bottom: 4rem;
+}
+
+.research-status-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.research-group-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(177, 204, 116, 0.15);
+}
+
+.research-group-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+  padding: 0.24rem 0.72rem;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.research-group-badge.published-badge {
+  background: rgba(177, 204, 116, 0.14);
+  border: 1px solid rgba(177, 204, 116, 0.35);
+  color: var(--color-accent);
+}
+
+.research-group-badge.ongoing-badge {
+  background: rgba(208, 244, 234, 0.12);
+  border: 1px solid rgba(208, 244, 234, 0.28);
+  color: #d0f4ea;
+}
+
+.research-group-title {
+  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.75rem, 2.7vw, 2.35rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.research-group-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.5;
 }
 
 .research-unified-bento-grid {

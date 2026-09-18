@@ -474,3 +474,15 @@ export async function loadLeadershipData() {
     sortOrder: Number(l.sort_order) || 999
   })).sort((a, b) => new Date(b.start_date || 0) - new Date(a.start_date || 0));
 }
+
+export async function loadNewsData() {
+  const raw = await loadCsv('news');
+  return (raw || []).map(n => ({
+    ...n,
+    id: String(n.id),
+    image_url: normalizeImagePath(n.image_url),
+    image: normalizeImagePath(n.image_url),
+    isFeatured: normalizeBoolean(n.is_featured),
+    sortOrder: Number(n.sort_order) || 999
+  })).sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+}

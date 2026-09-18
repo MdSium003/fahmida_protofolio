@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { loadResearchData } from '../src/utils/csvLoader';
 import ResearchHero from '../components/research/ResearchHero';
 import ResearchStats from '../components/research/ResearchStats';
-import ResearchFilterDisclosure from '../components/research/ResearchFilterDisclosure';
+import ResearchFilters, { RESEARCH_CATEGORIES, matchesResearchCategory } from '../components/research/ResearchFilters';
 import LunitResearchGrid from '../components/research/LunitResearchGrid';
 import ResearchThreads from '../components/research/ResearchThreads';
 import ScrollReveal from '../components/shared/ScrollReveal';
@@ -11,8 +11,8 @@ import '../styles/ResearchPage.css';
 const ResearchPage = () => {
   const [papers, setPapers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedTopics, setSelectedTopics] = useState([]);
-  const [selectedStatuses, setSelectedStatuses] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchPapers = async () => {
@@ -30,6 +30,19 @@ const ResearchPage = () => {
     fetchPapers();
   }, []);
 
+  // Calculated domain counts for Research categories
+  const categoryCounts = useMemo(() => {
+    const counts = { all: papers.length };
+    RESEARCH_CATEGORIES.forEach((cat) => {
+      if (cat.id === 'all') {
+        counts.all = papers.length;
+      } else {
+        counts[cat.id] = papers.filter(p => matchesResearchCategory(p, cat.id)).length;
+      }
+    });
+    return counts;
+  }, [papers]);
+
   return (
     <div className="research-page-wrapper">
       {/* 1. Large Centered Editorial Hero */}
@@ -44,13 +57,14 @@ const ResearchPage = () => {
 
       {/* 3. Main Research Content */}
       <main className="research-main-content">
-        {/* Editorial Filter Trigger */}
-        <section className="lunit-filter-disclosure-section">
-          <ResearchFilterDisclosure 
-            selectedTopics={selectedTopics}
-            onTopicsChange={setSelectedTopics}
-            selectedStatuses={selectedStatuses}
-            onStatusesChange={setSelectedStatuses}
+        {/* Interactive Discovery Filters & Search (Identical to Projects Page) */}
+        <section className="research-filters-section">
+          <ResearchFilters 
+            selectedCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            categoryCounts={categoryCounts}
           />
         </section>
 
@@ -59,8 +73,8 @@ const ResearchPage = () => {
           <LunitResearchGrid 
             papers={papers}
             loading={loading}
-            selectedTopics={selectedTopics}
-            selectedStatuses={selectedStatuses}
+            selectedCategory={selectedCategory}
+            searchQuery={searchQuery}
           />
         </section>
 
@@ -74,3 +88,4 @@ const ResearchPage = () => {
 };
 
 export default ResearchPage;
+

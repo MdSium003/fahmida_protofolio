@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Homepage.css';
 import DriftWall from '../components/shared/DriftWall';
 import HomePositioning from '../components/home/HomePositioning';
-import HomeSelectedProjects from '../components/home/HomeSelectedProjects';
+import HomeNews from '../components/home/HomeNews';
 import HomeResearchSpotlight from '../components/home/HomeResearchSpotlight';
 import HomeRecognitionPreview from '../components/home/HomeRecognitionPreview';
 import HomeJournalPreview from '../components/home/HomeJournalPreview';
@@ -15,7 +15,7 @@ import {
   ArrowRight, ArrowDown
 } from 'lucide-react';
 import { 
-  loadProjectsData, 
+  loadNewsData,
   loadResearchData, 
   loadAwardsData, 
   loadBlogsData, 
@@ -50,7 +50,7 @@ const DEFAULT_WALL_IMAGES = [
 const HomePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [projects, setProjects] = useState([]);
+  const [news, setNews] = useState([]);
   const [papers, setPapers] = useState([]);
   const [awards, setAwards] = useState([]);
   const [blogs, setBlogs] = useState([]);
@@ -110,8 +110,8 @@ const HomePage = () => {
     const fetchAllData = async () => {
       try {
         setLoading(true);
-        const [projData, researchData, awardsData, blogData, socialData, momentsData] = await Promise.all([
-          loadProjectsData().catch(() => []),
+        const [newsData, researchData, awardsData, blogData, socialData, momentsData] = await Promise.all([
+          loadNewsData().catch(() => []),
           loadResearchData().catch(() => []),
           loadAwardsData().catch(() => []),
           loadBlogsData().catch(() => []),
@@ -119,7 +119,7 @@ const HomePage = () => {
           loadMomentsData().catch(() => [])
         ]);
 
-        setProjects(projData || []);
+        setNews(newsData || []);
         setPapers(researchData || []);
         setAwards(awardsData || []);
         setBlogs(blogData || []);
@@ -140,7 +140,7 @@ const HomePage = () => {
   }, []);
 
   const scrollToFirstSection = () => {
-    const target = document.getElementById('about-the-work');
+    const target = document.getElementById('philosophy') || document.getElementById('news');
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
     }
@@ -342,11 +342,11 @@ const HomePage = () => {
               animate={isHeroRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
               transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <span className="role-segment role-primary">ACCA Candidate</span>
+              <span className="role-segment role-primary">AI in Healthcare Researcher</span>
               <span className="role-dot">•</span>
-              <span className="role-segment">Finance & Strategy</span>
+              <span className="role-segment">Entrepreneur</span>
               <span className="role-dot">•</span>
-              <span className="role-segment">Strategic Analyst</span>
+              <span className="role-segment">Educator</span>
             </motion.div>
 
             {/* CTAs */}
@@ -390,11 +390,11 @@ const HomePage = () => {
         </motion.button>
       </section>
 
-      {/* 3. Section 01: Positioning Statement */}
+      {/* 3. Section 01: Positioning & Manifesto Statement */}
       <HomePositioning />
 
-      {/* 4. Section 02: Selected Projects */}
-      <HomeSelectedProjects projects={projects} />
+      {/* 4. Section 02: Latest News & Updates */}
+      <HomeNews news={news} />
 
       {/* 5. Section 03: Research Spotlight */}
       <HomeResearchSpotlight papers={papers} />
@@ -413,11 +413,11 @@ const HomePage = () => {
         <div className="home-footer-content">
           <div className="home-footer-logo">
             <span className="logo-text">Fahmida</span>
-            <span className="logo-subtitle">Portfolio & Research</span>
+            <span className="logo-subtitle">AI in Healthcare Researcher</span>
           </div>
           <p className="footer-text">
-            Strategic Finance Professional | ACCA Candidate | AI & Vision Researcher<br />
-            Transforming complex systems and empirical data into impactful intelligence.
+            Founder & CEO, PinkLifeLine | AI in Healthcare Researcher | Educator<br />
+            Building intelligent AI for better healthcare, deeper clinical insights, and meaningful human impact.
           </p>
           <div className="footer-social">
             {!loading && socialLinks

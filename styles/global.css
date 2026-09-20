@@ -54,6 +54,21 @@
   /* Transitions */
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: all 0.15s ease;
+
+  /* Page-hero vertical rhythm — every *-hero-section uses these so the
+     five section headers line up identically across pages. */
+  --hero-pad-top: 24px;
+  --hero-pad-bottom: 32px;
+
+  /* Keyboard focus ring — one definition, used by the global :focus-visible
+     rule below. Never suppress an outline without providing this instead. */
+  --focus-ring-color: var(--color-accent);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  /* Minimum comfortable touch target (WCAG 2.5.8). Applied only under
+     `pointer: coarse` so desktop visual sizing is untouched. */
+  --tap-target-min: 44px;
 }
 
 /* ========== Reset & Base ========== */
@@ -104,6 +119,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* The navbar is fixed, so anchored scrolling must stop short of it or the
+     target heading lands underneath the header. */
+  scroll-padding-top: 96px;
   scrollbar-gutter: stable;
   background-color: var(--color-bg);
 }
@@ -138,6 +156,7 @@ input, select, textarea, button {
 /* ========== Shared Page Container ========== */
 .page-layout {
   min-height: 100vh;
+  min-height: 100dvh;
   background-color: var(--color-bg);
   color: var(--color-text);
 }
@@ -157,7 +176,12 @@ input, select, textarea, button {
   z-index: 9999;
   background: transparent;
   transition: var(--transition);
-  padding: 1.25rem 0;
+  /* viewport-fit=cover lets the page render under the notch and home
+     indicator, so every fixed element has to add the insets back itself.
+     env() resolves to 0px on devices without cutouts. */
+  padding: max(1.25rem, env(safe-area-inset-top)) 0 1.25rem;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .navbar.scrolled {
@@ -249,6 +273,8 @@ input, select, textarea, button {
   left: 0;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
+  height: 100dvh;
   background: rgba(30, 27, 24, 0.8);
   backdrop-filter: blur(4px);
   z-index: 10000;
@@ -262,9 +288,20 @@ input, select, textarea, button {
   right: 0;
   transform: translateX(100%);
   width: 300px;
+  /* 100vh includes the retracting mobile URL bar, so the panel overflowed the
+     screen. In landscape that put "Skills" and "Blog" below the fold with no
+     way to scroll to them. dvh tracks the real viewport; the scroll is the
+     safety net for short screens. */
   height: 100vh;
+  height: 100dvh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   background-color: var(--color-surface);
-  padding: 24px 28px;
+  padding: max(24px, env(safe-area-inset-top)) max(28px, env(safe-area-inset-right))
+           max(24px, env(safe-area-inset-bottom)) 28px;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 10002;
   box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
@@ -495,17 +532,6 @@ input, select, textarea, button {
   to { opacity: 1; }
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -517,17 +543,6 @@ input, select, textarea, button {
   }
 }
 
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 @keyframes shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
@@ -536,11 +551,6 @@ input, select, textarea, button {
 @keyframes rotation {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
 }
 
 @keyframes spin {
@@ -606,11 +616,18 @@ input, select, textarea, button {
 }
 
 .modal-reading-progress-bar {
+  /* Driven by transform, not width: width is a layout property, so the old
+     `transition: width` relaid out the modal on every scroll frame. scaleX is
+     composited on the GPU and costs nothing per frame. */
+  width: 100%;
   height: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
   background: linear-gradient(90deg, #B1CC74 0%, #E8FCC2 100%);
   box-shadow: 0 0 12px rgba(177, 204, 116, 0.85);
   border-radius: 0 3px 3px 0;
-  transition: width 0.06s linear;
+  transition: transform 0.08s linear;
+  will-change: transform;
 }
 
 /* Hide scrollbar completely while maintaining full smooth scroll functionality */
@@ -713,3 +730,164 @@ input, select, textarea, button {
   }
 }
 
+/* ==========================================================================
+   Long-content resilience  (Pass 2 — P2-2)
+   --------------------------------------------------------------------------
+   CSV-authored titles are not length-limited. Without these, a single long
+   unbroken token (a URL, a hyphen-free compound, a long model name) pushes
+   its card wider than its grid track: measured at +324px on .selected-card.
+   `line-clamp` does NOT prevent this — it limits line count, not word width.
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6,
+p, li, dd, dt, figcaption, blockquote, a, span, td, th, label, button {
+  overflow-wrap: anywhere;
+}
+
+/* Flex and grid children default to min-width:auto, which refuses to shrink
+   below their content's intrinsic width — the actual mechanism behind the
+   overflow above. This lets them shrink so the wrap rule can take effect. */
+.card-content-frame > *,
+[class*="-card"] > *,
+[class*="-card"],
+[class*="card-"] > * {
+  min-width: 0;
+}
+
+/* ==========================================================================
+   Keyboard focus  (Pass 2 — P2-8)
+   --------------------------------------------------------------------------
+   Previously every focus ring came from the UA default `outline-style: auto`,
+   which inherits currentColor — so the same nav link rendered a 2.4px green,
+   2.4px grey or 0.8px amber ring depending on state, and eight components
+   suppressed it outright with `outline: none`. One consistent ring instead.
+   ========================================================================== */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: 4px;
+}
+
+/* Mouse users keep a clean UI; keyboard users always get the ring above. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Components that set `outline: none` for their own custom treatment still
+   need a visible indicator. Re-assert it at higher specificity. */
+.selected-card:focus-visible,
+.news-featured-big-card:focus-visible,
+.news-side-small-card:focus-visible,
+.pub-card:focus-visible,
+.drift-wall__tile:focus-visible,
+.blog-search-input:focus-visible,
+.project-search-input:focus-visible,
+.research-search-input:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* ==========================================================================
+   Touch targets  (Pass 2 — P2-5)
+   --------------------------------------------------------------------------
+   Desktop visual sizing is deliberately left alone. Under a coarse pointer
+   (phones, tablets, touch laptops) controls are raised to the 44px minimum,
+   because measured heights ran 24–38px for almost every button on the site.
+   ========================================================================== */
+@media (pointer: coarse) {
+  a[class*="btn"],
+  button[class*="btn"],
+  a[class*="cta"],
+  button[class*="cta"],
+  a[class*="action"],
+  button[class*="action"],
+  button[class*="pill"],
+  button[class*="filter"],
+  button[class*="tab"],
+  .nav-link,
+  .mobile-nav-link {
+    min-height: var(--tap-target-min);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Named controls that the attribute selectors above do not catch. */
+  .nav-logo,
+  .social-link,
+  .home-view-all-link,
+  .hero-scroll-indicator,
+  .practice-action-link,
+  .vol-link-action,
+  .athos-ext-btn {
+    min-height: var(--tap-target-min);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Text inputs measured 34px tall; they are primary touch targets too. */
+  input[type="text"],
+  input[type="search"],
+  input:not([type]),
+  select,
+  textarea {
+    min-height: var(--tap-target-min);
+  }
+
+  /* Icon-only controls need width as well as height. */
+  button[class*="close"],
+  button[class*="arrow"],
+  button[class*="toggle"],
+  button[class*="nav-prev"],
+  button[class*="nav-next"],
+  button[class*="clear"] {
+    min-width: var(--tap-target-min);
+    min-height: var(--tap-target-min);
+  }
+}
+
+/* Modal entry — was defined three times (Awards/Blog/Projects) with mismatched
+   0.25s and 0.2s durations. Single canonical definition. */
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ==========================================================================
+   Safe-area insets  (Pass 3 — P3-4)
+   --------------------------------------------------------------------------
+   index.html sets viewport-fit=cover, which lets the page paint under a
+   notch, Dynamic Island and home indicator. Every full-screen fixed layer
+   therefore has to add the insets back, or its close button and top content
+   land underneath the cutout. env() is 0px on devices without one, so these
+   rules are inert everywhere else.
+
+   The overlays are listed explicitly rather than matched with
+   [class*="-overlay"]: 17 of the 26 "overlay" classes in this codebase are
+   decorative gradient scrims (.card-media-overlay, .tile-gradient-overlay,
+   .drift-wall__overlay …) that a blanket rule would pad and break.
+   ========================================================================== */
+/* The overlays' own padding runs 0.75rem–2rem and one uses !important, so a
+   blanket padding floor here would REDUCE it. Margin on the centred modal
+   container is purely additive instead: 0px on devices without a cutout, and
+   exactly the inset on those that have one. */
+.award-modal-container,
+.blog-modal-container,
+.home-mentions-modal-container,
+.lightbox-content,
+.news-modal-container,
+.project-modal-container,
+.pub-modal-container,
+.research-modal-container {
+  margin-top: env(safe-area-inset-top);
+  margin-bottom: env(safe-area-inset-bottom);
+}
+
+/* Horizontal insets only exist in landscape, where they run 34–44px on
+   notched phones. Applied to body — which has no horizontal padding of its
+   own — so it adds to, rather than replaces, each page container's padding. */
+@media (orientation: landscape) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}

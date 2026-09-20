@@ -44,7 +44,7 @@ const FeaturedProjectHero = ({ project, onOpenProject }) => {
                 alt={project.title} 
                 className="featured-media-img" 
                 loading="eager"
-              />
+decoding="async"/>
               <div className="featured-media-gradient-overlay" />
             </div>
           ) : (

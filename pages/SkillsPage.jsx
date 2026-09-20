@@ -7,8 +7,17 @@ import SkillsCTA from '../components/skills/SkillsCTA';
 import ScrollReveal from '../components/shared/ScrollReveal';
 import { loadSkillsData, loadProjectsData, loadResearchData } from '../src/utils/csvLoader';
 import '../styles/SkillsPage.css';
+import LoadingState from '../components/shared/LoadingState';
+import { usePageMeta } from '../src/hooks/usePageMeta';
 
 const SkillsPage = () => {
+  usePageMeta({
+    title: 'Skills & Expertise',
+    description:
+      "Technical stack, core expertise and applied engineering practice across machine learning, cloud and data systems.",
+    path: '/skills',
+  });
+
   const [skills, setSkills] = useState([]);
   const [projects, setProjects] = useState([]);
   const [research, setResearch] = useState([]);
@@ -41,10 +50,7 @@ const SkillsPage = () => {
       <SkillsHero />
 
       {loading ? (
-        <div className="skills-loading-container">
-          <div className="skills-loader" />
-          <p>Loading technical stack...</p>
-        </div>
+        <LoadingState variant="grid" count={6} label="Loading technical stack" />
       ) : (
         <>
           {/* 01 — Core Expertise & Architecture (Merged Iconic Domain & Tech Tree) */}

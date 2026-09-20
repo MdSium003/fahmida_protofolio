@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink, ArrowRight, Play, BookOpen, FileText } from 'lucide-react';
 import ResearchFigureFallback from './ResearchFigureFallback';
+import { asset } from '../../src/utils/assetUrl';
 
 const getYouTubeEmbedUrl = (url) => {
   if (!url) return '';
@@ -72,7 +73,6 @@ const PublicationCard = ({ publication, onSelect }) => {
     thumbnail_url,
     externalUrl,
     hasDemo,
-    demoUrl,
     authorsList = []
   } = publication;
 
@@ -84,7 +84,7 @@ const PublicationCard = ({ publication, onSelect }) => {
   const hasValidImage = finalImage && 
     !finalImage.includes('example.com') && 
     !finalImage.endsWith('.pdf') &&
-    (finalImage.match(/\.(jpeg|jpg|gif|png|webp|svg)/i) || finalImage.startsWith('/wall/') || finalImage.startsWith('http'));
+    (finalImage.match(/\.(jpeg|jpg|gif|png|webp|svg)/i) || finalImage.startsWith(asset('/wall/')) || finalImage.startsWith('http'));
 
   const statusLower = String(status).toLowerCase();
   const statusLabel = statusLower === 'published' ? 'Published' : (statusLower === 'preprint' ? 'Preprint' : 'Ongoing');
@@ -127,7 +127,7 @@ const PublicationCard = ({ publication, onSelect }) => {
               if (parent) {
                 parent.classList.add('fallback-active');
               }
-            }}
+            }}            decoding="async"
           />
         ) : (
           <ResearchFigureFallback paper={publication} className="pub-card-fallback" />

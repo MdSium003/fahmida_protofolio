@@ -112,7 +112,6 @@ function runValidation() {
 
   let totalFiles = 0;
   let totalErrors = 0;
-  let totalWarnings = 0;
 
   for (const config of DATA_CONFIGS) {
     totalFiles++;
@@ -127,7 +126,6 @@ function runValidation() {
     const rawContent = fs.readFileSync(filePath, 'utf8');
     if (!rawContent.trim()) {
       console.warn(`⚠️ [EMPTY FILE] ${config.fileName} is empty.`);
-      totalWarnings++;
       continue;
     }
 

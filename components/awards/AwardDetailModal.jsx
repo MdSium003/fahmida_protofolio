@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { X, Building2, ExternalLink, Calendar, Tag, ChevronLeft, ChevronRight, Play, Image as ImageIcon } from 'lucide-react';
 import { cleanAwardTitle } from './FeaturedAwards';
 import { parseMedia } from '../../src/utils/csvLoader';
@@ -8,12 +8,16 @@ const getYouTubeEmbedUrl = (url) => {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|live\/)([^#&?]*).*/;
   const match = url.match(regExp);
   return match && match[2] && match[2].length >= 11
-    ? `https://www.youtube.com/embed/${match[2].substring(0, 11)}`
+    ? `https://www.youtube-nocookie.com/embed/${match[2].substring(0, 11)}`
     : url;
 };
 
-const AwardDetailModal = ({ award, onClose, onOpenMedia, media = [] }) => {
+const AwardDetailModal = ({ award, onClose, media = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  // The reading bar is written straight to the DOM through a ref. Holding
+  // it in state re-rendered this entire modal on every scroll event of a
+  // long article, for a value only one 3px element consumes.
+  const progressBarRef = useRef(null);
   const [isPaused, setIsPaused] = useState(false);
 
   // Combine primary thumbnail and supporting media items
@@ -50,10 +54,14 @@ const AwardDetailModal = ({ award, onClose, onOpenMedia, media = [] }) => {
     return items;
   }, [award, media]);
 
-  // Reset index when award changes
-  useEffect(() => {
+  // Reset the carousel when a different award is opened. Done during render
+  // rather than in an effect: an effect renders once with the stale index and
+  // then again after resetting, which flashes the previous award's media.
+  const [lastAward, setLastAward] = useState(award);
+  if (award !== lastAward) {
+    setLastAward(award);
     setCurrentIndex(0);
-  }, [award]);
+  }
 
   // Lock body scroll and handle keyboard events
   useEffect(() => {
@@ -95,16 +103,12 @@ const AwardDetailModal = ({ award, onClose, onOpenMedia, media = [] }) => {
     ? String(award.description).split('\n').filter(line => line.trim().length > 0)
     : [];
 
-  const [readingProgress, setReadingProgress] = useState(0);
-
   const handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     const maxScroll = scrollHeight - clientHeight;
-    if (maxScroll > 0) {
-      const progress = Math.min(100, Math.max(0, (scrollTop / maxScroll) * 100));
-      setReadingProgress(progress);
-    } else {
-      setReadingProgress(0);
+    const ratio = maxScroll > 0 ? Math.min(1, Math.max(0, scrollTop / maxScroll)) : 0;
+    if (progressBarRef.current) {
+      progressBarRef.current.style.transform = `scaleX(${ratio})`;
     }
   };
 
@@ -125,8 +129,8 @@ const AwardDetailModal = ({ award, onClose, onOpenMedia, media = [] }) => {
         {/* Top Reading Progress Bar */}
         <div className="modal-reading-progress-track" aria-hidden="true">
           <div 
-            className="modal-reading-progress-bar" 
-            style={{ width: `${readingProgress}%` }} 
+            className="modal-reading-progress-bar"
+            ref={progressBarRef}
           />
         </div>
 
@@ -213,7 +217,7 @@ const AwardDetailModal = ({ award, onClose, onOpenMedia, media = [] }) => {
                             alt={`${cleanTitle} ${idx + 1}`}
                             className="award-modal-slide-img"
                             loading={idx === 0 ? 'eager' : 'lazy'}
-                          />
+decoding="async"/>
                         </div>
                       );
                     })}
@@ -278,7 +282,7 @@ const AwardDetailModal = ({ award, onClose, onOpenMedia, media = [] }) => {
               {descriptionLines.map((line, idx) => {
                 const trimmed = line.trim();
                 const isBullet = trimmed.startsWith('->') || trimmed.startsWith('-') || trimmed.startsWith('•');
-                const cleanLine = trimmed.replace(/^(\->|\-|•)\s*/, '');
+                const cleanLine = trimmed.replace(/^(->|-|•)\s*/, '');
                 
                 return isBullet ? (
                   <div key={idx} className="description-bullet">

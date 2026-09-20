@@ -27,7 +27,7 @@ const AwardMediaLightbox = ({ media, currentIndex, onClose, onIndexChange }) => 
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|live\/)([^#&?]*).*/;
     const match = url.match(regExp);
     return match && match[2].length >= 11 
-      ? `https://www.youtube.com/embed/${match[2].substring(0, 11)}`
+      ? `https://www.youtube-nocookie.com/embed/${match[2].substring(0, 11)}`
       : url;
   };
 
@@ -70,7 +70,8 @@ const AwardMediaLightbox = ({ media, currentIndex, onClose, onIndexChange }) => 
             <img 
               src={currentItem.media_url} 
               alt={`Media ${currentIndex + 1}`}
-            />
+loading="lazy"
+decoding="async"/>
           )}
         </div>
 
@@ -96,8 +97,9 @@ const AwardMediaLightbox = ({ media, currentIndex, onClose, onIndexChange }) => 
               >
                 <img 
                   src={item.media_type === 'youtube' ? getYouTubeThumbnail(item.media_url) : item.media_url} 
-                  alt="" 
-                />
+                  alt=""
+loading="lazy"
+decoding="async"/>
               </button>
             ))}
           </div>

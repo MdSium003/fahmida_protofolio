@@ -4,7 +4,7 @@ import { parseMedia } from '../../src/utils/csvLoader';
 import { cleanAwardTitle, getPlacementBadge } from './FeaturedAwards';
 import ScrollReveal from '../shared/ScrollReveal';
 
-const AwardArchive = ({ awards = [], onSelectAward, onOpenMedia }) => {
+const AwardArchive = ({ awards = [], onSelectAward }) => {
   const [selectedTopic, setSelectedTopic] = useState('all');
   const [selectedYear, setSelectedYear] = useState('all');
 
@@ -140,7 +140,7 @@ const AwardArchive = ({ awards = [], onSelectAward, onOpenMedia }) => {
                 <div className="archive-rows-list">
                   {items.map((award) => {
                     const placement = getPlacementBadge(award.title);
-                    const media = parseMedia(award.media);
+                    const _media = parseMedia(award.media);
 
                     return (
                       <article 

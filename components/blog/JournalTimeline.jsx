@@ -1,6 +1,14 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { motion, useScroll, useSpring, useReducedMotion, useMotionValueEvent } from 'motion/react';
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useReducedMotion,
+  useMotionValueEvent,
+  useMotionValue,
+} from 'motion/react';
 import { Play, BookOpen, ArrowRight, Calendar, MapPin, Clock } from 'lucide-react';
+import { asset } from '../../src/utils/assetUrl';
 
 /**
  * Deterministic pseudo-random number generator for consistent organic jitter
@@ -31,7 +39,19 @@ const JournalTimeline = ({ stories, onOpenStory }) => {
 
   // Track unlocked cards by scroll progress (each card unlocks as the line draws past it)
   const [unlockedIndices, setUnlockedIndices] = useState(new Set([0]));
-  const [markerPos, setMarkerPos] = useState({ x: 0, y: 0, visible: false, angle: 0 });
+
+  // The travelling marker is driven by motion values rather than React state.
+  // Its position changes every animation frame; routing that through setState
+  // re-rendered this component — and all of its story cards — 60 times a
+  // second. Motion writes these straight to the DOM, off the render path.
+  const markerX = useMotionValue(0);
+  const markerY = useMotionValue(0);
+  const markerAngle = useMotionValue(0);
+  const markerOpacity = useMotionValue(0);
+
+  // getTotalLength() costs ~0.6ms and the path does not change while scrolling,
+  // so it is measured once per path rather than once per frame.
+  const pathLengthRef = useRef(0);
 
   // 1. Scroll-linked progress for the timeline section
   const { scrollYProgress } = useScroll({
@@ -159,6 +179,17 @@ const JournalTimeline = ({ stories, onOpenStory }) => {
     });
   }, [stories]);
 
+  // Measure the drawn path once per geometry change. Doing this in the scroll
+  // handler cost ~0.6ms every frame for a value that never changes mid-scroll.
+  useEffect(() => {
+    if (!pathRef.current) return;
+    try {
+      pathLengthRef.current = pathRef.current.getTotalLength();
+    } catch {
+      pathLengthRef.current = 0;
+    }
+  }, [pathData.mainPathD]);
+
   // Recalculate on mount, story count changes, and debounced window resize
   useEffect(() => {
     recalculatePath();
@@ -189,48 +220,48 @@ const JournalTimeline = ({ stories, onOpenStory }) => {
 
   // Sync scroll progress to unlock cards and update traveling marker position
   useMotionValueEvent(smoothProgress, 'change', (latest) => {
-    if (prefersReducedMotion) {
-      if (unlockedIndices.size !== stories.length) {
-        setUnlockedIndices(new Set(stories.map((_, i) => i)));
-      }
-      return;
-    }
+    if (prefersReducedMotion) return;
 
-    // 1. Calculate which cards are unlocked
+    // 1. Unlock cards the drawn line has reached.
+    //    setState only when membership actually changes — this fires on every
+    //    spring frame, and a fresh Set each time is always a new reference, so
+    //    an unconditional call re-rendered the whole timeline ~60x/second.
     if (pathData.anchorPoints.length > 0) {
-      const newUnlocked = new Set([0]); // First card unlocked by default
+      const next = new Set([0]);
       pathData.anchorPoints.forEach((anc, i) => {
-        // Card's normalized threshold on the timeline (relative vertical position)
         const threshold = Math.max(0, Math.min(1, (anc.y - 50) / (pathData.height || 1)));
-        if (latest >= threshold - 0.08 || latest > 0.92) {
-          newUnlocked.add(i);
-        }
+        if (latest >= threshold - 0.08 || latest > 0.92) next.add(i);
       });
 
-      setUnlockedIndices(newUnlocked);
+      setUnlockedIndices((prev) => {
+        if (prev.size === next.size) {
+          let same = true;
+          for (const i of next) {
+            if (!prev.has(i)) { same = false; break; }
+          }
+          if (same) return prev; // identical — React bails out, no re-render
+        }
+        return next;
+      });
     }
 
-    // 2. Update traveling marker point along the path
-    if (pathRef.current) {
+    // 2. Move the travelling marker. Written to motion values, so this costs
+    //    two style writes rather than a React render pass.
+    const totalLength = pathLengthRef.current;
+    if (totalLength > 0 && pathRef.current) {
       try {
-        const totalLength = pathRef.current.getTotalLength();
-        if (totalLength > 0) {
-          const currentLength = Math.max(0, Math.min(totalLength, latest * totalLength));
-          const pt = pathRef.current.getPointAtLength(currentLength);
-          
-          // Calculate heading angle for pen nib / arrow indicator
-          const nextPt = pathRef.current.getPointAtLength(Math.min(totalLength, currentLength + 2));
-          const angle = Math.atan2(nextPt.y - pt.y, nextPt.x - pt.x) * (180 / Math.PI);
+        const currentLength = Math.max(0, Math.min(totalLength, latest * totalLength));
+        const pt = pathRef.current.getPointAtLength(currentLength);
+        const nextPt = pathRef.current.getPointAtLength(
+          Math.min(totalLength, currentLength + 2)
+        );
 
-          setMarkerPos({
-            x: pt.x,
-            y: pt.y,
-            visible: latest > 0.01 && latest < 0.99,
-            angle
-          });
-        }
+        markerX.set(pt.x);
+        markerY.set(pt.y);
+        markerAngle.set(Math.atan2(nextPt.y - pt.y, nextPt.x - pt.x) * (180 / Math.PI));
+        markerOpacity.set(latest > 0.01 && latest < 0.99 ? 1 : 0);
       } catch {
-        // In case SVG is rendering
+        // SVG not laid out yet
       }
     }
   });
@@ -294,7 +325,9 @@ const JournalTimeline = ({ stories, onOpenStory }) => {
           <path 
             key={`tick-${i}`}
             d={d}
-            className={`journey-branch-tick ${unlockedIndices.has(i) ? 'active' : ''}`}
+            className={`journey-branch-tick ${
+              prefersReducedMotion || unlockedIndices.has(i) ? 'active' : ''
+            }`}
             filter="url(#hand-drawn-ink)"
           />
         ))}
@@ -312,11 +345,18 @@ const JournalTimeline = ({ stories, onOpenStory }) => {
           />
         )}
 
-        {/* Traveling Marker (Pen Nib / Compass Dot riding on current drawn tip) */}
-        {!prefersReducedMotion && markerPos.visible && (
-          <g 
-            transform={`translate(${markerPos.x}, ${markerPos.y}) rotate(${markerPos.angle})`}
+        {/* Traveling Marker (Pen Nib / Compass Dot riding on current drawn tip).
+            Always mounted and driven by motion values — mounting/unmounting it
+            on a state flag forced a React render on every scroll frame. */}
+        {!prefersReducedMotion && (
+          <motion.g
             className="journey-traveling-marker"
+            style={{
+              x: markerX,
+              y: markerY,
+              rotate: markerAngle,
+              opacity: markerOpacity,
+            }}
           >
             {/* Outer Pulsing Glow */}
             <circle cx="0" cy="0" r="16" fill="url(#marker-glow-radial)" />
@@ -324,7 +364,7 @@ const JournalTimeline = ({ stories, onOpenStory }) => {
             <circle cx="0" cy="0" r="5" className="marker-core-dot" />
             {/* Directional Needle/Tip */}
             <path d="M 4 0 L -4 -3 L -2 0 L -4 3 Z" className="marker-needle-tip" />
-          </g>
+          </motion.g>
         )}
       </svg>
 
@@ -340,7 +380,7 @@ const JournalTimeline = ({ stories, onOpenStory }) => {
             : (story.published_date || '2026');
           
           const isEven = index % 2 === 0;
-          const displayImage = story.coverImage || story.thumbnail_url || '/wall/fahmida_blog.jpeg';
+          const displayImage = story.coverImage || story.thumbnail_url || asset('/images/fahmida_blog.jpeg');
           const isUnlocked = prefersReducedMotion || unlockedIndices.has(index);
 
           return (
@@ -366,7 +406,7 @@ const JournalTimeline = ({ stories, onOpenStory }) => {
                     alt={story.title}
                     className="timeline-image"
                     loading="lazy"
-                  />
+decoding="async"/>
                   <div className="timeline-image-overlay" />
 
                   {/* Video Play Overlay if Vlog */}

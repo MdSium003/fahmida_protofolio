@@ -994,7 +994,12 @@
   font-size: 0.72rem;
   font-weight: 600;
   color: var(--color-accent);
-  flex-shrink: 0;
+  /* `flex-shrink: 0` held this at its full 340px intrinsic width, pushing it
+     72px past the container at 375px. Allow it to shrink and wrap instead. */
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .pt-v-meta-row {
@@ -1293,25 +1298,6 @@
 }
 
 /* Loading State */
-.career-loading-state {
-  text-align: center;
-  padding: 5rem 0;
-  color: var(--color-text-muted);
-}
-
-.career-spinner {
-  width: 36px;
-  height: 36px;
-  border: 3px solid var(--border);
-  border-top-color: var(--color-accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin: 0 auto 1rem;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
 
 /* ==========================================================================
    RESPONSIVE DESIGN (BREAKPOINTS)

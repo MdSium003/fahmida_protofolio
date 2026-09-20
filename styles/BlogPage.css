@@ -13,6 +13,7 @@
   padding: 2.5rem 1.5rem 6rem;
   color: var(--color-text);
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
 }
 
@@ -20,7 +21,7 @@
    1. Hero Section & Filter Controls
    ========================================================================== */
 .blog-hero-section {
-  padding: 1.5rem 0 2.5rem;
+  padding: var(--hero-pad-top) 0 var(--hero-pad-bottom);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -794,7 +795,7 @@
 
 .moment-card-badge.type-newspaper,
 .moment-card-badge.type-article {
-  background: rgba(217, 119, 6, 0.85);
+  background: rgba(180, 95, 5, 0.92);
   border: 1px solid rgba(245, 158, 11, 0.6);
   color: #fff;
 }
@@ -922,6 +923,7 @@
   max-width: 920px;
   width: 100%;
   max-height: 90vh;
+  max-height: 90dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -986,6 +988,7 @@
   display: flex;
   flex-direction: column;
   max-height: 85vh;
+  max-height: 85dvh;
 }
 
 .lightbox-media-viewport {
@@ -996,12 +999,14 @@
   justify-content: center;
   overflow: hidden;
   max-height: 55vh;
+  max-height: 55dvh;
 }
 
 .lightbox-video-frame {
   width: 100%;
   aspect-ratio: 16 / 9;
   max-height: 55vh;
+  max-height: 55dvh;
   background: #000;
 }
 
@@ -1015,6 +1020,7 @@
 .lightbox-main-img {
   width: 100%;
   max-height: 55vh;
+  max-height: 55dvh;
   object-fit: contain;
   background: #0d0b09;
 }
@@ -1028,6 +1034,7 @@
   gap: 0.75rem;
   overflow-y: auto;
   max-height: 30vh;
+  max-height: 30dvh;
 }
 
 .lightbox-meta-row {
@@ -1170,6 +1177,7 @@
   width: 100%;
   max-width: 860px;
   max-height: 88vh;
+  max-height: 88dvh;
   margin: auto;
   background: var(--color-surface);
   border: 1px solid var(--border);
@@ -1569,39 +1577,12 @@
 /* ==========================================================================
    6. Loading State
    ========================================================================== */
-.blog-loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 2rem;
-  gap: 1rem;
-  color: var(--color-text-muted);
-}
-
-.blog-loader {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(177, 204, 116, 0.2);
-  border-top-color: var(--color-accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
 
 .journal-empty-state {
   text-align: center;
   padding: 3rem 1.5rem;
   color: var(--color-text-muted);
   font-size: 0.95rem;
-}
-
-@keyframes modalFadeIn {
-  from { opacity: 0; transform: scale(0.97); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 /* ==========================================================================

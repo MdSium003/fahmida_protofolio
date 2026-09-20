@@ -78,6 +78,8 @@ const HomeNews = ({ news = [] }) => {
                       alt={featuredNews.title} 
                       className="news-big-img"
                       onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : (
                     <div className="news-media-fallback">
@@ -132,6 +134,8 @@ const HomeNews = ({ news = [] }) => {
                         alt={item.title} 
                         className="news-side-img"
                         onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                        loading="lazy"
+                        decoding="async"
                       />
                     ) : (
                       <div className="news-media-fallback">
@@ -188,6 +192,8 @@ const HomeNews = ({ news = [] }) => {
                         alt={item.title} 
                         className="news-side-img"
                         onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                        loading="lazy"
+                        decoding="async"
                       />
                     )}
                     <div className="news-media-overlay" />
@@ -261,6 +267,8 @@ const HomeNews = ({ news = [] }) => {
                           const mediaEl = e.currentTarget.closest('.news-modal-media');
                           if (mediaEl) mediaEl.style.display = 'none';
                         }}
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   </div>

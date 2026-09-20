@@ -22,3 +22,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Build & deploy
+dist/
+.vercel
+.netlify
+*.tsbuildinfo
+
+# OS / misc
+.DS_Store
+Thumbs.db

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { 
   Calendar, MapPin, ExternalLink, Award, CheckCircle2, 
@@ -8,10 +8,20 @@ import {
 import { loadExperienceData, loadEducationData, loadVolunteerData, loadLeadershipData } from '../src/utils/csvLoader';
 import ScrollReveal from '../components/shared/ScrollReveal';
 import '../styles/CareerPage.css';
+import { asset } from '../src/utils/assetUrl';
+import LoadingState from '../components/shared/LoadingState';
+import { usePageMeta } from '../src/hooks/usePageMeta';
 
-const careerImage = '/images/Career.jpg';
+const careerImage = asset('/images/Career.jpg');
 
 const CareerPage = () => {
+  usePageMeta({
+    title: 'Career',
+    description:
+      "Education, professional experience, leadership roles and volunteer work across finance, research and community initiatives.",
+    path: '/career',
+  });
+
   const [experiences, setExperiences] = useState([]);
   const [education, setEducation] = useState([]);
   const [volunteers, setVolunteers] = useState([]);
@@ -19,7 +29,6 @@ const CareerPage = () => {
   const [loading, setLoading] = useState(true);
   const [hoveredExpId, setHoveredExpId] = useState(null);
   const [hoveredVolId, setHoveredVolId] = useState(null);
-  const [hoveredLeadId, setHoveredLeadId] = useState(null);
 
   // For Education Timeline Popover
   const [hoveredEdu, setHoveredEdu] = useState(null);
@@ -112,7 +121,7 @@ const CareerPage = () => {
       .split('\n')
       .map(line => line.trim())
       .filter(line => line.length > 0)
-      .map(line => line.replace(/^[\-*•>→]+\s*/, '').trim())
+      .map(line => line.replace(/^[-*•>→]+\s*/, '').trim())
       .filter(line => line.length > 0 && !line.startsWith('vyfyifyi'));
   };
 
@@ -196,7 +205,9 @@ const CareerPage = () => {
               <img 
                 src={careerImage} 
                 alt="Mst. Fahmida Sultana Naznin" 
-                className="career-portrait-img" 
+                className="career-portrait-img"
+                loading="lazy"
+                decoding="async"
               />
               <div className="portrait-glass-overlay" />
             </div>
@@ -205,10 +216,7 @@ const CareerPage = () => {
       </motion.header>
 
       {loading ? (
-        <div className="career-loading-state">
-          <div className="career-spinner"></div>
-          <p>Loading career milestones...</p>
-        </div>
+        <LoadingState variant="list" count={5} label="Loading career milestones" />
       ) : (
         <div className="career-sections-stack">
 
@@ -612,10 +620,12 @@ const CareerPage = () => {
                       <div className="vol-card-top">
                         <div className="vol-logo-box">
                           <img 
-                            src={vol.logo_url || 'https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Volunteers/ASF.png'} 
+                            src={vol.logo_url || asset('/images/AEF.jpg')} 
                             alt={vol.organization}
                             className="vol-logo-img"
                             onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                            loading="lazy"
+                            decoding="async"
                           />
                         </div>
                         <div className="vol-header-info">
@@ -636,7 +646,7 @@ const CareerPage = () => {
                       {/* Main Summary / Description */}
                       {vol.description && (
                         <p className="vol-lead-desc">
-                          {vol.description.split('\n')[0].replace(/^[\-*•>→]+\s*/, '')}
+                          {vol.description.split('\n')[0].replace(/^[-*•>→]+\s*/, '')}
                         </p>
                       )}
 

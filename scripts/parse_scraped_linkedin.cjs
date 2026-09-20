@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 const readline = require('readline');
 
 async function extract() {
@@ -28,7 +27,7 @@ async function extract() {
         if (text.includes('Fahmida Sultana Naznin') || text.includes('Experience') || text.includes('Education')) {
           domTexts.push({ step: item.step_index, length: text.length, snippet: text.slice(0, 300) });
         }
-      } catch (e) {}
+      } catch { /* non-fatal */ }
     }
   }
 

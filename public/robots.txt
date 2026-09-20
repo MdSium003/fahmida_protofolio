@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mdsium003.github.io/fahmida_protofolio/sitemap.xml

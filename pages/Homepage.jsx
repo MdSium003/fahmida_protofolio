@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useMenuDialog } from '../src/hooks/useMenuDialog';
+import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import '../styles/Homepage.css';
 import DriftWall from '../components/shared/DriftWall';
+import { asset, wallThumb } from '../src/utils/assetUrl';
 import HomePositioning from '../components/home/HomePositioning';
 import HomeNews from '../components/home/HomeNews';
 import HomeResearchSpotlight from '../components/home/HomeResearchSpotlight';
@@ -24,19 +26,33 @@ import {
   loadMediaMentionsData
 } from '../src/utils/csvLoader';
 import PortfolioPreloader from '../components/shared/PortfolioPreloader';
+import LoadingState from '../components/shared/LoadingState';
+import { usePageMeta } from '../src/hooks/usePageMeta';
 
-const profileImage = '/images/fahmida.webp';
+const profileImage = asset('/images/fahmida.webp');
 
 // Fallback Drift Wall Real Portfolio Assets if moments data empty
-const DEFAULT_WALL_IMAGES = Array.from({ length: 31 }, (_, i) => `/wall/thumbs/thumb_(${i + 1}).webp`);
+const DEFAULT_WALL_IMAGES = Array.from({ length: 31 }, (_, i) =>
+  asset(`/wall/thumbs/thumb_(${i + 1}).webp`)
+);
 
 const HomePage = () => {
+  usePageMeta({
+    title: 'Strategic Finance & AI Research Portfolio',
+    description:
+      "ACCA candidate and strategic finance professional working across AI and vision research. Publications, projects, recognitions and writing.",
+    path: '/',
+  });
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
+  // Escape-to-close, tab trapping and focus restore for the slide-in panel.
+  const { panelRef, triggerRef } = useMenuDialog(isMenuOpen, closeMenu);
   const [scrolled, setScrolled] = useState(false);
   const [news, setNews] = useState([]);
   const [papers, setPapers] = useState([]);
   const [awards, setAwards] = useState([]);
-  const [blogs, setBlogs] = useState([]);
+  const [, setBlogs] = useState([]);
   const [moments, setMoments] = useState([]);
   const [mediaMentions, setMediaMentions] = useState([]);
   const [socialLinks, setSocialLinks] = useState([]);
@@ -136,11 +152,7 @@ const HomePage = () => {
     if (moments && moments.length > 0) {
       return moments.map((m, idx) => {
         const rawImg = m.image_url || m.image;
-        let thumbImg = rawImg;
-        if (typeof rawImg === 'string' && rawImg.startsWith('/wall/')) {
-          const filename = rawImg.replace('/wall/', '').replace(/\.[^/.]+$/, '');
-          thumbImg = `/wall/thumbs/thumb_${filename}.webp`;
-        }
+        const thumbImg = wallThumb(rawImg);
         return {
           image: thumbImg || rawImg,
           title: m.caption || `Wall Image ${idx + 1}`
@@ -201,7 +213,7 @@ const HomePage = () => {
             setShowPreloader(false);
             try {
               sessionStorage.setItem('portfolio_preloader_seen', 'true');
-            } catch (e) {}
+            } catch { /* non-fatal */ }
           }}
         />
       )}
@@ -228,18 +240,28 @@ const HomePage = () => {
           </div>
 
           <button
+            ref={triggerRef}
             className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="home-mobile-menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
           {isMenuOpen && (
-            <div className="mobile-menu-overlay" onClick={() => setIsMenuOpen(false)} />
+            <div className="mobile-menu-overlay" onClick={closeMenu} aria-hidden="true" />
           )}
 
-          <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
+          <div
+            ref={panelRef}
+            id="home-mobile-menu"
+            className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
+          >
             <div className="mobile-menu-header">
               <span className="logo-text">Fahmida</span>
               <button onClick={() => setIsMenuOpen(false)} className="close-menu-btn" aria-label="Close menu">
@@ -301,8 +323,9 @@ const HomePage = () => {
                   <img 
                     src={profileImage} 
                     alt="Mst. Fahmida Sultana Naznin" 
-                    className="profile-main-img" 
-                  />
+                    className="profile-main-img"
+loading="eager"
+decoding="async"/>
                 </div>
               </div>
             </div>
@@ -386,17 +409,26 @@ const HomePage = () => {
       {/* 3. Section 01: Positioning & Manifesto Statement */}
       <HomePositioning />
 
-      {/* 4. Section 02: Latest News & Updates */}
-      <HomeNews news={news} />
+      {/* 4-7. CSV-driven sections. Each returns null on empty data, so before
+          the fetch resolves they collapse to nothing and then snap in, shifting
+          everything below. A skeleton holds the space until the data lands. */}
+      {loading ? (
+        <LoadingState variant="grid" count={3} label="Loading portfolio highlights" />
+      ) : (
+        <>
+          {/* Section 02: Latest News & Updates */}
+          <HomeNews news={news} />
 
-      {/* 5. Section 03: Research Spotlight */}
-      <HomeResearchSpotlight papers={papers} />
+          {/* Section 03: Research Spotlight */}
+          <HomeResearchSpotlight papers={papers} />
 
-      {/* 6. Section 04: Recognition Preview */}
-      <HomeRecognitionPreview awards={awards} />
+          {/* Section 04: Recognition Preview */}
+          <HomeRecognitionPreview awards={awards} />
 
-      {/* 7. Section 05: Key Media Mentions & Press Highlights */}
-      <HomeMentionsPreview mediaMentions={mediaMentions} />
+          {/* Section 05: Key Media Mentions & Press Highlights */}
+          <HomeMentionsPreview mediaMentions={mediaMentions} />
+        </>
+      )}
 
       {/* 9. Section 07: Closing Contact CTA */}
       <HomeContactCTA />

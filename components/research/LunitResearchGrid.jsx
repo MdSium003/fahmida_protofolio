@@ -6,6 +6,9 @@ import { matchesResearchCategory } from './ResearchFilters';
 import PublicationCard from './PublicationCard';
 import PublicationModal from './PublicationModal';
 import OngoingWorks from './OngoingWorks';
+import ScrollReveal from '../shared/ScrollReveal';
+import StaggerReveal from '../shared/StaggerReveal';
+import LoadingState from '../shared/LoadingState';
 
 const LunitResearchGrid = ({ 
   papers = null, 
@@ -105,10 +108,7 @@ const LunitResearchGrid = ({
 
   if (isLoading) {
     return (
-      <div className="lunit-loading-container">
-        <div className="lunit-spinner" />
-        <p>Loading scientific publications & research manuscripts...</p>
-      </div>
+      <LoadingState variant="grid" count={6} label="Loading scientific publications" />
     );
   }
 
@@ -127,20 +127,23 @@ const LunitResearchGrid = ({
       {/* 1. Section 1: Published Works */}
       {publishedPublications.length > 0 && (
         <section className="research-status-group published-group" aria-labelledby="heading-published-works">
-          <div className="research-group-header">
-            {/* <div className="research-group-badge published-badge">
-              <BookCheck size={14} />
-              <span>Peer-Reviewed & Archival</span>
-            </div> */}
-            <h2 id="heading-published-works" className="research-group-title">
-              Published <span className="text-highlight">Works</span>
-            </h2>
-            <p className="research-group-subtitle">
-              Peer-reviewed conference proceedings, journal articles, and archival publications ({publishedPublications.length})
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="research-group-header">
+              <h2 id="heading-published-works" className="research-group-title">
+                Published <span className="text-highlight">Works</span>
+              </h2>
+              <p className="research-group-subtitle">
+                Peer-reviewed conference proceedings, journal articles, and archival publications ({publishedPublications.length})
+              </p>
+            </div>
+          </ScrollReveal>
 
-          <div className="publication-cards-grid">
+          <StaggerReveal
+            className="publication-cards-grid"
+            staggerDelay={0.04}
+            threshold={0}
+            margin="0px 0px -20px 0px"
+          >
             {publishedPublications.map((pub) => (
               <PublicationCard 
                 key={pub.id} 
@@ -148,23 +151,30 @@ const LunitResearchGrid = ({
                 onSelect={(p) => setActiveModalPaper(p)} 
               />
             ))}
-          </div>
+          </StaggerReveal>
         </section>
       )}
 
       {/* 2. Section 2: Preprints & Under Review */}
       {ongoingAndPreprints.length > 0 && (
         <section className="research-status-group ongoing-group" aria-labelledby="heading-ongoing-preprints">
-          <div className="research-group-header">
-            <h2 id="heading-ongoing-preprints" className="research-group-title">
-              Preprints & <span className="text-highlight">Under Review</span>
-            </h2>
-            <p className="research-group-subtitle">
-              Active laboratory models, clinical validation studies, and preprints under peer review ({ongoingAndPreprints.length})
-            </p>
-          </div>
+          <ScrollReveal>
+            <div className="research-group-header">
+              <h2 id="heading-ongoing-preprints" className="research-group-title">
+                Preprints & <span className="text-highlight">Under Review</span>
+              </h2>
+              <p className="research-group-subtitle">
+                Active laboratory models, clinical validation studies, and preprints under peer review ({ongoingAndPreprints.length})
+              </p>
+            </div>
+          </ScrollReveal>
 
-          <div className="publication-cards-grid">
+          <StaggerReveal
+            className="publication-cards-grid"
+            staggerDelay={0.04}
+            threshold={0}
+            margin="0px 0px -20px 0px"
+          >
             {ongoingAndPreprints.map((pub) => (
               <PublicationCard 
                 key={pub.id} 
@@ -172,7 +182,7 @@ const LunitResearchGrid = ({
                 onSelect={(p) => setActiveModalPaper(p)} 
               />
             ))}
-          </div>
+          </StaggerReveal>
         </section>
       )}
 

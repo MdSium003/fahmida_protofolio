@@ -1,4 +1,5 @@
 import React from 'react';
+import { asset } from '../../src/utils/assetUrl';
 
 /**
  * Parses markdown-like blog story content and renders inline figures, headings, blockquotes, and paragraphs.
@@ -128,11 +129,11 @@ const BlogContentRenderer = ({ content = '' }) => {
               <figure key={node.id} className="blog-inline-figure">
                 <div className="blog-inline-img-frame">
                   <img 
-                    src={node.url} 
+                    src={asset(node.url)} 
                     alt={node.caption || 'Blog illustration'} 
                     className="blog-inline-img"
                     loading="lazy"
-                  />
+decoding="async"/>
                 </div>
                 {node.caption && (
                   <figcaption className="blog-inline-caption">

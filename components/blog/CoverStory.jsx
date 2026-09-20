@@ -1,21 +1,13 @@
 import React from 'react';
 import { Play, BookOpen, ArrowRight, Calendar, MapPin, Clock } from 'lucide-react';
-
-const getYouTubeEmbedUrl = (url) => {
-  if (!url) return '';
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|live\/)([^#&?]*).*/;
-  const match = url.match(regExp);
-  return match && match[2] && match[2].length >= 11
-    ? `https://img.youtube.com/vi/${match[2].substring(0, 11)}/maxresdefault.jpg`
-    : '';
-};
+import { asset } from '../../src/utils/assetUrl';
 
 const CoverStory = ({ story, onOpenStory }) => {
   if (!story) return null;
 
   const isVideo = story.isVlog || (story.media && story.media.includes('youtube'));
   const dateFormatted = story.published_date || story.date || 'Recent';
-  const displayImage = story.coverImage || story.thumbnail_url || story.image || '/wall/fahmida_blog.jpeg';
+  const displayImage = story.coverImage || story.thumbnail_url || story.image || asset('/images/fahmida_blog.jpeg');
 
   return (
     <section className="cover-story-section" aria-label="Featured Cover Story">
@@ -33,7 +25,7 @@ const CoverStory = ({ story, onOpenStory }) => {
             alt={story.title} 
             className="cover-story-img"
             loading="eager"
-          />
+decoding="async"/>
           <div className="cover-gradient-vignette" />
           
           {/* Subtle Video Play Badge if Vlog */}

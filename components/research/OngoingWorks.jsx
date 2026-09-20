@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 import { Calendar, GraduationCap } from 'lucide-react';
+import ScrollReveal from '../shared/ScrollReveal';
+import StaggerReveal from '../shared/StaggerReveal';
 
 export const ONGOING_WORKS_DATA = [
   {
@@ -53,7 +55,7 @@ export const ONGOING_WORKS_DATA = [
   }
 ];
 
-const OngoingWorks = ({ searchQuery = '', selectedCategory = 'all' }) => {
+const OngoingWorks = ({ searchQuery = '' }) => {
   const filteredWorks = useMemo(() => {
     return ONGOING_WORKS_DATA.filter(item => {
       if (searchQuery && searchQuery.trim()) {
@@ -72,17 +74,24 @@ const OngoingWorks = ({ searchQuery = '', selectedCategory = 'all' }) => {
   return (
     <section className="research-status-group ongoing-works-section" aria-labelledby="heading-ongoing-works">
       {/* Section Header */}
-      <div className="research-group-header">
-        <h2 id="heading-ongoing-works" className="research-group-title">
-          Ongoing <span className="text-highlight">Works</span>
-        </h2>
-        <p className="research-group-subtitle">
-          Active research projects and advisor collaborations ({filteredWorks.length})
-        </p>
-      </div>
+      <ScrollReveal>
+        <div className="research-group-header">
+          <h2 id="heading-ongoing-works" className="research-group-title">
+            Ongoing <span className="text-highlight">Works</span>
+          </h2>
+          <p className="research-group-subtitle">
+            Active research projects and advisor collaborations ({filteredWorks.length})
+          </p>
+        </div>
+      </ScrollReveal>
 
       {/* Clean, authentic CV grid */}
-      <div className="ongoing-works-grid">
+      <StaggerReveal
+        className="ongoing-works-grid"
+        staggerDelay={0.04}
+        threshold={0}
+        margin="0px 0px -20px 0px"
+      >
         {filteredWorks.map((work) => (
           <article key={work.id} className="ongoing-work-card">
             <div className="ongoing-card-top">
@@ -106,7 +115,7 @@ const OngoingWorks = ({ searchQuery = '', selectedCategory = 'all' }) => {
             </p>
           </article>
         ))}
-      </div>
+      </StaggerReveal>
     </section>
   );
 };

@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow one concurrent deployment; let an in-progress run finish so a
+# half-published site is never left behind.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # `npm ci` installs exactly the lockfile, so a fresh clone can never
+      # resolve a different (or vulnerable) dependency tree than the one audited.
+      - name: Install dependencies
+        run: npm ci
+
+      # Blocking: the repo lints clean (0 errors), so any new error is a
+      # regression and should fail the build rather than ship.
+      - name: Lint
+        run: npm run lint
+
+      # `prebuild` runs scripts/validateData.js — a schema break in any CSV
+      # fails here rather than shipping a broken page.
+      - name: Build
+        run: npm run build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

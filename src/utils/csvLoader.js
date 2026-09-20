@@ -1,4 +1,5 @@
 import Papa from 'papaparse';
+import { asset } from './assetUrl';
 
 // In-memory cache for fast instant lookups
 const cache = new Map();
@@ -36,7 +37,8 @@ export function normalizeImagePath(pathStr) {
   if (!clean.startsWith('/')) {
     clean = `/${clean}`;
   }
-  return clean;
+  // Resolve against the deployment base (site ships under a sub-path).
+  return asset(clean);
 }
 
 /**
@@ -46,7 +48,7 @@ export function normalizeImagePath(pathStr) {
  */
 export async function loadCsv(fileName) {
   const cleanName = fileName.endsWith('.csv') ? fileName : `${fileName}.csv`;
-  const url = `/data/${cleanName}`;
+  const url = asset(`/data/${cleanName}`);
 
   if (cache.has(url)) {
     return cache.get(url);
@@ -399,9 +401,9 @@ export async function loadResearchData() {
       status: (p.status ? String(p.status).trim().toLowerCase() : 'published'),
       category: topics,
       topicsList: topics,
-      coverImage: normalizedImg || '/wall/research_1.jpg',
-      thumbnail_url: normalizedImg || '/wall/research_1.jpg',
-      displayImg: normalizedImg && !normalizedImg.includes('example.com') ? normalizedImg : '/wall/research_1.jpg',
+      coverImage: normalizedImg || asset('/images/research_1.jpg'),
+      thumbnail_url: normalizedImg || asset('/images/research_1.jpg'),
+      displayImg: normalizedImg && !normalizedImg.includes('example.com') ? normalizedImg : asset('/images/research_1.jpg'),
       abstract: p.abstract ? String(p.abstract).trim() : '',
       description: p.description ? String(p.description).trim() : '',
       externalUrl: externalUrl,
@@ -439,6 +441,9 @@ export async function loadAwardsData() {
     return {
       ...a,
       id: String(a.id),
+      // Award thumbnails feed <img src> directly in the home and awards
+      // showcases, so they must be resolved against the deployment base here.
+      thumbnail_url: normalizeImagePath(a.thumbnail_url) || a.thumbnail_url,
       isFeatured: normalizeBoolean(a.is_featured),
       featuredOrder: Number(a.featured_order) || 999,
       showcaseHome: normalizeBoolean(a.showcase_home || a.is_home_featured || a.showcase_in_home),
@@ -464,7 +469,7 @@ export async function loadBlogsData() {
     if (!coverImg || coverImg.includes('youtube') || coverImg.includes('youtu.be')) {
       const parsed = parseMedia(item.media);
       const firstImg = parsed.find(m => m.media_type === 'image' || (!m.media_url.includes('youtube') && !m.media_url.includes('youtu.be')));
-      coverImg = firstImg ? firstImg.media_url : '/wall/fahmida_blog.jpeg';
+      coverImg = firstImg ? firstImg.media_url : asset('/images/fahmida_blog.jpeg');
     }
 
     const normalizedCover = normalizeImagePath(coverImg);
@@ -527,6 +532,9 @@ export async function loadSocialLinksData() {
   return (raw || []).map(s => ({
     ...s,
     id: String(s.id),
+    // The CV row points at a file in public/ — resolve it against the base.
+    // External profile links already carry a scheme and pass through untouched.
+    url: asset(s.url),
     sortOrder: Number(s.sort_order) || 999
   })).sort((a, b) => a.sortOrder - b.sortOrder);
 }

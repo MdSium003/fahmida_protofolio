@@ -52,7 +52,7 @@ const HomeResearchSpotlight = ({ papers = [] }) => {
                   alt={leadPaper.title}
                   className="home-research-img"
                   loading="lazy"
-                />
+decoding="async"/>
                 <div className="home-research-gradient-overlay" />
               </div>
             ) : (
@@ -112,7 +112,7 @@ const HomeResearchSpotlight = ({ papers = [] }) => {
                           alt={paper.title}
                           className="home-research-img"
                           loading="lazy"
-                        />
+decoding="async"/>
                         <div className="home-research-gradient-overlay" />
                       </div>
                     ) : (

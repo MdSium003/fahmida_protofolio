@@ -20,7 +20,7 @@ async function downloadImages() {
       if (matches) {
         matches.forEach(u => {
           // clean trailing punctuation if any
-          const clean = u.replace(/[\)\]\}\,\;\\]+$/, '');
+          const clean = u.replace(/[)\]},;\\]+$/, '');
           foundUrls.add(clean);
         });
       }

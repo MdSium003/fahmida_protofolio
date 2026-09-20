@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import '../../styles/PortfolioPreloader.css';
+import { asset } from '../../src/utils/assetUrl';
 
-const profileImage = '/images/fahmida.webp';
+const profileImage = asset('/images/fahmida.webp');
 
 // Critical Drift Wall assets visible in the initial hero viewport (WebP thumbnails)
 const CRITICAL_HERO_IMAGES = [
   profileImage,
-  '/wall/thumbs/thumb_(1).webp',
-  '/wall/thumbs/thumb_(2).webp',
-  '/wall/thumbs/thumb_(3).webp',
-  '/wall/thumbs/thumb_(4).webp',
-  '/wall/thumbs/thumb_(5).webp',
-  '/wall/thumbs/thumb_(6).webp'
+  asset('/wall/thumbs/thumb_(1).webp'),
+  asset('/wall/thumbs/thumb_(2).webp'),
+  asset('/wall/thumbs/thumb_(3).webp'),
+  asset('/wall/thumbs/thumb_(4).webp'),
+  asset('/wall/thumbs/thumb_(5).webp'),
+  asset('/wall/thumbs/thumb_(6).webp')
 ];
 
 /**
@@ -85,7 +86,7 @@ const PortfolioPreloader = ({ onRevealHero, onComplete }) => {
           : Promise.resolve();
 
         await Promise.all([...imagePromises, fontsPromise]);
-      } catch (e) {
+      } catch {
         // Continue gracefully on any unexpected error
       } finally {
         if (isMounted) {

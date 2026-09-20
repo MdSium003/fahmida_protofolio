@@ -13,6 +13,7 @@
   padding: 2.5rem 1.5rem 6rem;
   color: var(--color-text);
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
 }
 
@@ -20,7 +21,7 @@
    1. Projects Hero Section
    ========================================================================== */
 .projects-hero-section {
-  padding: 1rem 0 2rem;
+  padding: var(--hero-pad-top) 0 var(--hero-pad-bottom);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1168,6 +1169,7 @@
   width: 100%;
   max-width: 860px;
   max-height: 88vh;
+  max-height: 88dvh;
   margin: auto;
   background: var(--color-surface);
   border: 1px solid var(--border);
@@ -1454,21 +1456,23 @@
 }
 
 /* Animation */
-@keyframes modalFadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
 
 /* ==========================================================================
    10. Responsive Breakpoints
    ========================================================================== */
 @media (max-width: 992px) {
+  /* Specificity must match the base rule (.projects-stats-section
+     .stats-container); a bare .stats-container override would lose. */
+  .projects-stats-section .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+
+  .projects-stats-section .stat-divider {
+    display: none;
+  }
+
   .featured-flagship-card {
     grid-template-columns: 1fr;
   }
@@ -1497,6 +1501,18 @@
 }
 
 @media (max-width: 768px) {
+  .projects-stats-section .stats-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* P3-8: was 391px inside a 351px container at 375px. */
+  .featured-flagship-media,
+  .featured-media-frame {
+    max-width: 100%;
+    min-width: 0;
+  }
+
   .projects-page-container {
     padding: 1.5rem 1rem 4.5rem;
   }

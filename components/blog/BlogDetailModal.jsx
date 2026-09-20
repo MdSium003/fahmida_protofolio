@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   X, Play, BookOpen, Calendar, ExternalLink, Github, Linkedin, 
   Globe, ChevronLeft, ChevronRight, MapPin, Clock, Tag 
@@ -11,12 +11,16 @@ const getYouTubeEmbedUrl = (url) => {
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|live\/)([^#&?]*).*/;
   const match = url.match(regExp);
   return match && match[2] && match[2].length >= 11
-    ? `https://www.youtube.com/embed/${match[2].substring(0, 11)}`
+    ? `https://www.youtube-nocookie.com/embed/${match[2].substring(0, 11)}`
     : url;
 };
 
 const BlogDetailModal = ({ story, onClose }) => {
   const [activeMediaIndex, setActiveMediaIndex] = useState(0);
+  // The reading bar is written straight to the DOM through a ref. Holding
+  // it in state re-rendered this entire modal on every scroll event of a
+  // long article, for a value only one 3px element consumes.
+  const progressBarRef = useRef(null);
 
   const links = React.useMemo(() => parseLinks(story?.links), [story?.links]);
   const parsedMedia = React.useMemo(() => parseMedia(story?.media), [story?.media]);
@@ -75,20 +79,15 @@ const BlogDetailModal = ({ story, onClose }) => {
 
   if (!story) return null;
 
-  const isVideo = story.isVlog || (story.media && story.media.includes('youtube'));
   const currentMedia = mediaList[activeMediaIndex] || mediaList[0] || null;
   const isCurrentVideo = currentMedia?.media_type === 'youtube' || currentMedia?.media_url.includes('youtube') || currentMedia?.media_url.includes('youtu.be');
-
-  const [readingProgress, setReadingProgress] = useState(0);
 
   const handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
     const maxScroll = scrollHeight - clientHeight;
-    if (maxScroll > 0) {
-      const progress = Math.min(100, Math.max(0, (scrollTop / maxScroll) * 100));
-      setReadingProgress(progress);
-    } else {
-      setReadingProgress(0);
+    const ratio = maxScroll > 0 ? Math.min(1, Math.max(0, scrollTop / maxScroll)) : 0;
+    if (progressBarRef.current) {
+      progressBarRef.current.style.transform = `scaleX(${ratio})`;
     }
   };
 
@@ -107,8 +106,8 @@ const BlogDetailModal = ({ story, onClose }) => {
         {/* Top Reading Progress Bar */}
         <div className="modal-reading-progress-track" aria-hidden="true">
           <div 
-            className="modal-reading-progress-bar" 
-            style={{ width: `${readingProgress}%` }} 
+            className="modal-reading-progress-bar"
+            ref={progressBarRef}
           />
         </div>
 
@@ -167,7 +166,8 @@ const BlogDetailModal = ({ story, onClose }) => {
                       src={currentMedia.media_url} 
                       alt={story.title}
                       className="blog-modal-main-img"
-                    />
+loading="lazy"
+decoding="async"/>
                   </div>
                 )}
 
@@ -208,7 +208,7 @@ const BlogDetailModal = ({ story, onClose }) => {
                             <Play size={12} fill="currentColor" />
                           </div>
                         ) : (
-                          <img src={item.media_url} alt="" className="thumb-mini-img" />
+                          <img src={item.media_url} alt="" className="thumb-mini-img" loading="lazy" decoding="async"/>
                         )}
                       </button>
                     );

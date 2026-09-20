@@ -13,6 +13,7 @@
   padding: 2.5rem 1.5rem 6rem;
   color: var(--color-text);
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
 }
 
@@ -22,7 +23,7 @@
 .research-hero-section {
   max-width: 760px;
   margin: 0 auto;
-  padding: 1rem 0 2rem;
+  padding: var(--hero-pad-top) 0 var(--hero-pad-bottom);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -372,6 +373,18 @@
   width: 100%;
 }
 
+/* StaggerReveal wraps each child in its own div, so the grid item is now that
+   wrapper rather than the card. Both must stretch or the cards in a row stop
+   matching height — the grid's stretch only reaches the direct child. */
+.publication-cards-grid > * {
+  min-width: 0;
+  height: 100%;
+}
+
+.publication-cards-grid .pub-card {
+  height: 100%;
+}
+
 /* Base Publication Card */
 .pub-card {
   background: #24201c;
@@ -693,6 +706,7 @@
   max-width: 800px;
   width: 100%;
   max-height: 90vh;
+  max-height: 90dvh;
   display: flex;
   flex-direction: column;
   box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(177, 204, 116, 0.2);
@@ -1203,10 +1217,6 @@
 }
 
 /* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
 
 @keyframes scaleUp {
   from { opacity: 0; transform: scale(0.96) translateY(8px); }
@@ -1677,16 +1687,6 @@
   color: var(--color-text-muted);
 }
 
-.lunit-spinner {
-  width: 38px;
-  height: 38px;
-  border: 3px solid rgba(177, 204, 116, 0.2);
-  border-top-color: var(--color-accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin: 0 auto 1.25rem;
-}
-
 .empty-icon {
   color: var(--color-accent);
   margin-bottom: 1rem;
@@ -1715,6 +1715,7 @@
   width: 100%;
   max-width: 860px;
   max-height: 88vh;
+  max-height: 88dvh;
   margin: auto;
   background: var(--color-surface);
   border: 1px solid var(--border);
@@ -2072,6 +2073,7 @@
 
   .pub-modal-container {
     max-height: 94vh;
+    max-height: 94dvh;
     border-radius: 16px;
   }
 
@@ -2161,6 +2163,17 @@
   margin-top: 3.5rem;
   padding-top: 2rem;
   border-top: 1px solid rgba(177, 204, 116, 0.12);
+}
+
+/* Same wrapper-stretch guard as .publication-cards-grid — StaggerReveal makes
+   its own div the grid item, so the card inside needs to fill it. */
+.ongoing-works-grid > * {
+  min-width: 0;
+  height: 100%;
+}
+
+.ongoing-works-grid .ongoing-work-card {
+  height: 100%;
 }
 
 .ongoing-works-grid {

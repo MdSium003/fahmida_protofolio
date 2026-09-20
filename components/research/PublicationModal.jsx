@@ -15,11 +15,26 @@ import {
   Code
 } from 'lucide-react';
 import ResearchFigureFallback from './ResearchFigureFallback';
+import { asset } from '../../src/utils/assetUrl';
 
 const PublicationModal = ({ publication, onClose }) => {
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState('abstract'); // 'abstract' | 'bibtex' | 'media'
   const modalRef = useRef(null);
+
+  // Reading progress for the scrollable body. Written to the DOM through a ref
+  // rather than held in state: this fires on every scroll event of a long
+  // abstract, and state would re-render the whole modal each time.
+  const progressBarRef = useRef(null);
+
+  const handleScroll = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    const maxScroll = scrollHeight - clientHeight;
+    const ratio = maxScroll > 0 ? Math.min(1, Math.max(0, scrollTop / maxScroll)) : 0;
+    if (progressBarRef.current) {
+      progressBarRef.current.style.transform = `scaleX(${ratio})`;
+    }
+  };
   const previousActiveElementRef = useRef(null);
 
   useEffect(() => {
@@ -120,7 +135,7 @@ const PublicationModal = ({ publication, onClose }) => {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|live\/)([^#&?]*).*/;
     const match = String(url).match(regExp);
     return match && match[2] && match[2].length >= 11
-      ? `https://www.youtube.com/embed/${match[2].substring(0, 11)}`
+      ? `https://www.youtube-nocookie.com/embed/${match[2].substring(0, 11)}`
       : '';
   };
 
@@ -130,7 +145,7 @@ const PublicationModal = ({ publication, onClose }) => {
   const hasValidImage = !youtubeEmbedUrl && finalImage && 
     !finalImage.includes('example.com') && 
     !finalImage.endsWith('.pdf') &&
-    (finalImage.match(/\.(jpeg|jpg|gif|png|webp|svg)/i) || finalImage.startsWith('/wall/') || finalImage.startsWith('http'));
+    (finalImage.match(/\.(jpeg|jpg|gif|png|webp|svg)/i) || finalImage.startsWith(asset('/wall/')) || finalImage.startsWith('http'));
 
   const codeLink = linksList.find(l => l.type === 'code' || l.type === 'github');
 
@@ -147,6 +162,14 @@ const PublicationModal = ({ publication, onClose }) => {
         className="pub-modal-container animate-scaleUp"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Top Reading Progress Bar */}
+        <div className="modal-reading-progress-track" aria-hidden="true">
+          <div
+            className="modal-reading-progress-bar"
+            ref={progressBarRef}
+          />
+        </div>
+
         {/* Modal Top Header Bar */}
         <div className="pub-modal-header-bar">
           <div className="pub-modal-meta-pills">
@@ -174,7 +197,7 @@ const PublicationModal = ({ publication, onClose }) => {
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="pub-modal-scrollable-content">
+        <div className="pub-modal-scrollable-content" onScroll={handleScroll}>
           {/* Main Title */}
           <h2 id="pub-modal-title" className="pub-modal-title font-serif">
             {title}
@@ -283,7 +306,7 @@ const PublicationModal = ({ publication, onClose }) => {
                     alt={title}
                     className="pub-modal-figure-img"
                     loading="lazy"
-                  />
+decoding="async"/>
                 ) : (
                   <ResearchFigureFallback paper={publication} className="pub-modal-figure-fallback" />
                 )}

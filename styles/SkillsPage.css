@@ -13,6 +13,7 @@
   padding: 2.5rem 1.5rem 6rem;
   color: var(--color-text);
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
 }
 
@@ -20,7 +21,7 @@
    1. Hero Section (Centered Editorial)
    ========================================================================== */
 .skills-hero-section {
-  padding: 1.5rem 0 2rem;
+  padding: var(--hero-pad-top) 0 var(--hero-pad-bottom);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -617,28 +618,6 @@
 /* ==========================================================================
    7. Loading State
    ========================================================================== */
-.skills-loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 2rem;
-  gap: 1rem;
-  color: var(--color-text-muted);
-}
-
-.skills-loader {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(177, 204, 116, 0.2);
-  border-top-color: var(--color-accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
 
 /* ==========================================================================
    8. Responsive Breakpoints

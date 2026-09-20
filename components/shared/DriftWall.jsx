@@ -1,36 +1,15 @@
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import './DriftWall.css';
+import { asset, wallThumb } from '../../src/utils/assetUrl';
 
-export const toWallThumb = (pathStr) => {
-  if (!pathStr || typeof pathStr !== 'string') return pathStr;
-  if (pathStr.startsWith('/wall/') && !pathStr.includes('/thumbs/')) {
-    const filename = pathStr.replace('/wall/', '');
-    const nameWithoutExt = filename.substring(0, filename.lastIndexOf('.')) || filename;
-    return `/wall/thumbs/thumb_${nameWithoutExt}.webp`;
-  }
-  return pathStr;
-};
+export const toWallThumb = wallThumb;
 
-const DEFAULT_WALL_IMAGES = [
-  '/wall/thumbs/thumb_fahmida_with_lal_background.webp',
-  '/wall/thumbs/thumb_fahmida_with_purdue.webp',
-  '/wall/thumbs/thumb_fahmida_with_robot.webp',
-  '/wall/thumbs/thumb_fahmida_with_show_pice.webp',
-  '/wall/thumbs/thumb_fahmida_with_car.webp',
-  '/wall/thumbs/thumb_fahmida_with_ddn.webp',
-  '/wall/thumbs/thumb_fahmida_blog.webp',
-  '/wall/thumbs/thumb_fahmida_blog_2.webp',
-  '/wall/thumbs/thumb_fahmida_blog_3.webp',
-  '/wall/thumbs/thumb_fahmida_blog_4.webp',
-  '/wall/thumbs/thumb_up_1.webp',
-  '/wall/thumbs/thumb_up_2.webp',
-  '/wall/thumbs/thumb_up_3.webp',
-  '/wall/thumbs/thumb_up_4.webp',
-  '/wall/thumbs/thumb_research_1.webp',
-  '/wall/thumbs/thumb_research_4.webp',
-  '/wall/thumbs/thumb_college.webp',
-  '/wall/thumbs/thumb_undergrad.webp'
-];
+// Fallback tiles, used only when no `items` prop is supplied. These reference
+// real files in public/wall/thumbs/ — the previous list pointed at thumbnails
+// that were never generated, so every fallback tile rendered broken.
+const DEFAULT_WALL_IMAGES = Array.from({ length: 18 }, (_, i) =>
+  asset(`/wall/thumbs/thumb_(${i + 1}).webp`)
+);
 
 const DEFAULT_ITEMS = DEFAULT_WALL_IMAGES.map((img, i) => ({
   image: img,
@@ -88,7 +67,9 @@ const DriftWall = ({
   const [containerHeight, setContainerHeight] = useState(600);
   const [activeId, setActiveId] = useState(null);
   const activeIdRef = useRef(null);
-  const [reduced, setReduced] = useState(false);
+  // Seeded lazily from the media query rather than set inside an effect,
+  // which would render once with the wrong value and immediately re-render.
+  const [reduced, setReduced] = useState(prefersReducedMotion);
   const isVisibleRef = useRef(true);
 
   // Pause RAF loop when hero wall is scrolled off-screen
@@ -108,7 +89,6 @@ const DriftWall = ({
   }, []);
 
   useEffect(() => {
-    setReduced(prefersReducedMotion());
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     const onChange = e => setReduced(e.matches);
     mq.addEventListener('change', onChange);

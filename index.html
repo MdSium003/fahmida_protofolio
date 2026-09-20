@@ -2,22 +2,83 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/Icon/Icon.png" />
-    <link rel="apple-touch-icon" href="/Icon/Icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Fahmida — Strategic Finance Professional, ACCA Candidate. Portfolio showcasing financial analysis, research, and business strategy expertise." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!--
+      Content Security Policy.
+      GitHub Pages cannot set HTTP response headers, so the policy is delivered
+      via meta. Note the consequences of that: `frame-ancestors`, `X-Frame-Options`
+      and `Permissions-Policy` are IGNORED in meta form and are simply not
+      available on this host. Clickjacking protection therefore relies on
+      src/frameGuard.js rather than on a header.
+
+      Allow-list covers exactly the external origins the site actually uses:
+        - fonts.googleapis.com / fonts.gstatic.com : Google Fonts
+        - www.youtube-nocookie.com                 : all 8 video embeds
+        - img.youtube.com / i.ytimg.com            : video thumbnails
+      Everything else falls through to 'none'. Note youtube.com itself is NOT
+      allow-listed — every embed goes through the no-cookie domain, and
+      img.youtube.com redirects thumbnail requests to i.ytimg.com.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'none';
+        base-uri 'self';
+        form-action 'none';
+        object-src 'none';
+        script-src 'self';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data: blob: https://i.ytimg.com https://img.youtube.com;
+        media-src 'self';
+        connect-src 'self';
+        frame-src https://www.youtube-nocookie.com;
+        manifest-src 'self';
+        worker-src 'self' blob:;
+        upgrade-insecure-requests;
+      "
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/Icon/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/Icon/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/Icon/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#1E1B18" />
-    <title>Mst. Fahmida Sultana Naznin | Portfolio</title>
+
+    <title>Mst. Fahmida Sultana Naznin | Strategic Finance &amp; AI Research Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Mst. Fahmida Sultana Naznin — ACCA candidate and strategic finance professional working across AI and vision research. Publications, projects, recognitions and writing."
+    />
+    <link rel="canonical" href="https://mdsium003.github.io/fahmida_protofolio/" />
 
     <!-- Open Graph & Social Sharing -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Mst. Fahmida Sultana Naznin | Strategic Finance & Research Portfolio" />
-    <meta property="og:description" content="ACCA Candidate, Strategic Finance Professional, and AI/Vision Researcher. Explore financial strategy, empirical research, and recognitions." />
-    <meta property="og:image" content="/Icon/Icon.png" />
+    <meta property="og:site_name" content="Mst. Fahmida Sultana Naznin" />
+    <meta property="og:url" content="https://mdsium003.github.io/fahmida_protofolio/" />
+    <meta property="og:title" content="Mst. Fahmida Sultana Naznin | Strategic Finance &amp; AI Research Portfolio" />
+    <meta
+      property="og:description"
+      content="ACCA candidate and strategic finance professional working across AI and vision research. Publications, projects, recognitions and writing."
+    />
+    <meta property="og:image" content="https://mdsium003.github.io/fahmida_protofolio/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mst. Fahmida Sultana Naznin — Strategic Finance & AI Research Portfolio" />
+    <meta property="og:locale" content="en_US" />
+
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Mst. Fahmida Sultana Naznin | Portfolio" />
-    <meta name="twitter:description" content="Strategic Finance Professional | ACCA Candidate | AI & Vision Researcher" />
-    <meta name="twitter:image" content="/Icon/Icon.png" />
+    <meta name="twitter:title" content="Mst. Fahmida Sultana Naznin | Strategic Finance &amp; AI Research Portfolio" />
+    <meta
+      name="twitter:description"
+      content="ACCA candidate and strategic finance professional working across AI and vision research."
+    />
+    <meta name="twitter:image" content="https://mdsium003.github.io/fahmida_protofolio/og-image.png" />
+    <meta name="twitter:image:alt" content="Mst. Fahmida Sultana Naznin — Strategic Finance & AI Research Portfolio" />
 
     <!-- Google Fonts with Preconnect and Display Swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

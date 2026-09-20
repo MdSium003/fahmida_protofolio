@@ -59,7 +59,7 @@ const AwardAutoSlideshow = ({ images = [], alt = '', className = '', onClick }) 
           alt={`${alt} image ${idx + 1}`}
           className={`slideshow-img ${idx === currentIndex ? 'active' : ''}`}
           loading={idx === 0 ? 'eager' : 'lazy'}
-        />
+decoding="async"/>
       ))}
     </div>
   );
@@ -95,7 +95,7 @@ export const getPlacementBadge = (title = '') => {
   return { text: 'Honors', icon: <Award size={13} />, rankClass: 'rank-default' };
 };
 
-const FeaturedAwards = ({ awards = [], onSelectAward, onOpenMedia }) => {
+const FeaturedAwards = ({ awards = [], onSelectAward }) => {
   // Select featured awards based on isFeatured / featuredOrder from data
   const dataFeatured = awards.filter(a => a.isFeatured || a.is_featured === true || String(a.is_featured).toLowerCase() === 'true');
   

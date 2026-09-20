@@ -2,7 +2,7 @@ import React from 'react';
 import { Building2, ArrowRight, Tag } from 'lucide-react';
 import { cleanAwardTitle, getPlacementBadge } from './FeaturedAwards';
 
-const SelectedAwards = ({ awards = [], onSelectAward, onOpenMedia }) => {
+const SelectedAwards = ({ awards = [], onSelectAward }) => {
   // Exclude items featured in the top Premier Accomplishments section (Johns Hopkins)
   const selectedList = awards
     .filter(a => !(a.isFeatured || a.is_featured === true || String(a.is_featured).toLowerCase() === 'true'))

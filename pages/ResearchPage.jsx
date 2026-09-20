@@ -7,8 +7,17 @@ import LunitResearchGrid from '../components/research/LunitResearchGrid';
 import ResearchThreads from '../components/research/ResearchThreads';
 import ScrollReveal from '../components/shared/ScrollReveal';
 import '../styles/ResearchPage.css';
+import LoadingState from '../components/shared/LoadingState';
+import { usePageMeta } from '../src/hooks/usePageMeta';
 
 const ResearchPage = () => {
+  usePageMeta({
+    title: 'Research & Publications',
+    description:
+      "Peer-reviewed publications, clinical multimodal AI architectures, computer vision and trustworthy machine learning.",
+    path: '/research',
+  });
+
   const [papers, setPapers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -49,7 +58,9 @@ const ResearchPage = () => {
       <ResearchHero />
 
       {/* 2. Research Statistics Strip */}
-      {!loading && (
+      {loading ? (
+        <LoadingState variant="hero" label="Loading research statistics" />
+      ) : (
         <ScrollReveal>
           <ResearchStats papers={papers} />
         </ScrollReveal>

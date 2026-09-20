@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Tv, Newspaper, Share2, Youtube, Play, Calendar, ArrowUpRight, ExternalLink, Sparkles, X, ChevronRight } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 import StaggerReveal from '../shared/StaggerReveal';
+import { asset } from '../../src/utils/assetUrl';
 
 /**
  * Extracts YouTube embed URL from standard watch/short URLs
@@ -94,7 +95,7 @@ const HomeMentionsPreview = ({ mediaMentions = [] }) => {
         <StaggerReveal className="home-mentions-grid" staggerDelay={0.1}>
           {displayEntries.map((item) => {
             const isVideo = item.media_type === 'tv' || item.media_type === 'youtube' || Boolean(item.media_url);
-            const imgUrl = item.image_url || '/wall/fahmida_with_ddn.jpeg';
+            const imgUrl = item.image_url || asset('/images/fahmida_with_ddn.jpeg');
 
             return (
               <article key={item.id} className={`home-mentions-card type-${item.media_type}`}>
@@ -111,7 +112,7 @@ const HomeMentionsPreview = ({ mediaMentions = [] }) => {
                     alt={item.title}
                     className="home-mentions-img"
                     loading="lazy"
-                    onError={(e) => { e.currentTarget.src = '/wall/fahmida_with_ddn.jpeg'; }}
+                    onError={(e) => { e.currentTarget.src = asset('/images/fahmida_with_ddn.jpeg'); }}                    decoding="async"
                   />
                   <div className="home-mentions-gradient-overlay" />
 
@@ -208,9 +209,11 @@ const HomeMentionsPreview = ({ mediaMentions = [] }) => {
                 </div>
               ) : (
                 <img 
-                  src={selectedMedia.image_url || '/wall/fahmida_with_ddn.jpeg'} 
+                  src={selectedMedia.image_url || asset('/images/fahmida_with_ddn.jpeg')} 
                   alt={selectedMedia.title}
                   className="home-mentions-modal-img"
+                  loading="lazy"
+                  decoding="async"
                 />
               )}
             </div>

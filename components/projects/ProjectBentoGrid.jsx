@@ -51,7 +51,7 @@ const ProjectBentoGrid = ({ projects = [], onOpenProject }) => {
                       alt={project.title}
                       className="bento-image"
                       loading="lazy"
-                    />
+decoding="async"/>
                     <div className="bento-image-overlay" />
                   </div>
                 ) : (

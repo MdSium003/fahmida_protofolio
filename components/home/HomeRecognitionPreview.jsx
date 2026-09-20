@@ -45,7 +45,7 @@ const HomeRecognitionPreview = ({ awards = [] }) => {
                       alt={cleanAwardTitle(award.title)}
                       className="home-award-img"
                       loading="lazy"
-                    />
+decoding="async"/>
                     <div className="home-award-gradient-overlay" />
                   </div>
                 ) : (

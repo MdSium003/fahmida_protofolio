@@ -10,8 +10,17 @@ import AwardDetailModal from '../components/awards/AwardDetailModal';
 import AwardMediaLightbox from '../components/awards/AwardMediaLightbox';
 import ScrollReveal from '../components/shared/ScrollReveal';
 import '../styles/AwardsPage.css';
+import LoadingState from '../components/shared/LoadingState';
+import { usePageMeta } from '../src/hooks/usePageMeta';
 
 const AwardsPage = () => {
+  usePageMeta({
+    title: 'Awards & Recognition',
+    description:
+      "Competition wins, global recognitions, scholarships and honours across entrepreneurship, healthcare AI and engineering.",
+    path: '/awards',
+  });
+
   const [searchParams] = useSearchParams();
   const targetAwardId = searchParams.get('id') || searchParams.get('award');
   const [awards, setAwards] = useState([]);
@@ -51,7 +60,7 @@ const AwardsPage = () => {
   }, []);
 
   // Compute year range for hero metadata
-  const yearSpan = useMemo(() => {
+  const _yearSpan = useMemo(() => {
     if (!awards.length) return '';
     const validYears = awards
       .map(a => parseInt(a.year, 10))
@@ -104,11 +113,7 @@ const AwardsPage = () => {
       <AwardsHero />
 
       {loading ? (
-        <div className="awards-loading-state">
-          <div className="skeleton-block" />
-          <div className="skeleton-block" />
-          <div className="skeleton-block" />
-        </div>
+        <LoadingState variant="list" count={5} label="Loading recognitions" />
       ) : (
         <>
           {/* 2. Recognition Statistics Strip */}

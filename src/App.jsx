@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import Layout from '../components/shared/Layout';
 import ScrollToTop from '../components/shared/ScrollToTop';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { MotionConfig } from 'motion/react';
 
 // Route-based code splitting for ultra-fast initial bundle
 const HomePage = lazy(() => import('../pages/Homepage'));
@@ -11,6 +12,7 @@ const ResearchPage = lazy(() => import('../pages/ResearchPage'));
 const AwardsPage = lazy(() => import('../pages/AwardsPage'));
 const SkillsPage = lazy(() => import('../pages/SkillsPage'));
 const BlogPage = lazy(() => import('../pages/BlogPage'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 const PageLoader = () => (
   <div style={{
@@ -34,7 +36,12 @@ const PageLoader = () => (
 
 function App() {
   return (
-    <Router>
+    /* `reducedMotion="user"` makes EVERY motion component in the tree honour the
+       OS "reduce motion" setting, including ones added later. The global CSS
+       catch-all in global.css cannot do this — Motion animates via JS and inline
+       styles, which `transition-duration: 0.01ms !important` does not touch. */
+    <MotionConfig reducedMotion="user">
+    <Router basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
       <Suspense fallback={<PageLoader />}>
         <Routes>
@@ -53,9 +60,14 @@ function App() {
           <Route path='/education' element={<Navigate to="/career" replace />}/>
           <Route path='/experience' element={<Navigate to="/career" replace />}/>
           <Route path='/volunteer' element={<Navigate to="/career" replace />}/>
+
+          {/* Anything unmatched — including deep links bounced here by
+              public/404.html — gets the designed not-found page. */}
+          <Route path='*' element={<Layout><NotFoundPage/></Layout>}/>
         </Routes>
       </Suspense>
     </Router>
+    </MotionConfig>
   );
 }
 

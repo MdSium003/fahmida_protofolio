@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useMenuDialog } from '../../src/hooks/useMenuDialog';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronRight } from 'lucide-react';
 
 const Layout = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
+  // Escape-to-close, tab trapping and focus restore for the slide-in panel.
+  const { panelRef, triggerRef } = useMenuDialog(isMenuOpen, closeMenu);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -19,8 +23,11 @@ const Layout = ({ children }) => {
 
   // Scroll detection
   useEffect(() => {
+    // passive: tells the browser this handler never calls preventDefault, so
+    // it can start scrolling without waiting for JS. Without it, touch scroll
+    // is blocked on the main thread for the duration of the handler.
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -89,20 +96,30 @@ const Layout = ({ children }) => {
 
           {/* Mobile Menu Toggle */}
           <button
+            ref={triggerRef}
             className="menu-toggle"
             onClick={() => setIsMenuOpen(true)}
             aria-label="Open menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             <Menu size={24} />
           </button>
 
           {/* Mobile Overlay */}
           {isMenuOpen && (
-            <div className="mobile-menu-overlay" onClick={() => setIsMenuOpen(false)} />
+            <div className="mobile-menu-overlay" onClick={closeMenu} aria-hidden="true" />
           )}
 
           {/* Mobile Navigation */}
-          <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
+          <div
+            ref={panelRef}
+            id="mobile-menu"
+            className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site navigation"
+          >
             <div className="mobile-menu-header">
               <span className="logo-text">Fahmida</span>
               <button 
@@ -141,7 +158,7 @@ const Layout = ({ children }) => {
           <span className="logo-text">Fahmida</span>
           <span className="logo-subtitle">ACCA Portfolio</span>
           <div className="footer-bottom">
-            <p>© {new Date().getFullYear()} Fahmida. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Mst. Fahmida Sultana Naznin. All rights reserved.</p>
           </div>
         </div>
       </footer>

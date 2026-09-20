@@ -243,7 +243,7 @@ Items with `is_featured=true` are sorted by `featured_order` ascending, then by 
   - Local root paths: `/wall/fahmida_with_robot.jpeg` (Recommended)
   - Public prefix paths: `public/wall/fahmida_with_robot.jpeg` or `public/image.png` (Automatically normalized)
   - Direct filenames: `image.png` or `wall/image.jpg` (Automatically normalized to `/image.png` and `/wall/image.jpg`)
-  - External CDN / Supabase images: Full HTTPS URLs (`https://...`) are fully supported.
+  - External images: Full HTTPS URLs (`https://...`) are supported, but note the Content Security Policy in `index.html` only allows a fixed set of external hosts — a new domain must be added there or the browser will block it. Prefer adding the file to `public/images/` and referencing it locally.
 - **Formats**: `.jpeg`, `.jpg`, `.png`, `.webp`.
 - **Aspect Ratios**:
   - Project Cards: 16:9 or 4:3 (minimum 800x450px).

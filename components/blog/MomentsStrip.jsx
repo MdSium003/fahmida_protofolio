@@ -2,12 +2,13 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Camera, Tv, Newspaper, Share2, Youtube, Play, ExternalLink, X, ChevronLeft, ChevronRight, Calendar, Sparkles } from 'lucide-react';
 import { loadMomentsData, loadMediaMentionsData } from '../../src/utils/csvLoader';
+import { asset } from '../../src/utils/assetUrl';
 
 /**
  * Extracts a clean YouTube embed URL from various formats:
  * - https://www.youtube.com/watch?v=VIDEO_ID
  * - https://youtu.be/VIDEO_ID
- * - https://www.youtube.com/embed/VIDEO_ID
+ * - https://www.youtube-nocookie.com/embed/VIDEO_ID
  */
 function getYouTubeEmbedUrl(url) {
   if (!url || typeof url !== 'string') return '';
@@ -59,7 +60,7 @@ const MomentsStrip = () => {
             caption: item.caption || item.summary || '',
             outlet: item.outlet || '',
             media_type: type,
-            image_url: item.image_url || item.image || '/wall/fahmida_with_ddn.jpeg',
+            image_url: item.image_url || item.image || asset('/images/fahmida_with_ddn.jpeg'),
             media_url: item.media_url || '',
             external_link: item.external_link || item.link || '',
             date: item.date || '',
@@ -99,15 +100,18 @@ const MomentsStrip = () => {
 
   const activeItem = selectedIndex !== null && filteredItems[selectedIndex] ? filteredItems[selectedIndex] : null;
 
-  const openItem = (index) => {
-    setSelectedIndex(index);
-    document.body.style.overflow = 'hidden';
-  };
+  const openItem = (index) => setSelectedIndex(index);
+  const closeItem = useCallback(() => setSelectedIndex(null), []);
 
-  const closeItem = useCallback(() => {
-    setSelectedIndex(null);
-    document.body.style.overflow = '';
-  }, []);
+  // Body scroll lock belongs to the lightbox's lifecycle, not to the handlers:
+  // setting it inside openItem/closeItem left `overflow: hidden` stuck on
+  // <body> if the component unmounted (e.g. route change) while open.
+  useEffect(() => {
+    if (selectedIndex === null) return undefined;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = previous; };
+  }, [selectedIndex]);
 
   const nextItem = useCallback((e) => {
     if (e) e.stopPropagation();
@@ -240,8 +244,8 @@ const MomentsStrip = () => {
                 className="moment-thumb-img"
                 loading="lazy"
                 onError={(e) => {
-                  e.currentTarget.src = '/wall/fahmida_with_ddn.jpeg';
-                }}
+                  e.currentTarget.src = asset('/images/fahmida_with_ddn.jpeg');
+                }}                decoding="async"
               />
 
               {/* Top Tag Badge */}
@@ -319,6 +323,8 @@ const MomentsStrip = () => {
                     src={activeItem.image_url}
                     alt={activeItem.title || activeItem.caption}
                     className="lightbox-main-img"
+                    loading="lazy"
+                    decoding="async"
                   />
                 )}
               </div>

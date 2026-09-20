@@ -11,8 +11,17 @@ import ProjectDetailModal from '../components/projects/ProjectDetailModal';
 import ScrollReveal from '../components/shared/ScrollReveal';
 import StaggerReveal from '../components/shared/StaggerReveal';
 import '../styles/ProjectsPage.css';
+import LoadingState from '../components/shared/LoadingState';
+import { usePageMeta } from '../src/hooks/usePageMeta';
 
 const ProjectsPage = () => {
+  usePageMeta({
+    title: 'Projects',
+    description:
+      "Engineered systems and applications across AI, computer vision, robotics and interactive technologies.",
+    path: '/projects',
+  });
+
   const [searchParams] = useSearchParams();
   const targetProjectId = searchParams.get('id') || searchParams.get('project');
   const [projects, setProjects] = useState([]);
@@ -113,10 +122,7 @@ const ProjectsPage = () => {
       />
 
       {loading ? (
-        <div className="projects-loading-state">
-          <div className="projects-spinner"></div>
-          <p>Loading engineered systems...</p>
-        </div>
+        <LoadingState variant="grid" count={6} label="Loading engineered systems" />
       ) : (
         <div className="projects-sections-container">
           {/* 3. Hero Project Showcase (Only when viewing All and no search) */}

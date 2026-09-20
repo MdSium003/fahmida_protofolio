@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { asset } from '../../src/utils/assetUrl';
 
 const SkillsInPractice = ({ projects = [], research = [] }) => {
   // Select top featured research paper for hero card
@@ -22,11 +23,11 @@ const SkillsInPractice = ({ projects = [], research = [] }) => {
           <article className="practice-hero-card">
             <div className="practice-hero-media-wrapper">
               <img 
-                src={heroItem.thumbnail_url || heroItem.displayImg || '/wall/research_1.jpg'} 
+                src={heroItem.thumbnail_url || heroItem.displayImg || asset('/images/research_1.jpg')} 
                 alt={heroItem.title} 
                 className="practice-hero-image"
                 loading="lazy"
-              />
+decoding="async"/>
               <div className="practice-media-overlay" />
               <span className="practice-category-tag">{heroItem.kicker || 'RESEARCH SPOTLIGHT'}</span>
             </div>
@@ -55,11 +56,11 @@ const SkillsInPractice = ({ projects = [], research = [] }) => {
             <article className="practice-card" key={item.id || idx}>
               <div className="practice-card-media-wrapper">
                 <img 
-                  src={item.image || item.thumbnail_url || '/wall/fahmida_with_car.jpeg'} 
+                  src={item.image || item.thumbnail_url || asset('/images/fahmida_with_car.jpeg')} 
                   alt={item.title} 
                   className="practice-card-image"
                   loading="lazy"
-                />
+decoding="async"/>
                 <div className="practice-media-overlay" />
                 <span className="practice-category-tag">{item.category}</span>
               </div>

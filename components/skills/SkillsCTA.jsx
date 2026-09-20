@@ -6,7 +6,7 @@ const SkillsCTA = () => {
   return (
     <section className="skills-cta-section" aria-label="Explore Projects and Research">
       <div className="skills-cta-card">
-        <h2 className="cta-heading">Explore What I've Built</h2>
+        <h2 className="cta-heading">Explore What I&apos;ve Built</h2>
         <p className="cta-subheading">
           Dive into the complete collection of software engineering projects, research papers, and technical recognitions.
         </p>

@@ -8,28 +8,28 @@ const ProjectsHero = ({ totalProjects = 10, domainCount = 4, featuredCount = 6 }
       {/* Main Strong Title */}
       <motion.h1
         className="projects-hero-title"
-        initial={{ opacity: 0, y: 18 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         PROJECTS
       </motion.h1>
 
       <motion.p
         className="projects-hero-description"
-        initial={{ opacity: 0, y: 14 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
-        Experiments, applications, and systems I've built across AI, computer vision, robotics, and interactive technologies.
+        Experiments, applications, and systems I&apos;ve built across AI, computer vision, robotics, and interactive technologies.
       </motion.p>
 
       {/* Unified Stats Card Matching Research & Awards */}
       <motion.div
         className="projects-stats-section"
-        initial={{ opacity: 0, y: 14 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         <div className="stats-container">
           <div className="stat-block">

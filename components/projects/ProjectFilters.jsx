@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Layers, Eye, Cpu, Bot, Globe } from 'lucide-react';
+import { Search, Layers, Eye, Cpu, Bot, Globe, X } from 'lucide-react';
 
 const categories = [
   { id: 'all', label: 'All Projects', icon: <Layers size={13} /> },
@@ -53,7 +53,7 @@ const ProjectFilters = ({
             onClick={() => onSearchChange('')}
             aria-label="Clear search"
           >
-            
+            <X size={13} />
           </button>
         )}
       </div>

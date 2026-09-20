@@ -8,8 +8,17 @@ import MomentsStrip from '../components/blog/MomentsStrip';
 import BlogDetailModal from '../components/blog/BlogDetailModal';
 import ScrollReveal from '../components/shared/ScrollReveal';
 import '../styles/BlogPage.css';
+import LoadingState from '../components/shared/LoadingState';
+import { usePageMeta } from '../src/hooks/usePageMeta';
 
 const BlogPage = () => {
+  usePageMeta({
+    title: 'Journal',
+    description:
+      "Essays and photo journals on research life, global competitions, travel and building things worth remembering.",
+    path: '/blog',
+  });
+
   const [searchParams] = useSearchParams();
   const targetStoryId = searchParams.get('id') || searchParams.get('story') || searchParams.get('blog');
   const [blogs, setBlogs] = useState([]);
@@ -52,10 +61,7 @@ const BlogPage = () => {
       <BlogHero />
 
       {loading ? (
-        <div className="blog-loading-container">
-          <div className="blog-loader" />
-          <p>Loading visual journal...</p>
-        </div>
+        <LoadingState variant="list" count={4} label="Loading visual journal" />
       ) : (
         <>
           {/* 2. Magazine Cover Story (Dominant Visual Feature) */}

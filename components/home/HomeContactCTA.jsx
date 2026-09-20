@@ -12,7 +12,7 @@ const HomeContactCTA = () => {
             
             <div className="home-contact-inner">
               <h2 className="home-contact-heading">
-                LET'S BUILD SOMETHING <br />
+                LET&apos;S BUILD SOMETHING <br />
                 <span className="text-highlight">WORTH REMEMBERING.</span>
               </h2>
 

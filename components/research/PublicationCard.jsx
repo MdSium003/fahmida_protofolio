@@ -136,29 +136,30 @@ const PublicationCard = ({ publication, onSelect }) => {
         {/* Gradient Scrim for Legibility */}
         <div className="pub-cover-scrim" />
 
-        {/* Top-Left Category Badge */}
-        <div className="pub-badge-top-left">
-          <span className="pub-category-chip">
-            {primaryCategory}
-          </span>
-        </div>
+        {/* Overlaid Badges Header (Flex containment prevents any badge collision) */}
+        <div className="pub-card-badge-header">
+          <div className="pub-badge-left">
+            <span className="pub-category-chip" title={primaryCategory}>
+              {primaryCategory}
+            </span>
+          </div>
 
-        {/* Top-Right Badges Row (Never Collides) */}
-        <div className="pub-badge-top-right">
-          {hasDemo && (
-            <span className="pub-demo-chip" title="Interactive Demo / Video Available">
-              <Play size={10} fill="currentColor" />
-              <span>Demo</span>
+          <div className="pub-badge-right">
+            {hasDemo && (
+              <span className="pub-demo-chip" title="Interactive Demo / Video Available">
+                <Play size={10} fill="currentColor" />
+                <span>Demo</span>
+              </span>
+            )}
+            <span className={`pub-status-chip status-${statusLower}`}>
+              {statusLabel}
             </span>
-          )}
-          <span className={`pub-status-chip status-${statusLower}`}>
-            {statusLabel}
-          </span>
-          {year && (
-            <span className="pub-year-chip">
-              {year}
-            </span>
-          )}
+            {year && (
+              <span className="pub-year-chip">
+                {year}
+              </span>
+            )}
+          </div>
         </div>
       </div>
 

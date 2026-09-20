@@ -1,10 +1,10 @@
 import React from 'react';
-import { Activity, BookOpen, FolderGit2, Award, Calendar, Sparkles } from 'lucide-react';
+import { Activity, BookOpen, FolderGit2, Award, Calendar } from 'lucide-react';
 
 const HomeImpactMetrics = ({ 
-  papersCount = 12, 
-  projectsCount = 15, 
-  awardsCount = 18 
+  papersCount = 13, 
+  projectsCount = 10, 
+  awardsCount = 55 
 }) => {
   return (
     <section className="home-section home-impact-section" aria-label="Portfolio Impact & Metrics">

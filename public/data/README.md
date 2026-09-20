@@ -8,6 +8,8 @@ All portfolio content is stored in **10 clean, self-contained CSV files** locate
 
 | CSV File | Section on Website | Description |
 | :--- | :--- | :--- |
+| **`media_mentions.csv`** | Blog Key Moments & Homepage DriftWall | TV channel interviews, newspaper features, Facebook spotlights, video embeds |
+| **`moments.csv`** | Blog Key Moments & Homepage DriftWall | Journey photos and milestone snapshots |
 | **`projects.csv`** | Projects & Homepage Showcase | Engineering & software projects, featured carousel items, code links |
 | **`research.csv`** | Research Papers | Academic papers, publications, abstracts, authors, topics |
 | **`awards.csv`** | Awards & Achievements | Honors, competitions, certificates, photos, videos |
@@ -18,6 +20,7 @@ All portfolio content is stored in **10 clean, self-contained CSV files** locate
 | **`volunteer.csv`** | Volunteer & Career Timeline | Community work, leadership roles, responsibilities |
 | **`social_links.csv`** | Homepage & Footer | Social media profiles, resume/CV link |
 | **`upcycling.csv`** | Upcycling Projects | Creative craft & DIY upcycling portfolio items |
+| **`news.csv`** | Homepage News & Milestones | Monthly news updates and announcements |
 
 ---
 
@@ -166,6 +169,22 @@ Used in the **Upcycling Projects page**.
 - **`image_url`**: Photo of the upcycled creation.
 - **`instagram_link`**: Instagram post link or social media post.
 - **`display_order`**: Sorting order.
+
+---
+
+### 11. `media_mentions.csv`
+Used in the **Blog Key Moments Section** and **Homepage DriftWall**.
+- **`id`**: Unique numeric ID (e.g., `1`, `2`, `3`).
+- **`title`**: Headline / Feature title (e.g., `Channel 24 Exclusive Interview`).
+- **`outlet`**: Media outlet name (e.g., `Channel 24`, `The Daily Star`, `Prothom Alo`, `Somoy TV`, `Facebook`).
+- **`media_type`**: `tv`, `newspaper`, `facebook`, `youtube`, or `article`.
+- **`image_url`**: Thumbnail, screenshot, or newspaper clipping photo path (e.g., `/wall/ddn.jpeg` or external URL).
+- **`media_url`**: Direct YouTube video link (e.g., `https://www.youtube.com/watch?v=...`) or video file.
+- **`external_link`**: Published article URL, portal link, or Facebook post URL (e.g., `https://thedailystar.net/...`).
+- **`date`**: Date formatted as `YYYY-MM-DD` (e.g., `2026-02-18`).
+- **`caption`**: Detailed summary / description of the broadcast or article.
+- **`display_order`**: Sorting order (`1`, `2`, `3`...).
+- **`is_featured`**: `true` or `false`.
 
 ---
 

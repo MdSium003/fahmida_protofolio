@@ -65,6 +65,43 @@
   box-sizing: border-box;
 }
 
+/* ========== Universal Custom Dark Scrollbar (All Elements & Viewport) ========== */
+*, html, body, div, section, article, aside, main, pre, textarea, ul, ol {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(177, 204, 116, 0.4) #1E1B18 !important;
+}
+
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: #1E1B18 !important;
+}
+
+::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track {
+  background-color: #1E1B18 !important;
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(177, 204, 116, 0.35) !important;
+  border-radius: 4px !important;
+  border: 2px solid #1E1B18 !important;
+  transition: background-color 0.2s ease !important;
+}
+
+::-webkit-scrollbar-thumb:hover,
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #B1CC74 !important;
+}
+
+::-webkit-scrollbar-corner,
+*::-webkit-scrollbar-corner {
+  background-color: #1E1B18 !important;
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;

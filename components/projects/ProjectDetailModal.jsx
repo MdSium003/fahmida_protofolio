@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { 
   X, Github, ExternalLink, FileText, Download, Play, 
-  Presentation, Tag, Calendar, Sparkles, Layers, ArrowRight 
+  Presentation, Tag, Calendar, Layers, ArrowRight 
 } from 'lucide-react';
 import { parseSources } from '../../src/utils/csvLoader';
 
@@ -133,7 +133,7 @@ const ProjectDetailModal = ({ project, onClose }) => {
               ) : (
                 <div className="project-modal-graphic-hero">
                   <div className="graphic-grid-overlay" />
-                  <Sparkles size={36} className="graphic-hero-icon" />
+                  <Layers size={36} className="graphic-hero-icon" />
                   <span className="graphic-hero-text">{project.title}</span>
                 </div>
               )}

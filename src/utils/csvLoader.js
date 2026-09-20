@@ -196,8 +196,8 @@ export function parseLinks(linksStr) {
 }
 
 /**
- * Parses authors column (e.g., "Fahmida Hossain|https://github.com/...|https://... ; Dr. Jane Doe")
- * into structured objects: [{ id, name, github_url, website }]
+ * Parses authors column (e.g., "Mst. Fahmida Sultana Naznin|https://github.com/... ; Dr. Jane Doe")
+ * into structured objects: [{ id, name, isMe, github_url, website }]
  */
 export function parseAuthors(authorsStr) {
   if (!authorsStr) return [];
@@ -210,13 +210,47 @@ export function parseAuthors(authorsStr) {
 
   return entries.map((entry, idx) => {
     const parts = entry.split('|').map(p => p.trim());
+    const name = parts[0] || '';
+    const lower = name.toLowerCase();
+    const isMe = lower.includes('fahmida') || lower.includes('sultana') || lower.includes('naznin') || lower.includes('f. sultana');
+
     return {
       id: idx + 1,
-      name: parts[0] || '',
+      name,
+      isMe,
       github_url: parts[1] || '',
       website: parts[2] || ''
     };
   });
+}
+
+/**
+ * Dynamically generates standard BibTeX citation string if missing
+ */
+export function generateBibtex(pub) {
+  if (pub.bibtex && String(pub.bibtex).trim().startsWith('@')) {
+    return String(pub.bibtex).trim();
+  }
+
+  const authorsArr = pub.authorsList || (typeof pub.authors === 'string' ? parseAuthors(pub.authors) : []);
+  const authorNames = authorsArr.length > 0 
+    ? authorsArr.map(a => a.name).join(' and ') 
+    : 'Mst. Fahmida Sultana Naznin';
+
+  const firstAuthor = authorsArr.length > 0 ? authorsArr[0].name.split(' ').pop().toLowerCase() : 'naznin';
+  const year = pub.year || new Date().getFullYear();
+  const firstWord = (pub.title || 'paper').replace(/[^a-zA-Z0-9]/g, '').slice(0, 8).toLowerCase();
+  const citationKey = `${firstAuthor}${year}${firstWord}`;
+  
+  const venue = pub.venue || 'Research Publication';
+  const isConference = !venue.toLowerCase().includes('journal') && !venue.toLowerCase().includes('ieee access') && !venue.toLowerCase().includes('preprint');
+  const type = isConference ? 'inproceedings' : 'article';
+  
+  if (type === 'inproceedings') {
+    return `@inproceedings{${citationKey},\n  title={${pub.title}},\n  author={${authorNames}},\n  booktitle={${venue}},\n  year={${year}}\n}`;
+  } else {
+    return `@article{${citationKey},\n  title={${pub.title}},\n  author={${authorNames}},\n  journal={${venue}},\n  year={${year}}\n}`;
+  }
 }
 
 /**
@@ -323,19 +357,72 @@ export async function loadResearchData() {
   const processed = (raw || []).map(p => {
     const topics = parseList(p.topics);
     const normalizedImg = normalizeImagePath(p.thumbnail_url);
-    return {
+    const authorsList = parseAuthors(p.authors);
+    const linksList = parseLinks(p.links);
+    const mediaList = parseMedia(p.media);
+    const hasDemo = normalizeBoolean(p.has_demo);
+
+    // Identify genuine paper / PDF / DOI URL (excluding generic root domains)
+    const isRealPaperUrl = (url) => {
+      if (!url || typeof url !== 'string') return false;
+      const clean = url.trim().toLowerCase();
+      if (!clean.startsWith('http://') && !clean.startsWith('https://')) return false;
+      if (clean === 'https://arxiv.org/' || clean === 'https://arxiv.org' || clean === 'http://arxiv.org/' || clean === 'http://arxiv.org') return false;
+      if (clean === 'https://signalprocessingsociety.org/' || clean === 'https://signalprocessingsociety.org') return false;
+      if (clean.includes('example.com')) return false;
+      return true;
+    };
+
+    let rawExt = (p.external_url && String(p.external_url).trim()) || '';
+    if (!isRealPaperUrl(rawExt)) {
+      rawExt = '';
+      if (linksList.length > 0) {
+        const paperLink = linksList.find(l => ['paper', 'pdf', 'doi'].includes(l.type) && isRealPaperUrl(l.url));
+        if (paperLink) rawExt = paperLink.url;
+      }
+    }
+    const externalUrl = rawExt;
+
+    // Identify primary Demo URL
+    let demoUrl = (p.demo_url && String(p.demo_url).trim()) || '';
+    if (!demoUrl && linksList.length > 0) {
+      const demoLink = linksList.find(l => ['video', 'demo', 'live_demo'].includes(l.type));
+      if (demoLink) demoUrl = demoLink.url;
+    }
+
+    const pubObj = {
       ...p,
       id: String(p.id),
+      title: p.title ? String(p.title).trim() : '',
+      venue: (p.venue && String(p.venue).trim()) || 'Research Publication',
+      year: Number(p.year) || new Date().getFullYear(),
+      status: (p.status ? String(p.status).trim().toLowerCase() : 'published'),
+      category: topics,
       topicsList: topics,
-      authorsList: parseAuthors(p.authors),
-      linksList: parseLinks(p.links),
-      mediaList: parseMedia(p.media),
+      coverImage: normalizedImg || '/wall/research_1.jpg',
+      thumbnail_url: normalizedImg || '/wall/research_1.jpg',
+      displayImg: normalizedImg && !normalizedImg.includes('example.com') ? normalizedImg : '/wall/research_1.jpg',
+      abstract: p.abstract ? String(p.abstract).trim() : '',
+      description: p.description ? String(p.description).trim() : '',
+      externalUrl: externalUrl,
+      external_url: externalUrl,
+      hasDemo: hasDemo || Boolean(demoUrl),
+      has_demo: hasDemo || Boolean(demoUrl),
+      demoUrl: demoUrl,
+      demo_url: demoUrl,
+      authors: authorsList,
+      authorsList: authorsList,
+      linksList: linksList,
+      mediaList: mediaList,
       kicker: topics[0] || 'Medical AI',
-      thumbnail_url: normalizedImg,
-      displayImg: normalizedImg && !normalizedImg.includes('example.com') ? normalizedImg : '',
       isFeatured: normalizeBoolean(p.is_featured),
       featuredOrder: Number(p.featured_order) || 999
     };
+
+    // Dynamically attach bibtex citation
+    pubObj.bibtex = generateBibtex(pubObj);
+
+    return pubObj;
   });
 
   processed.sort((a, b) => {
@@ -354,6 +441,8 @@ export async function loadAwardsData() {
       id: String(a.id),
       isFeatured: normalizeBoolean(a.is_featured),
       featuredOrder: Number(a.featured_order) || 999,
+      showcaseHome: normalizeBoolean(a.showcase_home || a.is_home_featured || a.showcase_in_home),
+      showcase_home: normalizeBoolean(a.showcase_home || a.is_home_featured || a.showcase_in_home),
       mediaList: parseMedia(a.media)
     };
   });
@@ -383,6 +472,13 @@ export async function loadBlogsData() {
     return {
       ...item,
       id: String(item.id),
+      title: item.title ? String(item.title).trim() : '',
+      description: item.description ? String(item.description).trim() : (item.summary || ''),
+      summary: item.summary ? String(item.summary).trim() : (item.description || ''),
+      content: item.content ? String(item.content).trim() : (item.description || ''),
+      location: item.location ? String(item.location).trim() : '',
+      category: item.category ? String(item.category).trim() : (isVlog ? 'Vlog' : 'Article'),
+      read_time: item.read_time ? String(item.read_time).trim() : '6 min read',
       isVlog,
       thumbnail_url: normalizeImagePath(item.thumbnail_url),
       coverImage: normalizedCover,
@@ -486,3 +582,28 @@ export async function loadNewsData() {
     sortOrder: Number(n.sort_order) || 999
   })).sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
 }
+
+export async function loadMediaMentionsData() {
+  const raw = await loadCsv('media_mentions');
+  return (raw || []).map(m => {
+    const normImg = normalizeImagePath(m.image_url);
+    const mediaType = (m.media_type ? String(m.media_type).trim().toLowerCase() : 'newspaper');
+    return {
+      ...m,
+      id: String(m.id),
+      title: m.title ? String(m.title).trim() : '',
+      outlet: m.outlet ? String(m.outlet).trim() : '',
+      media_type: mediaType,
+      mediaType: mediaType,
+      image_url: normImg,
+      image: normImg,
+      media_url: m.media_url ? String(m.media_url).trim() : '',
+      external_link: m.external_link ? String(m.external_link).trim() : '',
+      date: m.date ? String(m.date).trim() : '',
+      caption: m.caption ? String(m.caption).trim() : '',
+      isFeatured: normalizeBoolean(m.is_featured),
+      displayOrder: Number(m.display_order) || 999
+    };
+  }).sort((a, b) => a.displayOrder - b.displayOrder);
+}
+

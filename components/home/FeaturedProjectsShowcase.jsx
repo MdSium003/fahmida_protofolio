@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, ArrowUpRight, Tag, Calendar, Presentation, Layers } from 'lucide-react';
+import { ArrowUpRight, Tag, Calendar, Presentation, Layers } from 'lucide-react';
 import DepthCarousel from '../shared/DepthCarousel';
 import { loadCsv } from '../../src/utils/csvLoader';
 
@@ -80,7 +80,7 @@ const FeaturedProjectsShowcase = () => {
         {/* Section Header */}
         <div className="showcase-header">
           <div className="showcase-badge">
-            <Sparkles size={13} />
+            <Layers size={13} />
             <span>Featured Innovation</span>
           </div>
           <h2 className="showcase-title">

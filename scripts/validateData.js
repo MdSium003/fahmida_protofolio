@@ -17,13 +17,13 @@ const DATA_CONFIGS = [
   {
     fileName: 'research.csv',
     requiredFields: ['id', 'title'],
-    booleanFields: ['is_featured'],
+    booleanFields: ['is_featured', 'has_demo'],
     numericFields: ['featured_order', 'year'],
   },
   {
     fileName: 'awards.csv',
     requiredFields: ['id', 'title'],
-    booleanFields: ['is_featured'],
+    booleanFields: ['is_featured', 'showcase_home'],
     numericFields: ['featured_order', 'year'],
   },
   {
@@ -75,10 +75,22 @@ const DATA_CONFIGS = [
     numericFields: ['display_order'],
   },
   {
+    fileName: 'media_mentions.csv',
+    requiredFields: ['id', 'title', 'outlet', 'media_type'],
+    booleanFields: ['is_featured'],
+    numericFields: ['display_order'],
+  },
+  {
     fileName: 'news.csv',
     requiredFields: ['id', 'title'],
     booleanFields: ['is_featured'],
     numericFields: ['sort_order'],
+  },
+  {
+    fileName: 'upcycling.csv',
+    requiredFields: ['id', 'title'],
+    booleanFields: [],
+    numericFields: ['display_order'],
   },
 ];
 

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Trophy, Globe2, Sparkles, Calendar } from 'lucide-react';
+import { Trophy, Medal, Globe2 } from 'lucide-react';
 
 const RecognitionStats = ({ awards = [] }) => {
   const stats = useMemo(() => {
@@ -35,20 +35,10 @@ const RecognitionStats = ({ awards = [] }) => {
       );
     }).length;
 
-    // Calculate year range
-    const validYears = awards
-      .map(a => parseInt(a.year, 10))
-      .filter(y => !isNaN(y) && y > 1990);
-    
-    const minYear = validYears.length ? Math.min(...validYears) : null;
-    const maxYear = validYears.length ? Math.max(...validYears) : null;
-    const yearSpan = minYear && maxYear ? `${minYear}–${maxYear}` : '';
-
     return {
       totalAwards,
       majorFinishes,
-      internationalCount,
-      yearSpan
+      internationalCount
     };
   }, [awards]);
 
@@ -59,44 +49,34 @@ const RecognitionStats = ({ awards = [] }) => {
       <div className="stats-container">
         <div className="stat-block">
           <div className="stat-header">
-            <Trophy size={15} className="stat-icon" />
+            <Trophy size={13} className="stat-icon" />
             <span className="stat-label">Total Distinctions</span>
           </div>
-          <div className="stat-value">{stats.totalAwards}</div>
+          <div className="stat-value">{String(stats.totalAwards).padStart(2, '0')}</div>
         </div>
 
         <div className="stat-divider" />
 
         <div className="stat-block">
           <div className="stat-header">
-            <Sparkles size={15} className="stat-icon" />
+            <Medal size={13} className="stat-icon" />
             <span className="stat-label">Major & Top Finishes</span>
           </div>
-          <div className="stat-value">{stats.majorFinishes}</div>
+          <div className="stat-value">{String(stats.majorFinishes).padStart(2, '0')}</div>
         </div>
 
         <div className="stat-divider" />
 
         <div className="stat-block">
           <div className="stat-header">
-            <Globe2 size={15} className="stat-icon" />
+            <Globe2 size={13} className="stat-icon" />
             <span className="stat-label">International Scope</span>
           </div>
-          <div className="stat-value">{stats.internationalCount}</div>
-        </div>
-
-        <div className="stat-divider" />
-
-        <div className="stat-block">
-          <div className="stat-header">
-            <Calendar size={15} className="stat-icon" />
-            <span className="stat-label">Active Years</span>
-          </div>
-          <div className="stat-value year-value">{stats.yearSpan}</div>
+          <div className="stat-value">{String(stats.internationalCount).padStart(2, '0')}</div>
         </div>
       </div>
     </section>
   );
 };
 
-export default RecognitionStats;
+export default React.memo(RecognitionStats);

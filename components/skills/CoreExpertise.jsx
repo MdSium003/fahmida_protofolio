@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Brain, Eye, Box, Cpu, Server, Code2, Layers, Globe, Database, Terminal, Sparkles } from 'lucide-react';
+import { Brain, Eye, Box, Cpu, Server, Code2, Layers, Globe, Database, Terminal } from 'lucide-react';
 
 const getDomainIcon = (iconName) => {
   switch (String(iconName).toLowerCase()) {
@@ -13,7 +13,7 @@ const getDomainIcon = (iconName) => {
     case 'globe': return <Globe size={26} strokeWidth={1.6} />;
     case 'database': return <Database size={26} strokeWidth={1.6} />;
     case 'terminal': return <Terminal size={26} strokeWidth={1.6} />;
-    default: return <Sparkles size={26} strokeWidth={1.6} />;
+    default: return <Layers size={26} strokeWidth={1.6} />;
   }
 };
 

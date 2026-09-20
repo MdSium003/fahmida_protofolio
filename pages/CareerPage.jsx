@@ -7,8 +7,9 @@ import {
 } from 'lucide-react';
 import { loadExperienceData, loadEducationData, loadVolunteerData, loadLeadershipData } from '../src/utils/csvLoader';
 import ScrollReveal from '../components/shared/ScrollReveal';
-import profileImage from '../images/fahmida.png';
 import '../styles/CareerPage.css';
+
+const careerImage = '/images/Career.jpg';
 
 const CareerPage = () => {
   const [experiences, setExperiences] = useState([]);
@@ -193,7 +194,7 @@ const CareerPage = () => {
             <div className="portrait-ambient-glow" />
             <div className="portrait-frame">
               <img 
-                src={profileImage} 
+                src={careerImage} 
                 alt="Mst. Fahmida Sultana Naznin" 
                 className="career-portrait-img" 
               />

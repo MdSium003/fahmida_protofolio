@@ -7,7 +7,7 @@ import HomePositioning from '../components/home/HomePositioning';
 import HomeNews from '../components/home/HomeNews';
 import HomeResearchSpotlight from '../components/home/HomeResearchSpotlight';
 import HomeRecognitionPreview from '../components/home/HomeRecognitionPreview';
-import HomeJournalPreview from '../components/home/HomeJournalPreview';
+import HomeMentionsPreview from '../components/home/HomeMentionsPreview';
 import HomeContactCTA from '../components/home/HomeContactCTA';
 import { 
   Linkedin, Mail, Download, ChevronRight, Menu, X,
@@ -20,32 +20,15 @@ import {
   loadAwardsData, 
   loadBlogsData, 
   loadSocialLinksData, 
-  loadMomentsData 
+  loadMomentsData,
+  loadMediaMentionsData
 } from '../src/utils/csvLoader';
-import profileImage from '../images/fahmida.webp';
 import PortfolioPreloader from '../components/shared/PortfolioPreloader';
 
+const profileImage = '/images/fahmida.webp';
+
 // Fallback Drift Wall Real Portfolio Assets if moments data empty
-const DEFAULT_WALL_IMAGES = [
-  '/wall/thumbs/thumb_fahmida_with_lal_background.webp',
-  '/wall/thumbs/thumb_fahmida_with_purdue.webp',
-  '/wall/thumbs/thumb_fahmida_with_robot.webp',
-  '/wall/thumbs/thumb_fahmida_with_show_pice.webp',
-  '/wall/thumbs/thumb_fahmida_with_car.webp',
-  '/wall/thumbs/thumb_fahmida_with_ddn.webp',
-  '/wall/thumbs/thumb_fahmida_blog.webp',
-  '/wall/thumbs/thumb_fahmida_blog_2.webp',
-  '/wall/thumbs/thumb_fahmida_blog_3.webp',
-  '/wall/thumbs/thumb_fahmida_blog_4.webp',
-  '/wall/thumbs/thumb_up_1.webp',
-  '/wall/thumbs/thumb_up_2.webp',
-  '/wall/thumbs/thumb_up_3.webp',
-  '/wall/thumbs/thumb_up_4.webp',
-  '/wall/thumbs/thumb_research_1.webp',
-  '/wall/thumbs/thumb_research_4.webp',
-  '/wall/thumbs/thumb_college.webp',
-  '/wall/thumbs/thumb_undergrad.webp'
-];
+const DEFAULT_WALL_IMAGES = Array.from({ length: 31 }, (_, i) => `/wall/thumbs/thumb_(${i + 1}).webp`);
 
 const HomePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,6 +38,7 @@ const HomePage = () => {
   const [awards, setAwards] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [moments, setMoments] = useState([]);
+  const [mediaMentions, setMediaMentions] = useState([]);
   const [socialLinks, setSocialLinks] = useState([]);
   const [cvLink, setCvLink] = useState('');
   const [loading, setLoading] = useState(true);
@@ -110,13 +94,14 @@ const HomePage = () => {
     const fetchAllData = async () => {
       try {
         setLoading(true);
-        const [newsData, researchData, awardsData, blogData, socialData, momentsData] = await Promise.all([
+        const [newsData, researchData, awardsData, blogData, socialData, momentsData, mediaData] = await Promise.all([
           loadNewsData().catch(() => []),
           loadResearchData().catch(() => []),
           loadAwardsData().catch(() => []),
           loadBlogsData().catch(() => []),
           loadSocialLinksData().catch(() => []),
-          loadMomentsData().catch(() => [])
+          loadMomentsData().catch(() => []),
+          loadMediaMentionsData().catch(() => [])
         ]);
 
         setNews(newsData || []);
@@ -124,6 +109,7 @@ const HomePage = () => {
         setAwards(awardsData || []);
         setBlogs(blogData || []);
         setMoments(momentsData || []);
+        setMediaMentions(mediaData || []);
 
         const sortedSocial = socialData || [];
         setSocialLinks(sortedSocial);
@@ -148,10 +134,18 @@ const HomePage = () => {
 
   const driftWallItems = useMemo(() => {
     if (moments && moments.length > 0) {
-      return moments.map((m, idx) => ({
-        image: m.image_url || m.image,
-        title: m.caption || `Wall Image ${idx + 1}`
-      }));
+      return moments.map((m, idx) => {
+        const rawImg = m.image_url || m.image;
+        let thumbImg = rawImg;
+        if (typeof rawImg === 'string' && rawImg.startsWith('/wall/')) {
+          const filename = rawImg.replace('/wall/', '').replace(/\.[^/.]+$/, '');
+          thumbImg = `/wall/thumbs/thumb_${filename}.webp`;
+        }
+        return {
+          image: thumbImg || rawImg,
+          title: m.caption || `Wall Image ${idx + 1}`
+        };
+      });
     }
     return DEFAULT_WALL_IMAGES.map((img, idx) => ({
       image: img,
@@ -309,7 +303,6 @@ const HomePage = () => {
                     alt="Mst. Fahmida Sultana Naznin" 
                     className="profile-main-img" 
                   />
-                  <div className="profile-inner-border" />
                 </div>
               </div>
             </div>
@@ -402,8 +395,8 @@ const HomePage = () => {
       {/* 6. Section 04: Recognition Preview */}
       <HomeRecognitionPreview awards={awards} />
 
-      {/* 7. Section 05: Journal & Reflections */}
-      <HomeJournalPreview blogs={blogs} />
+      {/* 7. Section 05: Key Media Mentions & Press Highlights */}
+      <HomeMentionsPreview mediaMentions={mediaMentions} />
 
       {/* 9. Section 07: Closing Contact CTA */}
       <HomeContactCTA />

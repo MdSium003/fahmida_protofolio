@@ -44,10 +44,10 @@ const HomeNews = ({ news = [] }) => {
         {/* Section Header */}
         <ScrollReveal>
           <div className="home-section-header">
-            <div className="home-section-pill">
-              <Newspaper size={13} className="pill-icon" />
-              <span>Latest Milestones</span>
-            </div>
+              {/* <div className="home-section-pill">
+                <Newspaper size={13} className="pill-icon" />
+                <span>Latest Milestones</span>
+              </div> */}
             <h2 className="home-section-title">
               News & <span className="text-highlight">Monthly Updates</span>
             </h2>
@@ -252,13 +252,17 @@ const HomeNews = ({ news = [] }) => {
                 {/* Modal Image Header */}
                 {selectedNews.image_url && (
                   <div className="news-modal-media">
-                    <img 
-                      src={selectedNews.image_url} 
-                      alt={selectedNews.title} 
-                      className="news-modal-img"
-                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                    />
-                    <div className="news-modal-media-overlay" />
+                    <div className="news-modal-img-frame">
+                      <img 
+                        src={selectedNews.image_url} 
+                        alt={selectedNews.title} 
+                        className="news-modal-img"
+                        onError={(e) => { 
+                          const mediaEl = e.currentTarget.closest('.news-modal-media');
+                          if (mediaEl) mediaEl.style.display = 'none';
+                        }}
+                      />
+                    </div>
                   </div>
                 )}
 
@@ -279,7 +283,14 @@ const HomeNews = ({ news = [] }) => {
                   <h2 className="news-modal-title">{selectedNews.title}</h2>
 
                   <div className="news-modal-text">
-                    <p>{selectedNews.details || selectedNews.summary}</p>
+                    {selectedNews.summary && selectedNews.details && selectedNews.summary.trim() !== selectedNews.details.trim() ? (
+                      <>
+                        <p className="news-modal-lead">{selectedNews.summary}</p>
+                        <p className="news-modal-body-p">{selectedNews.details}</p>
+                      </>
+                    ) : (
+                      <p className="news-modal-body-p">{selectedNews.details || selectedNews.summary}</p>
+                    )}
                   </div>
 
                   {/* External Official Link */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Eye, Box, Bot, Cpu, Layers, Sparkles, Code2, Globe, Activity, Terminal } from 'lucide-react';
+import { Eye, Box, Bot, Cpu, Layers, Code2, Globe, Activity, Terminal } from 'lucide-react';
 
 /**
  * High-precision bespoke technical schematic fallback for projects.
@@ -39,7 +39,7 @@ const ProjectGraphicFallback = ({ project, className = '' }) => {
     if (category.includes('ai') || category.includes('neural') || category.includes('learning')) {
       return {
         type: 'ai',
-        icon: <Sparkles size={32} className="fallback-primary-icon" />,
+        icon: <Cpu size={32} className="fallback-primary-icon" />,
         badge: 'NEURAL WEIGHTS & INFERENCE',
         pattern: 'ai-matrix'
       };

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { 
   X, Play, BookOpen, Calendar, ExternalLink, Github, Linkedin, 
-  Globe, ChevronLeft, ChevronRight, Sparkles 
+  Globe, ChevronLeft, ChevronRight, MapPin, Clock, Tag 
 } from 'lucide-react';
 import { parseLinks, parseMedia } from '../../src/utils/csvLoader';
+import BlogContentRenderer from './BlogContentRenderer';
 
 const getYouTubeEmbedUrl = (url) => {
   if (!url) return '';
@@ -121,12 +122,24 @@ const BlogDetailModal = ({ story, onClose }) => {
           {/* Modal Header */}
           <div className="blog-modal-header">
             <div className="blog-modal-badges">
-              <span className="blog-modal-badge type-badge">
-                {isVideo ? <><Play size={12} fill="currentColor" /> VLOG</> : <><BookOpen size={12} /> ARTICLE</>}
-              </span>
+              {story.category && (
+                <span className="blog-modal-badge category-badge">
+                  <Tag size={12} /> {story.category}
+                </span>
+              )}
+              {story.location && (
+                <span className="blog-modal-badge location-badge">
+                  <MapPin size={12} /> {story.location}
+                </span>
+              )}
               {story.published_date && (
                 <span className="blog-modal-badge date-badge">
                   <Calendar size={12} /> {story.published_date}
+                </span>
+              )}
+              {story.read_time && (
+                <span className="blog-modal-badge time-badge">
+                  <Clock size={12} /> {story.read_time}
                 </span>
               )}
             </div>
@@ -205,13 +218,12 @@ const BlogDetailModal = ({ story, onClose }) => {
             </div>
           )}
 
-          {/* Full Narrative Content */}
+          {/* Full Narrative Content with Rich Headings, Inline Figures & Blockquotes */}
           <div className="blog-modal-body-section">
-            <h3 className="blog-body-heading">Story & Overview</h3>
-            <p className="blog-body-text">{story.description}</p>
+            <BlogContentRenderer content={story.content || story.description} />
           </div>
 
-          {/* External Links */}
+          {/* External Links & References */}
           {links.length > 0 && (
             <div className="blog-modal-links-section">
               <h4 className="blog-links-title">References & External Links</h4>

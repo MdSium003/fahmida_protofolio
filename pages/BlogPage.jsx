@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { loadBlogsData } from '../src/utils/csvLoader';
 import BlogHero from '../components/blog/BlogHero';
@@ -14,9 +14,6 @@ const BlogPage = () => {
   const targetStoryId = searchParams.get('id') || searchParams.get('story') || searchParams.get('blog');
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState('all'); // 'all' | 'vlog' | 'article'
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortOrder, setSortOrder] = useState('latest'); // 'latest' | 'oldest'
   const [activeStory, setActiveStory] = useState(null);
 
   useEffect(() => {
@@ -45,63 +42,14 @@ const BlogPage = () => {
     }
   };
 
-  // Filter & Sort
-  const filteredStories = useMemo(() => {
-    let list = [...blogs];
-
-    // Category Filter
-    if (selectedCategory === 'vlog') {
-      list = list.filter(b => b.isVlog);
-    } else if (selectedCategory === 'article') {
-      list = list.filter(b => !b.isVlog);
-    }
-
-    // Search Query
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
-      list = list.filter(b => 
-        (b.title || '').toLowerCase().includes(q) || 
-        (b.description || '').toLowerCase().includes(q) ||
-        (b.published_date || '').toLowerCase().includes(q)
-      );
-    }
-
-    // Sort
-    list.sort((a, b) => {
-      const dateA = new Date(a.published_date || 0);
-      const dateB = new Date(b.published_date || 0);
-      if (dateB - dateA !== 0) {
-        return sortOrder === 'latest' ? dateB - dateA : dateA - dateB;
-      }
-      return sortOrder === 'latest' ? (Number(b.id) || 0) - (Number(a.id) || 0) : (Number(a.id) || 0) - (Number(b.id) || 0);
-    });
-
-    return list;
-  }, [blogs, selectedCategory, searchQuery, sortOrder]);
-
-  // Counts
-  const counts = useMemo(() => {
-    const vlogs = blogs.filter(b => b.isVlog).length;
-    const articles = blogs.filter(b => !b.isVlog).length;
-    return { all: blogs.length, vlogs, articles };
-  }, [blogs]);
-
-  // Cover Story (first entry if not searching, or top result)
-  const coverStory = filteredStories.length > 0 ? filteredStories[0] : null;
-  const timelineStories = filteredStories.length > 1 ? filteredStories.slice(1) : filteredStories;
+  // Cover Story (first entry) & Remaining Timeline entries
+  const coverStory = blogs.length > 0 ? blogs[0] : null;
+  const timelineStories = blogs.length > 1 ? blogs.slice(1) : blogs;
 
   return (
     <div className="blog-page-container">
-      {/* 1. Hero Section & Filter Controls */}
-      <BlogHero 
-        selectedCategory={selectedCategory}
-        onSelectCategory={setSelectedCategory}
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-        sortOrder={sortOrder}
-        onToggleSort={() => setSortOrder(prev => prev === 'latest' ? 'oldest' : 'latest')}
-        counts={counts}
-      />
+      {/* 1. Hero Section */}
+      <BlogHero />
 
       {loading ? (
         <div className="blog-loading-container">
@@ -111,7 +59,7 @@ const BlogPage = () => {
       ) : (
         <>
           {/* 2. Magazine Cover Story (Dominant Visual Feature) */}
-          {!searchQuery && coverStory && (
+          {coverStory && (
             <ScrollReveal threshold={0} margin="0px 0px -20px 0px">
               <CoverStory 
                 story={coverStory} 
@@ -122,7 +70,7 @@ const BlogPage = () => {
 
           {/* 3. Chronological Visual Journal Timeline */}
           <JournalTimeline 
-            stories={searchQuery ? filteredStories : timelineStories} 
+            stories={timelineStories} 
             onOpenStory={(story) => setActiveStory(story)} 
           />
 

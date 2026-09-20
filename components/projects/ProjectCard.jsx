@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Play, ExternalLink, Sparkles } from 'lucide-react';
+import { ArrowRight, Play, ExternalLink } from 'lucide-react';
 import ProjectGraphicFallback from './ProjectGraphicFallback';
 
 const getYouTubeEmbedUrl = (url) => {

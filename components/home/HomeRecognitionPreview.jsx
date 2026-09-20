@@ -8,9 +8,11 @@ import StaggerReveal from '../shared/StaggerReveal';
 const HomeRecognitionPreview = ({ awards = [] }) => {
   if (!awards || awards.length === 0) return null;
 
-  // Curate standout distinctions from data-driven featured flags
-  const featured = awards.filter(a => a.isFeatured || a.is_featured === true || String(a.is_featured).toLowerCase() === 'true');
-  let curatedAwards = featured.length > 0 ? featured.slice(0, 3) : awards.filter(a => getAllAwardImages(a).length > 0).slice(0, 3);
+  // Curate standout distinctions from dedicated showcase_home flag
+  const homeShowcase = awards.filter(a => a.showcaseHome || a.showcase_home === true || String(a.showcase_home).toLowerCase() === 'true');
+  let curatedAwards = homeShowcase.length > 0 
+    ? homeShowcase.slice(0, 3) 
+    : awards.filter(a => getAllAwardImages(a).length > 0).slice(0, 3);
 
   if (curatedAwards.length === 0) return null;
 

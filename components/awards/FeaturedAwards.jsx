@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Trophy, Award, Medal, GraduationCap, Globe2, Sparkles, ArrowRight, Building2 } from 'lucide-react';
+import { Trophy, Award, Medal, GraduationCap, Globe2, ArrowRight, Building2 } from 'lucide-react';
 import { parseMedia } from '../../src/utils/csvLoader';
 
 // Helper to remove all emojis and format titles cleanly
@@ -87,7 +87,7 @@ export const getPlacementBadge = (title = '') => {
     return { text: 'Fellowship / Grant', icon: <Globe2 size={13} />, rankClass: 'rank-fellow' };
   }
   if (lower.includes('best impact')) {
-    return { text: 'Best Impact', icon: <Sparkles size={13} />, rankClass: 'rank-impact' };
+    return { text: 'Best Impact', icon: <Award size={13} />, rankClass: 'rank-impact' };
   }
   if (lower.includes('finalist')) {
     return { text: 'Finalist', icon: <Award size={13} />, rankClass: 'rank-finalist' };
@@ -131,7 +131,7 @@ const FeaturedAwards = ({ awards = [], onSelectAward, onOpenMedia }) => {
             />
           ) : (
             <div className="featured-hero-media-fallback">
-              <Sparkles size={36} />
+              <Trophy size={36} />
             </div>
           )}
 

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { BookOpen, Sparkles, Layers, Calendar } from 'lucide-react';
+import { BookOpen, CheckCircle2, Layers } from 'lucide-react';
 
 const ResearchStats = ({ papers = [] }) => {
   const stats = useMemo(() => {
@@ -7,10 +7,10 @@ const ResearchStats = ({ papers = [] }) => {
 
     const totalPapers = papers.length;
 
-    // Count published / preprint
+    // Count peer-reviewed published / accepted
     const publishedCount = papers.filter(p => {
       const s = (p.status || '').toLowerCase();
-      return s === 'published' || s === 'preprint';
+      return s === 'published' || s === 'accepted';
     }).length;
 
     // Count clinical / medical / multimodal AI papers
@@ -19,19 +19,10 @@ const ResearchStats = ({ papers = [] }) => {
       return t.includes('clinical') || t.includes('medical') || t.includes('x-ray') || t.includes('retinal') || t.includes('mri') || t.includes('radiology') || t.includes('tumor') || t.includes('multimodal');
     }).length;
 
-    // Year span
-    const years = papers
-      .map(p => parseInt(p.year, 10))
-      .filter(y => !isNaN(y) && y > 1990);
-    const minYear = years.length ? Math.min(...years) : null;
-    const maxYear = years.length ? Math.max(...years) : null;
-    const yearSpan = minYear && maxYear ? `${minYear}–${String(maxYear).slice(-2)}` : '';
-
     return {
       totalPapers,
       publishedCount,
-      clinicalCount,
-      yearSpan
+      clinicalCount
     };
   }, [papers]);
 
@@ -42,7 +33,7 @@ const ResearchStats = ({ papers = [] }) => {
       <div className="stats-container">
         <div className="stat-block">
           <div className="stat-header">
-            <BookOpen size={14} className="stat-icon" />
+            <BookOpen size={13} className="stat-icon" />
             <span className="stat-label">Total Publications</span>
           </div>
           <div className="stat-value">{String(stats.totalPapers).padStart(2, '0')}</div>
@@ -52,8 +43,8 @@ const ResearchStats = ({ papers = [] }) => {
 
         <div className="stat-block">
           <div className="stat-header">
-            <Sparkles size={14} className="stat-icon" />
-            <span className="stat-label">Published / Preprints</span>
+            <CheckCircle2 size={13} className="stat-icon" />
+            <span className="stat-label">Peer-Reviewed / Accepted</span>
           </div>
           <div className="stat-value">{String(stats.publishedCount).padStart(2, '0')}</div>
         </div>
@@ -62,20 +53,10 @@ const ResearchStats = ({ papers = [] }) => {
 
         <div className="stat-block">
           <div className="stat-header">
-            <Layers size={14} className="stat-icon" />
+            <Layers size={13} className="stat-icon" />
             <span className="stat-label">Clinical & Multimodal AI</span>
           </div>
           <div className="stat-value">{String(stats.clinicalCount).padStart(2, '0')}</div>
-        </div>
-
-        <div className="stat-divider" />
-
-        <div className="stat-block">
-          <div className="stat-header">
-            <Calendar size={14} className="stat-icon" />
-            <span className="stat-label">Active Years</span>
-          </div>
-          <div className="stat-value year-value">{stats.yearSpan || '2021–26'}</div>
         </div>
       </div>
     </section>

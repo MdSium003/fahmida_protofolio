@@ -1,5 +1,5 @@
 import React from 'react';
-import { Quote, Sparkles } from 'lucide-react';
+import { Quote } from 'lucide-react';
 import ScrollReveal from '../shared/ScrollReveal';
 
 const HomePositioning = () => {

@@ -1,11 +1,1218 @@
-"id","title","thumbnail_url","description","published_date","links","media","is_featured","featured_order"
-"2","Vlog 2","https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_2.jpeg","In this second Vlog, we focus on design strategies, UI/UX patterns, and creative workflows for building visually appealing applications.","2026-02-10","github:https://github.com/farhan5384|GitHub Profile ; linkedin:https://bd.linkedin.com/in/fahmida-sultana-naznin|LinkedIn Profile ; external:https://www.researchgate.net/profile/Mst-Fahmida-Naznin|ResearchGate Profile","youtube:https://youtu.be/8rGnJrezDys?si=33FAQYMlhKtnXCFq|Vlog 2 Video 1 ; youtube:https://youtu.be/sFrKx15_XEM?si=YBww_3RsCutc8Ebd|Vlog 2 Video 2 ; image:https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_2.jpeg|Vlog 2 Thumbnail","true","1"
-"3","Vlog 3","https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_3.jpeg","Vlog 3 dives into advanced JavaScript techniques, including asynchronous programming, closures, and event-driven architecture for modern web apps.","2026-02-10","github:https://github.com/MdSium003/DakPakhi|DakPakhi Repo ; external:https://en.wikipedia.org/wiki/Us|US Info ; external:https://en.wikipedia.org/wiki/Malyasia|Malaysia Info","youtube:https://youtu.be/p3BCOzVozYc?si=FzsEzeGR8DNOOi1M|Vlog 3 Video 1 ; youtube:https://youtu.be/NY3yWXWjYjA?si=8BcCtZBgoDnhfWyf|Vlog 3 Video 2 ; image:https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_3.jpeg|Vlog 3 Thumbnail","true","2"
-"4","Vlog 4","https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_4.jpeg","This Vlog covers Python development, focusing on data manipulation, scripting, and building small projects to strengthen coding skills.","2026-02-10","external:https://en.wikipedia.org/wiki/Saudi|Saudi Info ; external:https://en.wikipedia.org/wiki/Qatar|Qatar Info ; external:https://www.researchgate.net/|ResearchGate","youtube:https://youtu.be/6y1fy7xeMeM?si=-ivTBO4R-CfuUmt3|Vlog 4 Video 1 ; youtube:https://youtu.be/sdio9USEjZ4?si=aT9T5YgoC0y65uuM|Vlog 4 Video 2 ; image:https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_4.jpeg|Vlog 4 Thumbnail","true","3"
-"5","Vlog 5","https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog.jpeg","Vlog 5 explores cloud development and deployment. Learn how to host projects, manage databases, and integrate APIs in real-world scenarios.","2026-02-10","github:https://github.com/iOfficeAI/AionUi|GitHub Repo ; external:https://en.wikipedia.org/wiki/Thailand|Thailand Info ; external:https://www.researchgate.net/|ResearchGate","youtube:https://youtu.be/262YdUeqNLI?si=2nLHh37Ep7MidzVm|Vlog 5 Video 1 ; youtube:https://youtu.be/0xmpEdbEPpc?si=UKRLUHqrNhQIOz5W|Vlog 5 Video 2 ; image:https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog.jpeg|Vlog 5 Thumbnail","false",""
-"6","Vlog 6","https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_2.jpeg","In this Vlog, we review popular frameworks, libraries, and tools for front-end development, helping you choose the best stack for your next project.","2026-02-10","github:https://github.com/farhan5384|GitHub Profile ; linkedin:https://bd.linkedin.com/in/fahmida-sultana-naznin|LinkedIn Profile ; external:https://www.researchgate.net/profile/Mst-Fahmida-Naznin|ResearchGate Profile","youtube:https://youtu.be/8rGnJrezDys?si=33FAQYMlhKtnXCFq|Vlog 6 Video 1 ; youtube:https://youtu.be/sFrKx15_XEM?si=YBww_3RsCutc8Ebd|Vlog 6 Video 2 ; image:https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_2.jpeg|Vlog 6 Thumbnail","false",""
-"7","Vlog 7","https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_3.jpeg","Vlog 7 discusses testing and debugging practices. Learn how to write unit tests, debug effectively, and ensure your applications are reliable.","2026-02-10","github:https://github.com/MdSium003/DakPakhi|DakPakhi Repo ; external:https://en.wikipedia.org/wiki/Us|US Info ; external:https://en.wikipedia.org/wiki/Malyasia|Malaysia Info","youtube:https://youtu.be/p3BCOzVozYc?si=FzsEzeGR8DNOOi1M|Vlog 7 Video 1 ; youtube:https://youtu.be/NY3yWXWjYjA?si=8BcCtZBgoDnhfWyf|Vlog 7 Video 2 ; image:https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_3.jpeg|Vlog 7 Thumbnail","false",""
-"8","Vlog 8","https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_4.jpeg","In Vlog 8, we focus on optimization techniques for web performance, code efficiency, and improving user experience through best practices.","2026-02-10","external:https://en.wikipedia.org/wiki/Saudi|Saudi Info ; external:https://en.wikipedia.org/wiki/Qatar|Qatar Info ; external:https://www.researchgate.net/|ResearchGate","youtube:https://youtu.be/6y1fy7xeMeM?si=-ivTBO4R-CfuUmt3|Vlog 8 Video 1 ; youtube:https://youtu.be/sdio9USEjZ4?si=aT9T5YgoC0y65uuM|Vlog 8 Video 2 ; image:https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_4.jpeg|Vlog 8 Thumbnail","false",""
-"9","Vlog 9","https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog.jpeg","Vlog 9 covers version control, Git workflows, and collaborative development tips for managing projects efficiently in teams.","2026-02-10","github:https://github.com/iOfficeAI/AionUi|GitHub Repo ; external:https://en.wikipedia.org/wiki/Thailand|Thailand Info ; external:https://www.researchgate.net/|ResearchGate","youtube:https://youtu.be/262YdUeqNLI?si=2nLHh37Ep7MidzVm|Vlog 9 Video 1 ; youtube:https://youtu.be/0xmpEdbEPpc?si=UKRLUHqrNhQIOz5W|Vlog 9 Video 2 ; image:https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog.jpeg|Vlog 9 Thumbnail","false",""
-"10","Vlog 10","https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_2.jpeg","The final Vlog in the series wraps up with career tips, learning resources, and guidance for aspiring developers to grow in the tech industry.","2026-02-10","github:https://github.com/farhan5384|GitHub Profile ; linkedin:https://bd.linkedin.com/in/fahmida-sultana-naznin|LinkedIn Profile ; external:https://www.researchgate.net/profile/Mst-Fahmida-Naznin|ResearchGate Profile","youtube:https://youtu.be/8rGnJrezDys?si=33FAQYMlhKtnXCFq|Vlog 10 Video 1 ; youtube:https://youtu.be/sFrKx15_XEM?si=YBww_3RsCutc8Ebd|Vlog 10 Video 2 ; image:https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog_2.jpeg|Vlog 10 Thumbnail","false",""
-"1","Vlog 1","https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Education/Phd.jpeg","This is the first blog in the Vlog series. Here we discuss coding tips, best practices, and tutorials to help beginners and advanced developers improve their skills.","2026-02-10","github:https://github.com/iOfficeAI/AionUi|GitHub Repo ; external:https://en.wikipedia.org/wiki/Thailand|Thailand Info ; external:https://www.researchgate.net/|ResearchGate","youtube:https://youtu.be/262YdUeqNLI?si=2nLHh37Ep7MidzVm|Vlog 1 Video 1 ; youtube:https://youtu.be/0xmpEdbEPpc?si=UKRLUHqrNhQIOz5W|Vlog 1 Video 2 ; image:https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Blog/fahmida_blog.jpeg|Vlog 1 Thumbnail ; image:https://qmkxkqxbhyxkqqyfshex.supabase.co/storage/v1/object/public/Education/Phd.jpeg|HIHI ; youtube:https://youtu.be/yrRpPEXkAgg?si=bV31dmOPvvf11R22|Vlog 1 Video 1","false",""
+id,title,thumbnail_url,description,content,published_date,location,category,read_time,is_featured,featured_order,links,media
+1,From Water Hyacinth to the UN: The Thailand Journey We Never Expected,/images/up_1.jpeg,"From an idea about converting water hyacinth into clean biofuel to presenting at the UN ESCAP Headquarters in Bangkok, winning Second Prize at the Global Final, and an unforgettable journey across Phuket and the Phi Phi Islands.","Some journeys begin with a destination. Ours began with a problem we had seen all our lives.
+
+In Bangladesh, water hyacinth is everywhere. It fills ponds, rivers, and wetlands, often becoming a serious environmental burden. We started wondering if something that was treated as waste could instead become a source of energy. That question eventually became our project, “Hyacinth to Energy: Scalable HTC Biofuel for Clean Power & Ecosystem Revival,” where we explored the possibility of converting water hyacinth into a sustainable energy resource through hydrothermal conversion.
+
+We took the project to the 2nd ISETS–ESCAP & 3rd ISETS Global Competition of Youth Voice on Energy Transition, where 105 projects participated. After making it through the initial selection, we were shortlisted for the next stage and later submitted our video presentation.
+
+Then came the waiting, the endless checking of inboxes, and the familiar question among us:
+
+Will we actually make it to the Global Finals?
+
+On July 14, 2025, we finally got our answer.
+
+We received the email telling us that our team, Veni Vidi Vici, had been selected for the Global Finals in Bangkok, Thailand, where we would present our project at the UN ESCAP Headquarters.
+
+I don't think any of us fully understood what that meant at first. We were excited, obviously, but there was another problem standing right in front of us.
+
+Our term final exams.
+
+The four of us were from two different batches, Batch 2 and Batch 22, which made everything even more complicated. We had to somehow manage an international competition in Thailand while also dealing with our term finals.
+
+At first, we simply decided that we were going no matter what.
+
+So we went to the Exam Controller and explained the situation. We told him about the competition, the dates, and how difficult it would be for us to manage both.
+
+He kindly told us that he would try to help us.
+
+But after that, the routine changed again.
+
+Then came another round of uncertainty.
+
+At one point, even the ongoing exam boycotts started affecting the schedule.
+
+The whole situation was so unpredictable that we genuinely had no idea whether we would be able to go, when our exams would actually take place, or whether everything would somehow overlap.
+
+We kept preparing for Thailand while constantly checking the exam routine.
+
+And somehow, almost unbelievably, things worked out.
+
+The exam schedule changed in a way that allowed us to make the trip and come back before our exams, without having to carry that constant pressure throughout the journey.
+
+It felt like one huge problem had somehow solved itself.
+
+But that was only the beginning.
+
+The trip was getting closer, and we still did not know whether we would actually be able to go because of another very real problem.
+
+The visa.
+
+Our visa authorization came only about eight days before the competition. With the weekend in between, the timeline became painfully short.
+
+Everyone around us kept saying the same thing:
+
+“At this point, getting the visa will be very difficult.”
+
+And honestly, we were scared.
+
+We had already made it through the competition, had a place in the Global Finals, and were mentally preparing ourselves to stand at the UN, but there was still a very real possibility that we might never get on that flight.
+
+Every day became a countdown.
+
+We were preparing everything we could while simultaneously wondering whether the entire plan would collapse because of a visa.
+
+And then, somehow, the impossible happened.
+
+Our visa came in less than 24 hours.
+
+I still remember the feeling.
+
+After days of uncertainty, suddenly Thailand was no longer just a possibility.
+
+It was real.
+
+We were going.
+
+But apparently, the universe had decided that getting the visa would not be the end of our problems.
+
+The evening before our departure, another crisis hit.
+
+Our 3D prototype was supposed to be prepared by someone based on the design we had already developed, but we still had not received it.
+
+We were leaving the very next day for an international competition, and our physical prototype was simply not ready.
+
+At that point, we had already survived the exam schedule, the visa uncertainty, and everything else.
+
+Now we had one more problem to solve before even getting on the plane.
+
+### Bangkok 🇹🇭
+
+![Bangkok Chinatown & Lights](/images/up_4.jpeg)
+
+
+When we landed in Bangkok, it took a little while for everything to sink in.
+
+We had spent months working on an idea about water hyacinth back home, and now that same idea had brought us to Thailand.
+
+On our first day, we went straight to Chinatown.
+
+After all the stress before the trip, simply walking through the busy streets, looking at the lights and colours, trying different food, taking pictures, and realizing that we were actually in Bangkok felt incredibly freeing.
+
+For a few hours, there were no deadlines, no prototype, no visa anxiety, no presentation slides.
+
+We were just four friends exploring a new city.
+
+The next day, however, was the reason we had come all this way.
+
+We headed to the UN ESCAP Headquarters for the Global Finals.
+
+Walking into the UN as young students from Bangladesh was something I don't think I will ever forget.
+
+There was a strange mixture of excitement and nervousness.
+
+We had spent so much time preparing our project, and suddenly there we were, about to present it on an international platform.
+
+We were also running late getting into the venue, which gave us another little dose of panic, but thankfully we made it inside.
+
+And then came the moment we had been preparing for.
+
+We presented Hyacinth to Energy.
+
+Standing there and talking about turning an environmental problem from Bangladesh into a potential source of clean energy felt surreal.
+
+For us, it had started as an idea, something we had worked on, refined, and believed in.
+
+Now, that same idea was being presented at the United Nations.
+
+And by the end of the competition, it had earned us Second Prize at the Global Final.
+
+In that moment, the journey from a simple idea in Bangladesh to a globally recognized project felt almost impossible to believe.
+
+Once the competition activities were over, we had another mission.
+
+Getting to Phuket.
+
+We had already booked our bus, but while we were having lunch at the UN, Sejuti asked Rafsan to check the ticket.
+
+He looked at it and suddenly told us that our bus was not at 6:45 PM as we had thought.
+
+It was leaving at 4:45 PM.
+
+Our prize cheque was supposed to be given to us after 4 PM.
+
+So we immediately started requesting the organizers to give us the cheque earlier.
+
+Thankfully, they helped us, and we rushed out to catch our ride to the bus station.
+
+Then Rafsan's phone battery decided to add another chapter to the story.
+
+It was at 8%.
+
+The Grab was almost there when his phone died.
+
+We were standing near the UN with our luggage, a bus to catch, and no working phone.
+
+Fortunately, a kind woman helped us charge it, and somehow we managed to continue our journey.
+
+We reached the bus station, thinking that surely the worst was over.
+
+It wasn't.
+
+The bus supervisor asked the four of us to come to the counter.
+
+We ran there and discovered that our tickets had been booked for the wrong date.
+
+We needed September 2.
+
+The tickets said September 4.
+
+Our hotel in Phuket was already booked. Our return flight was already booked. The entire itinerary depended on us reaching Phuket on time.
+
+For a few minutes, we had absolutely no idea what to do.
+
+Luckily, a Thai woman at the counter understood our situation and helped us change the tickets.
+
+We got on the correct bus.
+
+Finally.
+
+The bus ride itself was surprisingly pleasant, and there was even a complimentary buffet dinner.
+
+After dinner, I went looking for a place to pray and left my phone on the table.
+
+When I came back, somehow the phone ended up back with me, and then, after getting onto the bus, I suddenly realized I had no idea where it was.
+
+The supervisor told us the bus would stop for only five minutes.
+
+Five minutes to find the phone, or the bus would leave without us.
+
+So we ran.
+
+Back to the food court.
+
+Thankfully, the staff had already found my phone and kept it safely.
+
+We grabbed it and ran back to the bus, making it just in time.
+
+At this point, we had stopped asking what could possibly go wrong next.
+
+### Phuket 🌊
+
+![Phuket Patong Beach & Promthep Cape](/images/up_2.jpeg)
+
+
+We arrived in Phuket the following morning, exhausted but excited.
+
+Our first stop was Patong Beach.
+
+We grabbed breakfast from 7 Eleven and sat by the beach for a while.
+
+After the chaos of Bangkok, the peacefulness of that morning felt almost unreal.
+
+The sea was calm, the morning air was beautiful, and there was finally nothing urgent that we had to solve.
+
+We simply sat there and enjoyed it.
+
+Later, after returning to the hotel for some rest, we went out again in the afternoon to Promthep Cape.
+
+It was heavenly.
+
+The mountains and the sea stretched out together in one enormous view, and for a moment, everything felt still.
+
+We had been running from one problem to another for days, and suddenly we were standing there looking at the ocean.
+
+It was one of those moments when you don't really need to say anything.
+
+That evening, we went to Phuket Old Town, wandering through the colourful streets, taking photographs, exploring the old architecture, and enjoying the atmosphere.
+
+Along the way, we also happened to meet Mir Mehadi, the owner and founder of PizzaBurg, which was a completely unexpected but lovely encounter.
+
+Later, we headed to Bangla Town, explored for a while, took more pictures, and finally returned to the hotel quite late at night.
+
+The following day was all about island hopping.
+
+We booked a tour package and headed out toward the Phi Phi Islands.
+
+We visited Viking Cave, Monkey Beach, Phi Phi Don, and several other beautiful spots.
+
+The scenery was incredible, and naturally, we became completely absorbed in taking pictures.
+
+So absorbed that we lost our tour group.
+
+At first, we thought they would be easy to find.
+
+Then we realized we had also missed the buffet lunch.
+
+And our group was supposed to leave for another island around 2:45 PM.
+
+That was when the panic started.
+
+After wandering around trying to figure out what to do, we somehow ended up at a police station.
+
+The police contacted the tour agency, and eventually we managed to reconnect with our group.
+
+By then, we could only laugh.
+
+Because somehow, every day in Thailand had become a new story.
+
+### The Flight We Were Not Supposed to Miss ✈️
+
+
+Then came our final day in Phuket.
+
+Our flight to Bangkok was at 8:55 AM.
+
+The night before, we had been packing until around 3:30 AM.
+
+We decided that we would simply stay awake because we had to leave for the airport early anyway.
+
+We did not stay awake.
+
+Somehow, all of us fell asleep.
+
+When we woke up, it was already too late.
+
+We reached the airport at around 8:22 AM.
+
+And the flight was gone.
+
+For a moment, nobody said anything.
+
+We still had our international flight from Bangkok to Dhaka.
+
+Missing this flight meant there was a very real possibility that we might miss that one too.
+
+There was no time to take a bus.
+
+We had to find another flight.
+
+Thankfully, we managed to get seats on the 10:30 AM flight.
+
+We had to pay extra for the new tickets, but at that point, we were just relieved to have another way out.
+
+And somehow, we made it.
+
+There was one final little moment from the trip that I will always remember.
+
+One night, we went out for dinner and discovered that none of the nearby places accepted cards.
+
+We had no Thai Baht with us, there was no money exchange nearby, and even Rafsan's famous card could not rescue us that time.
+
+Then an Indian man helped us with Nutella Pancakes.
+
+A complete stranger.
+
+No questions, no hesitation.
+
+Just kindness.
+
+And somehow, after everything that had happened during those few days, that small gesture stayed with me.
+
+Because perhaps that is what made the trip so special.
+
+We had gone to Thailand for a competition, but along the way, we met people who had absolutely no reason to help us and still did.
+
+And somewhere between the uncertainty of the exam schedule, the visa, the unfinished prototype, the UN, the wrong bus ticket, the dying phone, the beaches, the islands, and the missed flight, Thailand became much more than a competition trip.
+
+It became a story.
+
+One that I know we will still be laughing about years from now.",2025-09-05,"Bangkok & Phuket, Thailand",Global Competitions & Travel,7 min read,true,1,external:https://www.unescap.org/|UN ESCAP Official ; external:https://isets.org/|ISETS Global,image:/images/up_1.jpeg|UN ESCAP Headquarters Bangkok ; image:/images/up_2.jpeg|Promthep Cape Phuket ; image:/images/up_3.jpeg|Phi Phi Islands ; image:/images/up_4.jpeg|Bangkok Chinatown
+2,"From a Random LinkedIn Search to St. Louis, Missouri",/images/fahmida_with_purdue.jpeg,"How a random LinkedIn search led to being selected for the SC25 HPC Immersion program in St. Louis with full funding. Navigating airport luggage drama, surviving on Bangladeshi snacks, exploring the City Museum playground, and an unexpected BUETian reunion.","Some journeys are carefully planned months in advance.
+
+And then there are journeys that begin with randomly stalking seniors on LinkedIn. 😂
+
+My St. Louis, Missouri trip was definitely the second kind.
+
+I have this habit of going through my seniors’ LinkedIn and Facebook profiles, checking where they have participated, what competitions they joined, what opportunities they got, and basically thinking, “Could I apply for this too?”
+
+One completely random day, while scrolling through Asif Haider Bhai’s LinkedIn, I came across SC25.
+
+I went to the website and immediately got confused. There were so many segments and programs that I had no idea which one I was supposed to apply for.
+
+So I knocked Bhai.
+
+He told me to apply for the HPC Immersion program.
+
+I applied and spent quite some time writing the answers to the questions. Then I showed them to Bhai. He gave me some comments, told me what to change, what to improve, and how to make some parts clearer.
+
+So I edited everything again and finally submitted the application. Around the same time, I was also fortunate enough to receive an LOR from Alim Sir.
+
+But honestly, when I applied, I never thought I would actually get selected.
+
+I remember thinking,
+
+“Some essay type questions are not going to decide whether they select me, are they?” 😂
+
+And then, completely unexpectedly,
+
+17 July 2025.
+
+I received an email saying that I had been selected.
+
+I WAS GOING TO THE USA. 🇺🇸
+
+And the best part?
+
+Flights and accommodation were fully covered, plus an extra $480.
+
+What more could I ask for? 😂
+
+### But Then Came the Anxiety
+
+
+The excitement was quickly followed by a lot of uncertainty.
+
+Our term final exams kept getting postponed because of repeated boycotts, and I was genuinely worried about whether I would be able to go at all.
+
+For a while, I had no idea whether everything would work out.
+
+But by Allah’s mercy, everything eventually fell into place.
+
+And then the preparation began.
+
+This was going to be my first trip to the USA.
+
+And I was going all the way across the world alone.
+
+Naturally, I was scared.
+
+Then, one day, I received a WhatsApp message from Sania Jehra.
+
+She was Pakistani but studied at BRAC University in Bangladesh, and she was going to the same program. Apparently, she had found me through the participants’ document.
+
+Suddenly, I felt a little less alone.
+
+Later, I found out that Akib Haider from IUT was also going.
+
+And then I discovered something even more interesting.
+
+Akib was actually Asif Bhai’s younger brother.
+
+The world is seriously small. 😂
+
+So eventually, the three of us, Sania, Akib, and I, started our long journey from Bangladesh.
+
+### Airport Adventures & Luggage Drama 🤦‍♀️
+
+
+I had barely entered the airport when my first international travel noob moment happened.
+
+I had submitted my small passport bag for checking and then somehow walked away without taking it back.
+
+A little later I realized,
+
+“Wait, where is my bag?” 😭
+
+So I had to go back and retrieve it.
+
+But that was not even the main luggage drama.
+
+Being the complete noob that I was, I had not properly checked the baggage rules beforehand.
+
+I had brought one small luggage and two bags, while the rules allowed one cabin bag and one checked bag.
+
+So there I was, standing at the airport, opening my luggage and rearranging everything.
+
+Eventually, I managed to adjust everything.
+
+Thankfully, after that, there were no major problems at the airport.
+
+### Dhaka to Doha to Washington to Missouri ✈️
+
+
+The long flight finally began.
+
+I spent most of the journey watching movies, eating, looking out the window, and trying to process the fact that I was actually going to the USA.
+
+Then came Doha.
+
+Our layover was less than two hours, and somehow most of that time disappeared just trying to figure out where we were supposed to go. 😂
+
+Then Washington.
+
+And from there, another short layover before the final destination, Missouri.
+
+Almost a full day of travelling later, we finally arrived.
+
+Since I did not have my own SIM yet, making calls and even handling payments was surprisingly difficult.
+
+Thankfully, one of Sania’s friends helped us book a car.
+
+We finally reached the hotel.
+
+Dropped our bags.
+
+Rested.
+
+And prepared for the conference the next day.
+
+### My First Look at Missouri 🍂
+
+![St. Louis Conference & Autumn Leaves](/images/fahmida_with_purdue.jpeg)
+
+
+The next morning, before heading to the conference room, we got a little time to explore Missouri.
+
+Big buildings.
+
+Bridges.
+
+Beautiful colourful autumn leaves.
+
+Everything looked so different from home.
+
+The temperature was around 4 to 7°C, but surprisingly, I was not feeling that cold.
+
+Maybe the excitement was keeping me warm. 😂
+
+Then we headed to the conference.
+
+That was where I started meeting the other participants and getting to know people.
+
+And very early on, I was also gifted a jacket.
+
+Which turned out to be extremely useful later. 😭
+
+### The Biggest Problem: FOOD 😭
+
+
+One thing I quickly realized was that food was going to be a challenge.
+
+A lot of the food available to us was not halal, and some of the food was extremely sweet or simply not something I could eat.
+
+Luckily, I had brought quite a lot of snacks from Bangladesh.
+
+So for several days, my Bangladeshi snacks basically became my survival food.
+
+From the 14th to the 21st, I survived on a combination of whatever I could find and whatever I had brought from home.
+
+I had travelled all the way to America and somehow ended up eating my Bangladeshi snacks. 😂
+
+### When the Laptop Died: The Forgotten Adapter 💻
+
+
+Just when the course activities started, another problem appeared.
+
+I had brought my laptop.
+
+But…
+
+I had forgotten the adapter.
+
+🙂
+
+I checked Amazon and found adapters for $24+.
+
+I looked around the conference venue too, but could not really find one.
+
+Eventually, my laptop battery died.
+
+Completely dead.
+
+Thankfully, I somehow managed to arrange an adapter later.
+
+But for a while, I was just sitting there thinking,
+
+“How did I come all the way to the USA and forget the one thing I actually needed?” 😭
+
+### New Friends & The City Museum Playground
+
+
+During the conference, I became friends with two Chinese participants who had come from the University of Washington.
+
+We went together to the opening ceremony dinner at the City Museum.
+
+And that place was INSANE.
+
+It was not really like a traditional museum.
+
+It felt more like an enormous adventure playground.
+
+There were strange structures, giant shapes, cave like passages, tunnels, climbing areas, one thing after another.
+
+Exploring the place with those two friends was genuinely one of the most fun parts of the trip.
+
+Although…
+
+There was one tiny problem.
+
+There was no halal food and we missed dinner again. 😂
+
+So once again,
+
+No food.
+
+At this point, it was becoming a pattern. 😭
+
+### Conference Mission: Learning + Free Souvenirs 🎁
+
+
+Of course, the conference itself was the main purpose of the trip.
+
+But I had another very important personal mission.
+
+Collecting free souvenirs from every booth. 😂
+
+Almost every booth had something.
+
+Pens, notebooks, little gifts, random goodies, you name it.
+
+So while everyone else was seriously attending sessions, networking, and learning, I was also quietly making sure I did not leave any booth empty handed. 😌
+
+I also spent quite a bit of time with a Pakistani friend I met there. He was much older than me, but we got along really well.
+
+Those little friendships made the whole experience much more enjoyable.
+
+### The BUETian Reunion & A Proper Turkish Feast ❤️
+
+
+I mean…
+
+You go all the way to the USA and do not have a BUETian reunion?
+
+Impossible.
+
+At one point, we unexpectedly met our beloved Swargo Bahir.
+
+I also got to meet several other apus, which made the trip feel a little more like home.
+
+Eventually, the closing ceremony was held at Hampton Inn.
+
+And obviously,
+
+How could I leave without taking a treat from Bhai? 😂
+
+So we went to a Turkish restaurant.
+
+After days of struggling with food, I finally had a proper meal.
+
+Honestly, it felt like a reward.
+
+The only regret?
+
+I kept thinking,
+
+“If I had met Bhai earlier, maybe I could have gotten another treat!” 😂
+
+We also met a Bangladeshi family at the Turkish restaurant, which was another unexpectedly nice moment.
+
+There is something special about meeting Bangladeshis in a completely unfamiliar country.
+
+For a few moments, it feels like a tiny piece of home has suddenly appeared in front of you.
+
+### Going Home: Three Plane Seats to Myself ✈️
+
+
+Eventually, the trip came to an end.
+
+It was time to return to Bangladesh.
+
+I left Missouri with a head full of memories, a bag full of random souvenirs, and probably way too many stories.
+
+And then came another funny moment.
+
+The return flight was almost empty.
+
+So I basically had three seats to myself.
+
+And yes,
+
+I slept across all three seats. 😂
+
+After all the luggage drama, short layovers, SIM problems, food struggles, forgotten adapter, dead laptop, and endless running around, the plane finally decided to give me some peace.
+
+And one unforgettable journey to St. Louis, Missouri. 🇺🇸❤️",2025-11-21,"St. Louis, Missouri, USA",Conferences & Fellowships,6 min read,true,2,external:https://sc25.supercomputing.org/|SC25 Supercomputing ; external:https://www.sighpc.org/|ACM SIGHPC,image:/images/fahmida_with_purdue.jpeg|St. Louis Conference Center ; image:/images/up_2.jpeg|City Museum St. Louis
+3,"Two Months in Singapore, and a Lifetime of Memories",/images/fahmida_with_lal_background.jpeg,"Two transformative months living in Singapore for a research internship at the National University of Singapore (NUS). From late-night thesis submissions and a rushed wedding to long walks across Gardens by the Bay, Merlion Park, and ICU mortality modeling.","A few years ago, I saw a senior of mine go to Singapore for an internship.
+
+I remember thinking, What if I could do something like that someday?
+
+At the time, I was nearing the end of my undergraduate life, and like almost every graduating student, I had a hundred questions in my head. What would I do after graduation? Where would I go? Would I get a job? Would I get into research? Would anything I had worked for actually lead somewhere?
+
+And then I thought, what could possibly be better than this?
+
+So I applied.
+
+I applied early that year, well before the deadline.
+
+Then life became its usual chaos.
+
+My final exams were approaching, graduation was around the corner, and everything seemed to be happening at once. I kept waiting for an interview invitation. Days passed. Weeks passed.
+
+Nothing.
+
+Eventually, I almost gave up.
+
+I heard that so many people had applied that year, and I convinced myself that there probably was not much of a chance anyway.
+
+Then, on 19 February 2026, I received an email.
+
+The next day, Mohammad Neamul Kabir wanted to interview me.
+
+I searched his name immediately.
+
+A BUET graduate who later completed his PhD at NUS and was now a lecturer there.
+
+Suddenly, both my courage and my hope came back.
+
+The interview went well. By the end, he told me that he would recommend me.
+
+![National University of Singapore Research Journey](/images/fahmida_with_lal_background.jpeg)
+
+
+For the first time, Singapore did not feel like some distant dream anymore.
+
+It felt real.
+
+Then came the offer.
+
+A paid research internship at the National University of Singapore, with a monthly stipend of more than SGD 2,000.
+
+For someone just about to graduate from BUET, it felt like an incredible first formal step into professional life.
+
+All I had to do was finish my exams.
+
+But this was BUET.
+
+So the word ""finish"" did not really mean finish.
+
+There were boycotts, protests, uncertainty and one thing after another.
+
+In the middle of all that, I also told my family that I wanted to get married.
+
+That brought a completely different kind of chaos.
+
+Home was already a difficult place for me, and somehow everything became even more intense after I made that decision.
+
+But having this opportunity waiting for me gave me something to hold on to.
+
+I asked my advisor, Alim Sir, if there was any way the process could be moved forward faster because I had to plan everything around graduation.
+
+He helped me move things forward.
+
+He was also the person who kept pushing my thesis ahead when everything around me was becoming chaotic.
+
+And somehow, everything happened at almost the same time.
+
+I had already set my wedding date for 22 May.
+
+My friends felt bad as there would be no proper holud or wedding fun because I would be busy with my thesis.
+
+Even with so many guests around, I was still working on my thesis.
+
+At night, two of my friends came over and tried to create at least a little fun in the middle of all the chaos.
+
+The next day, I got married.
+
+Then, instead of properly celebrating, my husband and I rushed to a hotel.
+
+I worked on my thesis presentation.
+
+We recorded the presentation.
+
+I woke up the next morning.
+
+And submitted my thesis.
+
+That was how I graduated.
+
+Not with a calm ending.
+
+Not with a long celebration.
+
+But with a wedding, a thesis, a presentation, a camera, and a plane ticket waiting somewhere in the near future.
+
+Then came the visa wait.
+
+One day.
+
+Two days.
+
+Another day.
+
+No visa.
+
+Meanwhile, ticket prices were rising like crazy.
+
+I kept wondering whether everything would actually work out in time.
+
+Finally, the visa arrived.
+
+We bought the tickets.
+
+And on 18 June 2026, I left Bangladesh with my husband for Singapore.
+
+It was my first job.
+
+My first time living abroad.
+
+My first real research experience outside Bangladesh.
+
+And technically, it was only supposed to be a two month internship.
+
+We had already rented a place in Woodlands for around SGD 1,000 a month.
+
+### Falling in Love with the Little Things in Singapore
+
+
+I fell in love with Singapore.
+
+Not just with the famous skyline or tourist attractions.
+
+I fell in love with the little things.
+
+The MRT.
+
+The incredibly connected city.
+
+The clean streets.
+
+The summer heat.
+
+The way everything felt artificial yet beautifully organized.
+
+The feeling that almost anywhere could be reached by train.
+
+The city felt almost unreal.
+
+I would go to NUS, figure out what I needed to work on, and then somehow the rest of the day would turn into an adventure.
+
+### Walking Kilometre After Kilometre Across the City
+
+![Gardens by the Bay & Marina Bay Skyline](/images/fahmida_blog_2.jpeg)
+
+
+We walked.
+
+And walked.
+
+And walked some more.
+
+Kilometre after kilometre.
+
+We started around Woodlands Waterfront and slowly made our way through the city.
+
+Gardens by the Bay.
+
+Merlion Park.
+
+Helix Bridge.
+
+Little India.
+
+Tikka Centre.
+
+Butter chicken.
+
+Biryani.
+
+Chinatown.
+
+Bugis Street.
+
+Shopping.
+
+Getting lost.
+
+Finding something interesting.
+
+Then walking again.
+
+We wandered around Clarke Quay holding hands, looking at huge buildings and exploring random shops without any particular plan.
+
+We had photoshoots at Fort Canning Park.
+
+We explored Arab Street.
+
+Chinese Garden.
+
+Japanese Garden.
+
+Universal Studios.
+
+Sentosa.
+
+We even went on a boat ride around the bay that was completely free.
+
+CapitaSpring had its own kind of vibe.
+
+And on our last day, we got a tour of Google's office.
+
+Somehow, two months disappeared.
+
+I still do not understand how.
+
+Of course, it was not always perfect.
+
+There were days when money was tight.
+
+Very tight.
+
+There were times when my stipend did not arrive on time, and somehow whatever money we had disappeared into food, transportation, shopping and all the little things we kept telling ourselves we needed.
+
+There were days when we cooked together.
+
+There were days when we went to the mall just to walk around.
+
+There were days when we went to the food court and spent four or five dollars on a drink and somehow considered that an adventure.
+
+And those tiny moments became some of my favourite memories.
+
+We fought too.
+
+Of course we did.
+
+Two people living together, travelling together, working, budgeting, getting tired and constantly making plans cannot possibly go through two months without fighting.
+
+But there was also so much laughter.
+
+And somewhere between the arguments, the MRT rides, the cheap drinks, the long walks and the random adventures, I realized something.
+
+Maybe happiness is not always about doing something extraordinary.
+
+Sometimes it is just walking beside someone you love in a foreign city.
+
+Sometimes it is sharing a cheap meal.
+
+Sometimes it is buying a one dollar King Cone and feeling ridiculously happy about it.
+
+Sometimes it is getting on the MRT without knowing exactly where you are going.
+
+And sometimes it is spending SGD 25 on a pair of shorts on your last day in Sentosa because your husband forgot to bring an extra pair of clothes.
+
+We laughed about it.
+
+And somehow, it felt like one of those moments that life is actually made of.
+
+I started realizing that maybe we should live in the moments we keep postponing.
+
+Because there is always another deadline.
+
+Another exam.
+
+Another paper.
+
+Another job.
+
+Another application.
+
+Another plan.
+
+Another reason to say, Not now. Maybe later.
+
+But life keeps moving while we are busy planning it.
+
+And somewhere between the MRT rides, the arguments, the cheap drinks, the late night cooking and the endless walking, I think we accidentally learned how to live.
+
+### The Research Work: ICU Mortality Prediction & Training Deep Models
+
+
+I did not go to Singapore just to travel.
+
+I worked.
+
+A lot.
+
+There were stretches of ten or twelve days when I was struggling financially and had to push myself even harder.
+
+My advisor even arranged a GPU for me so that I could continue working properly.
+
+I stayed up late.
+
+Sometimes I worked through the night.
+
+I worked on ICU mortality prediction for cardiac dysrhythmia patients.
+
+I experimented.
+
+I debugged.
+
+I trained models.
+
+I kept going.
+
+My advisor, Mohammad Neamul Kabir, gave me the opportunity and trusted me with the research work.
+
+He did not simply hand me a perfectly structured project with every step already planned.
+
+I had to figure things out myself.
+
+And that was part of the experience.
+
+Eventually, I completed the work and submitted it to a workshop.
+
+So yes, I went to Singapore for an internship.
+
+But I think I came back with something much bigger than an internship certificate.
+
+Maybe this is it. Maybe this is one of those moments I will remember forever.",2026-08-16,Singapore,Research & Life Journey,8 min read,true,3,external:https://www.comp.nus.edu.sg/|NUS School of Computing ; external:https://www.gardensbythebay.com.sg/|Gardens by the Bay,image:/images/fahmida_with_lal_background.jpeg|NUS Singapore ; image:/images/fahmida_blog_2.jpeg|Gardens by the Bay & Marina Bay
+4,An Unplanned Journey from Singapore to Malaysia,/images/fahmida_blog.jpeg,"A spontaneous road trip from Singapore into Malaysia with one bag, no hotel booking, and ChatGPT as a travel planner. Exploring Petronas Towers, delicious street food in Jalan Alor, Thean Hou Temple, Merdeka Square, Batu Caves, and Genting cable cars.","Sometimes, the trips we remember the most are not the ones we plan for months.
+
+Sometimes, they begin with a simple sentence:
+
+“What do we have to lose? Let’s just go.”
+
+And that is exactly how our Malaysia trip began.
+
+### We Had Planned It. Then We Almost Gave Up.
+
+
+Even before going to Singapore, I had already decided that we would visit Malaysia.
+
+I kept thinking, Malaysia was so close, and we could get there by bus for very little money. Why would I miss the chance?
+
+The plan was to spend the last few days of our Singapore stay exploring Malaysia before coming back.
+
+But as those final days approached, things became complicated.
+
+Money was getting tight, and honestly, our financial situation wasn't exactly comfortable anymore. My husband didn't really want to go. I was disappointed, because I had been looking forward to this little adventure for so long.
+
+The better bus tickets were around 30 SGD or more, which meant quite a lot for the two of us. And while we were still trying to make a plan, the cheaper tickets kept selling out because of the National Day holiday.
+
+Eventually, I started accepting that maybe this trip simply wasn't going to happen.
+
+Then suddenly, the day to leave Singapore arrived.
+
+And my husband looked at me and said,
+
+“What do we have to lose? Let's go.”
+
+That was it.
+
+No more overthinking.
+
+### One Bag, No Plan, and Just ChatGPT
+
+
+We packed a few clothes, left everything else behind, and walked out.
+
+No hotel booking.
+
+No bus tickets.
+
+No proper itinerary.
+
+No idea where we would stay.
+
+Our only real travel planner was ChatGPT. 😂
+
+We reached Woodlands MRT and somehow found a bus to Johor Bahru.
+
+From Woodlands Checkpoint, we crossed into Malaysia, cleared immigration, and within less than two hours of making the decision, we were officially in another country.
+
+And then reality hit.
+
+We were in Johor Bahru.
+
+But our actual destination was Kuala Lumpur.
+
+Would we even find a bus?
+
+### Crossing into Johor Bahru & The  Bus to KL
+
+
+We got on a bus toward Larkin Central.
+
+And somewhere along the way, we suddenly remembered something very important:
+
+We needed Malaysian cash.
+
+So we stopped to withdraw money and, of course, lost a painful amount in fees and conversion.
+
+But by then, there was no point worrying.
+
+The adventure had already started.
+
+The bus was playing Hindi songs, and we were sitting there, watching the scenery outside and laughing at how ridiculous our situation was.
+
+Eventually, we reached the bus station and managed to get tickets to Kuala Lumpur for around 15 SGD.
+
+Fifteen.
+
+For a journey to Kuala Lumpur.
+
+We looked at each other like, Okay, maybe this trip is actually going to work.
+
+We grabbed some food from McDonald's, got back on the bus, and spent most of the journey sleeping.
+
+And then, finally—
+
+Kuala Lumpur.
+
+### Finding a Place to Sleep in Bukit Bintang: oA ThE FACTORY
+
+
+Of course, we had forgotten one small detail.
+
+We had nowhere to stay.
+
+We hadn't booked a hotel beforehand, and our budget was limited.
+
+So we started looking around Bukit Bintang and eventually found a room at oA ThE FACTORY.
+
+It wasn't luxurious.
+
+It didn't need to be.
+
+The place was cool, comfortable enough, and for the price we were paying, it honestly felt like the best deal we could have found.
+
+And somewhere around this point, my husband officially fell in love with Malaysia.
+
+I think the food had something to do with it. 😂
+
+### Our First Morning: Standing Under the Petronas Twin Towers
+
+![Petronas Twin Towers & Saloma Link](/images/fahmida_blog_2.jpeg)
+
+
+The next morning, we woke up and headed out for Jummah.
+
+After that, we started our actual exploration of Kuala Lumpur.
+
+Our first destination was the one everyone told us we had to see:
+
+The Petronas Twin Towers.
+
+Standing there and looking up at those enormous towers felt strangely surreal.
+
+Just a day earlier, we weren't even sure if we could afford to come.
+
+And now we were standing in the middle of Kuala Lumpur.
+
+After that, we walked through Saloma Link and made our way toward Jalan Alor in Bukit Bintang.
+
+And then Malaysia started winning us over in the best possible way—
+
+the food.
+
+### Eating Our Way Through Jalan Alor & Damascus Shawarma
+
+![Malaysian Street Food Exploration](/images/fahmida_blog_3.jpeg)
+
+
+One thing we quickly realized was how much food we could try without spending too much.
+
+We started with shawarma from Damascus.
+
+Then Chinese beef roti.
+
+Then drinks.
+
+Then another food stop.
+
+Then something else we had never tried before.
+
+At some point, the trip became less about following a destination list and more about simply walking around, finding food, trying things, and enjoying the city together.
+
+And then, as if the universe was finally taking our side, our salary came into the card.
+
+So yes—
+
+the food exploration continued. 😂
+
+By the end of the day, we were exhausted, completely full, and very happy.
+
+We went back and slept.
+
+### Thean Hou Temple, Merdeka Square and Masjid Jamek
+
+![Thean Hou Temple Architecture](/images/fahmida_blog_4.jpeg)
+
+
+The next day, our first destination was Thean Hou Temple.
+
+The red and white architecture was beautiful, and the whole place had such a distinct atmosphere. We spent some time walking around, taking photos, and simply enjoying how different everything felt.
+
+From there, we headed toward Merdeka Square.
+
+We visited Masjid Jamek and I prayed there.
+
+And honestly, that moment stayed with me.
+
+There was something incredibly peaceful about standing inside the mosque after spending the whole day surrounded by crowds, traffic, food, noise and movement.
+
+For a few minutes, everything felt still.
+
+When we came outside, there was a huge crowd because the King was arriving.
+
+So naturally, we stayed around to see what was happening.
+
+We watched, explored, enjoyed the crowd, and somehow ended up doing quite a bit of shopping too.
+
+Malaysia was definitely becoming dangerous for our budget. 😂
+
+### Batu Caves and the Cable Car to Genting Highlands
+
+
+The next day brought another adventure.
+
+We started with Batu Caves.
+
+Then we headed toward Genting Highlands.
+
+As the bus slowly climbed higher and higher, I remember thinking that maybe, just maybe, this day was going to be completely smooth.
+
+No missed buses.
+
+No booking problems.
+
+No unexpected expenses.
+
+Just a peaceful little adventure.
+
+Then we took the cable car up.
+
+The views were beautiful, the ride itself was amazing, and we explored Genting for a while.
+
+For a trip that had started with absolutely no plan, everything seemed to be going surprisingly well.
+
+Which, of course, meant something had to go wrong next.
+
+### Missing Bus Tickets & Shared Improvised Rides
+
+
+When we came back down from Genting, we discovered that there were no bus tickets left.
+
+Everything was booked.
+
+And taking a car would cost around 100 SGD.
+
+For two people travelling on a very limited budget, that was definitely not happening.
+
+So we did what we had been doing throughout the entire trip.
+
+We improvised.
+
+We found another couple and managed to share a ride.
+
+Somehow, we made our way back toward Johor Bahru.
+
+At this point, we were tired but also laughing at ourselves.
+
+Because every time we thought, Okay, now everything is sorted, another problem appeared.
+
+And then we reached Johor Bahru.
+
+Only to discover—
+
+there was no bus to Singapore until after 4 PM.
+
+Of course.
+
+### One Last Taste of Malaysia & Saying Goodbye
+
+
+So we waited.
+
+We walked around the bus station.
+
+We ate.
+
+And ate again.
+
+We tried some of the food we hadn't had a chance to try earlier and bought a few things to take back to Singapore.
+
+We also managed to do a little more shopping, because apparently even an almost-empty budget couldn't completely stop us.
+
+Eventually, our bus arrived.
+
+And just like that, our completely unplanned Malaysia adventure was coming to an end.",2026-08-09,"Kuala Lumpur & Genting, Malaysia",Travel & Adventure,6 min read,true,4,external:https://en.wikipedia.org/wiki/Kuala_Lumpur|Kuala Lumpur Guide ; external:https://www.rwgenting.com/|Resorts World Genting,image:/images/fahmida_blog.jpeg|Kuala Lumpur Street Life ; image:/images/fahmida_blog_2.jpeg|Petronas Twin Towers ; image:/images/fahmida_blog_3.jpeg|Malaysian Street Food ; image:/images/fahmida_blog_4.jpeg|Thean Hou Temple

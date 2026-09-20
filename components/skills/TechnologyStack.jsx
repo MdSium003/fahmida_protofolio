@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  Terminal, Cpu, Code2, Layers, Globe, Box, Database, Sparkles 
+  Terminal, Cpu, Code2, Layers, Globe, Box, Database 
 } from 'lucide-react';
 
 const getCategoryIcon = (category) => {
@@ -10,7 +10,7 @@ const getCategoryIcon = (category) => {
   if (cat.includes('VISION') || cat.includes('GRAPHICS')) return <Layers size={16} />;
   if (cat.includes('SPATIAL') || cat.includes('3D') || cat.includes('ENGINE')) return <Box size={16} />;
   if (cat.includes('WEB') || cat.includes('CLOUD') || cat.includes('EMBEDDED')) return <Globe size={16} />;
-  return <Sparkles size={16} />;
+  return <Layers size={16} />;
 };
 
 const TechnologyStack = ({ skills = [] }) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { 
   X, User, Calendar, Tag, ChevronLeft, ChevronRight, 
-  Play, BookOpen, FileText, Code2, ExternalLink, Award, Sparkles 
+  Play, BookOpen, FileText, Code2, ExternalLink, Award 
 } from 'lucide-react';
 import { parseMedia } from '../../src/utils/csvLoader';
 
@@ -158,7 +158,7 @@ const ResearchDetailModal = ({ project, onClose }) => {
             <div className="research-modal-badges">
               {project.status && (
                 <span className={`research-modal-badge status-badge status-${project.status.toLowerCase()}`}>
-                  <Sparkles size={12} /> {project.status}
+                  {project.status}
                 </span>
               )}
               {project.year && (

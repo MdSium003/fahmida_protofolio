@@ -1,5 +1,5 @@
 import React from 'react';
-import { Eye, Stethoscope, Sparkles, Brain, Network, Activity } from 'lucide-react';
+import { Eye, Stethoscope, ShieldCheck, Brain, Network, Activity } from 'lucide-react';
 
 const AREAS = [
   { id: 'medical', label: 'Medical & Clinical AI', keyword: 'Deep Learning', icon: <Stethoscope size={13} /> },
@@ -7,7 +7,7 @@ const AREAS = [
   { id: 'multimodal', label: 'Multimodal Systems', keyword: 'Image & Video Understanding', icon: <Network size={13} /> },
   { id: 'nlp', label: 'Clinical NLP & LLMs', keyword: 'Natural Language Processing', icon: <Brain size={13} /> },
   { id: 'hci', label: 'HCI & Telemedicine', keyword: 'HCI', icon: <Activity size={13} /> },
-  { id: 'ai', label: 'Trustworthy AI', keyword: 'LLM', icon: <Sparkles size={13} /> }
+  { id: 'ai', label: 'Trustworthy AI', keyword: 'LLM', icon: <ShieldCheck size={13} /> }
 ];
 
 const ResearchAreas = ({ selectedTopics = [], onToggleTopic }) => {

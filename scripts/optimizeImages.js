@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-const imagesDir = path.join(rootDir, 'images');
+const imagesDir = path.join(rootDir, 'public', 'images');
 const wallDir = path.join(rootDir, 'public', 'wall');
 const wallThumbsDir = path.join(wallDir, 'thumbs');
 
@@ -35,6 +35,7 @@ async function optimizeHeroPortrait() {
 
   const originalSize = fs.statSync(inputPath).size;
   await sharp(inputPath)
+    .rotate()
     .webp({ quality: 85, effort: 6 })
     .toFile(outputPath);
 
@@ -63,6 +64,7 @@ async function optimizeWallThumbnails() {
     totalOriginal += originalSize;
 
     await sharp(inputPath)
+      .rotate()
       .resize({ width: 360, height: 240, fit: 'cover', position: 'center' })
       .webp({ quality: 80, effort: 5 })
       .toFile(outputPath);
@@ -72,6 +74,29 @@ async function optimizeWallThumbnails() {
 
     console.log(`  ✓ ${file} (${formatBytes(originalSize)}) -> thumbs/${outputName} (${formatBytes(optimizedSize)})`);
   }
+
+  // Generate dynamic manifest JSON in public/data/wall_images.json
+  const dataDir = path.join(rootDir, 'public', 'data');
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+
+  const manifest = files.map((file, idx) => {
+    const parsed = path.parse(file);
+    return {
+      id: idx + 1,
+      image: `/wall/${file}`,
+      thumb: `/wall/thumbs/thumb_${parsed.name}.webp`,
+      filename: file
+    };
+  });
+
+  fs.writeFileSync(
+    path.join(dataDir, 'wall_images.json'),
+    JSON.stringify(manifest, null, 2),
+    'utf8'
+  );
+  console.log(`  📝 Saved manifest public/data/wall_images.json (${manifest.length} images)`);
 
   const totalSaved = ((totalOriginal - totalOptimized) / totalOriginal * 100).toFixed(1);
   console.log(`\n🎉 DriftWall Thumbnails Complete!`);

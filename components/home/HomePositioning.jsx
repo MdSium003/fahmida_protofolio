@@ -23,8 +23,6 @@ const HomePositioning = () => {
             <div className="author-line" aria-hidden="true" />
             <div className="author-details">
               <span className="author-name">Mst. Fahmida Sultana Naznin</span>
-              <span className="author-dot">•</span>
-              <span className="author-title">Founder & CEO, PinkLifeLine</span>
             </div>
           </div>
         </div>

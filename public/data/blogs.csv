@@ -1,5 +1,5 @@
-id,title,thumbnail_url,description,content,published_date,location,category,read_time,is_featured,featured_order,links,media
-1,From Water Hyacinth to the UN: The Thailand Journey We Never Expected,/images/up_1.jpeg,"From an idea about converting water hyacinth into clean biofuel to presenting at the UN ESCAP Headquarters in Bangkok, winning Second Prize at the Global Final, and an unforgettable journey across Phuket and the Phi Phi Islands.","Some journeys begin with a destination. Ours began with a problem we had seen all our lives.
+"id","title","thumbnail_url","description","content","published_date","location","category","read_time","is_featured","featured_order","links","media"
+"1","From Water Hyacinth to the UN: The Thailand Journey We Never Expected","","From an idea about converting water hyacinth into clean biofuel to presenting at the UN ESCAP Headquarters in Bangkok, winning Second Prize at the Global Final, and an unforgettable journey across Phuket and the Phi Phi Islands.","Some journeys begin with a destination. Ours began with a problem we had seen all our lives.
 
 In Bangladesh, water hyacinth is everywhere. It fills ponds, rivers, and wetlands, often becoming a serious environmental burden. We started wondering if something that was treated as waste could instead become a source of energy. That question eventually became our project, “Hyacinth to Energy: Scalable HTC Biofuel for Clean Power & Ecosystem Revival,” where we explored the possibility of converting water hyacinth into a sustainable energy resource through hydrothermal conversion.
 
@@ -87,7 +87,7 @@ Now we had one more problem to solve before even getting on the plane.
 
 ### Bangkok 🇹🇭
 
-![Bangkok Chinatown & Lights](/images/up_4.jpeg)
+
 
 
 When we landed in Bangkok, it took a little while for everything to sink in.
@@ -198,7 +198,7 @@ At this point, we had stopped asking what could possibly go wrong next.
 
 ### Phuket 🌊
 
-![Phuket Patong Beach & Promthep Cape](/images/up_2.jpeg)
+
 
 
 We arrived in Phuket the following morning, exhausted but excited.
@@ -316,8 +316,8 @@ And somewhere between the uncertainty of the exam schedule, the visa, the unfini
 
 It became a story.
 
-One that I know we will still be laughing about years from now.",2025-09-05,"Bangkok & Phuket, Thailand",Global Competitions & Travel,7 min read,true,1,external:https://www.unescap.org/|UN ESCAP Official ; external:https://isets.org/|ISETS Global,image:/images/up_1.jpeg|UN ESCAP Headquarters Bangkok ; image:/images/up_2.jpeg|Promthep Cape Phuket ; image:/images/up_3.jpeg|Phi Phi Islands ; image:/images/up_4.jpeg|Bangkok Chinatown
-2,"From a Random LinkedIn Search to St. Louis, Missouri",/images/fahmida_with_purdue.jpeg,"How a random LinkedIn search led to being selected for the SC25 HPC Immersion program in St. Louis with full funding. Navigating airport luggage drama, surviving on Bangladeshi snacks, exploring the City Museum playground, and an unexpected BUETian reunion.","Some journeys are carefully planned months in advance.
+One that I know we will still be laughing about years from now.","2025-09-05","Bangkok & Phuket, Thailand","Global Competitions & Travel","7 min read","true","1","external:https://www.unescap.org/|UN ESCAP Official ; external:https://isets.org/|ISETS Global",""
+"2","From a Random LinkedIn Search to St. Louis, Missouri","/images/fahmida_with_purdue.jpeg","How a random LinkedIn search led to being selected for the SC25 HPC Immersion program in St. Louis with full funding. Navigating airport luggage drama, surviving on Bangladeshi snacks, exploring the City Museum playground, and an unexpected BUETian reunion.","Some journeys are carefully planned months in advance.
 
 And then there are journeys that begin with randomly stalking seniors on LinkedIn. 😂
 
@@ -621,8 +621,8 @@ I slept across all three seats. 😂
 
 After all the luggage drama, short layovers, SIM problems, food struggles, forgotten adapter, dead laptop, and endless running around, the plane finally decided to give me some peace.
 
-And one unforgettable journey to St. Louis, Missouri. 🇺🇸❤️",2025-11-21,"St. Louis, Missouri, USA",Conferences & Fellowships,6 min read,true,2,external:https://sc25.supercomputing.org/|SC25 Supercomputing ; external:https://www.sighpc.org/|ACM SIGHPC,image:/images/fahmida_with_purdue.jpeg|St. Louis Conference Center ; image:/images/up_2.jpeg|City Museum St. Louis
-3,"Two Months in Singapore, and a Lifetime of Memories",/images/fahmida_with_lal_background.jpeg,"Two transformative months living in Singapore for a research internship at the National University of Singapore (NUS). From late-night thesis submissions and a rushed wedding to long walks across Gardens by the Bay, Merlion Park, and ICU mortality modeling.","A few years ago, I saw a senior of mine go to Singapore for an internship.
+And one unforgettable journey to St. Louis, Missouri. 🇺🇸❤️","2025-11-21","St. Louis, Missouri, USA","Conferences & Fellowships","6 min read","true","2","external:https://sc25.supercomputing.org/|SC25 Supercomputing ; external:https://www.sighpc.org/|ACM SIGHPC","image:/images/fahmida_with_purdue.jpeg|St. Louis Conference Center"
+"3","Two Months in Singapore, and a Lifetime of Memories","","Two transformative months living in Singapore for a research internship at the National University of Singapore (NUS). From late-night thesis submissions and a rushed wedding to long walks across Gardens by the Bay, Merlion Park, and ICU mortality modeling.","A few years ago, I saw a senior of mine go to Singapore for an internship.
 
 I remember thinking, What if I could do something like that someday?
 
@@ -656,7 +656,7 @@ Suddenly, both my courage and my hope came back.
 
 The interview went well. By the end, he told me that he would recommend me.
 
-![National University of Singapore Research Journey](/images/fahmida_with_lal_background.jpeg)
+
 
 
 For the first time, Singapore did not feel like some distant dream anymore.
@@ -778,7 +778,7 @@ I would go to NUS, figure out what I needed to work on, and then somehow the res
 
 ### Walking Kilometre After Kilometre Across the City
 
-![Gardens by the Bay & Marina Bay Skyline](/images/fahmida_blog_2.jpeg)
+
 
 
 We walked.
@@ -944,8 +944,8 @@ So yes, I went to Singapore for an internship.
 
 But I think I came back with something much bigger than an internship certificate.
 
-Maybe this is it. Maybe this is one of those moments I will remember forever.",2026-08-16,Singapore,Research & Life Journey,8 min read,true,3,external:https://www.comp.nus.edu.sg/|NUS School of Computing ; external:https://www.gardensbythebay.com.sg/|Gardens by the Bay,image:/images/fahmida_with_lal_background.jpeg|NUS Singapore ; image:/images/fahmida_blog_2.jpeg|Gardens by the Bay & Marina Bay
-4,An Unplanned Journey from Singapore to Malaysia,/images/fahmida_blog.jpeg,"A spontaneous road trip from Singapore into Malaysia with one bag, no hotel booking, and ChatGPT as a travel planner. Exploring Petronas Towers, delicious street food in Jalan Alor, Thean Hou Temple, Merdeka Square, Batu Caves, and Genting cable cars.","Sometimes, the trips we remember the most are not the ones we plan for months.
+Maybe this is it. Maybe this is one of those moments I will remember forever.","2026-08-16","Singapore","Research & Life Journey","8 min read","true","3","external:https://www.comp.nus.edu.sg/|NUS School of Computing ; external:https://www.gardensbythebay.com.sg/|Gardens by the Bay",""
+"4","An Unplanned Journey from Singapore to Malaysia","","A spontaneous road trip from Singapore into Malaysia with one bag, no hotel booking, and ChatGPT as a travel planner. Exploring Petronas Towers, delicious street food in Jalan Alor, Thean Hou Temple, Merdeka Square, Batu Caves, and Genting cable cars.","Sometimes, the trips we remember the most are not the ones we plan for months.
 
 Sometimes, they begin with a simple sentence:
 
@@ -1061,7 +1061,7 @@ I think the food had something to do with it. 😂
 
 ### Our First Morning: Standing Under the Petronas Twin Towers
 
-![Petronas Twin Towers & Saloma Link](/images/fahmida_blog_2.jpeg)
+
 
 
 The next morning, we woke up and headed out for Jummah.
@@ -1086,7 +1086,7 @@ the food.
 
 ### Eating Our Way Through Jalan Alor & Damascus Shawarma
 
-![Malaysian Street Food Exploration](/images/fahmida_blog_3.jpeg)
+
 
 
 One thing we quickly realized was how much food we could try without spending too much.
@@ -1115,7 +1115,7 @@ We went back and slept.
 
 ### Thean Hou Temple, Merdeka Square and Masjid Jamek
 
-![Thean Hou Temple Architecture](/images/fahmida_blog_4.jpeg)
+
 
 
 The next day, our first destination was Thean Hou Temple.
@@ -1215,4 +1215,4 @@ We also managed to do a little more shopping, because apparently even an almost-
 
 Eventually, our bus arrived.
 
-And just like that, our completely unplanned Malaysia adventure was coming to an end.",2026-08-09,"Kuala Lumpur & Genting, Malaysia",Travel & Adventure,6 min read,true,4,external:https://en.wikipedia.org/wiki/Kuala_Lumpur|Kuala Lumpur Guide ; external:https://www.rwgenting.com/|Resorts World Genting,image:/images/fahmida_blog.jpeg|Kuala Lumpur Street Life ; image:/images/fahmida_blog_2.jpeg|Petronas Twin Towers ; image:/images/fahmida_blog_3.jpeg|Malaysian Street Food ; image:/images/fahmida_blog_4.jpeg|Thean Hou Temple
+And just like that, our completely unplanned Malaysia adventure was coming to an end.","2026-08-09","Kuala Lumpur & Genting, Malaysia","Travel & Adventure","6 min read","true","4","external:https://en.wikipedia.org/wiki/Kuala_Lumpur|Kuala Lumpur Guide ; external:https://www.rwgenting.com/|Resorts World Genting",""

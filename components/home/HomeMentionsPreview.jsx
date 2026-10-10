@@ -86,7 +86,7 @@ const HomeMentionsPreview = ({ mediaMentions = [] }) => {
               Key Mentions & <span className="text-highlight">Media Moments</span>
             </h2>
             <p className="home-section-subtitle">
-              Featured interviews, national daily coverage, television broadcasts, and tech community highlights.
+              Featured interviews, national & international daily coverage, television broadcasts, and tech community highlights.
             </p>
           </div>
         </ScrollReveal>

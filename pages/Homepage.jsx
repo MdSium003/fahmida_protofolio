@@ -7,8 +7,6 @@ import DriftWall from '../components/shared/DriftWall';
 import { asset, wallThumb } from '../src/utils/assetUrl';
 import HomePositioning from '../components/home/HomePositioning';
 import HomeNews from '../components/home/HomeNews';
-import HomeResearchSpotlight from '../components/home/HomeResearchSpotlight';
-import HomeRecognitionPreview from '../components/home/HomeRecognitionPreview';
 import HomeMentionsPreview from '../components/home/HomeMentionsPreview';
 import HomeContactCTA from '../components/home/HomeContactCTA';
 import { 
@@ -18,8 +16,6 @@ import {
 } from 'lucide-react';
 import { 
   loadNewsData,
-  loadResearchData, 
-  loadAwardsData, 
   loadBlogsData, 
   loadSocialLinksData, 
   loadMomentsData,
@@ -50,8 +46,6 @@ const HomePage = () => {
   const { panelRef, triggerRef } = useMenuDialog(isMenuOpen, closeMenu);
   const [scrolled, setScrolled] = useState(false);
   const [news, setNews] = useState([]);
-  const [papers, setPapers] = useState([]);
-  const [awards, setAwards] = useState([]);
   const [, setBlogs] = useState([]);
   const [moments, setMoments] = useState([]);
   const [mediaMentions, setMediaMentions] = useState([]);
@@ -110,10 +104,8 @@ const HomePage = () => {
     const fetchAllData = async () => {
       try {
         setLoading(true);
-        const [newsData, researchData, awardsData, blogData, socialData, momentsData, mediaData] = await Promise.all([
+        const [newsData, blogData, socialData, momentsData, mediaMentionsData] = await Promise.all([
           loadNewsData().catch(() => []),
-          loadResearchData().catch(() => []),
-          loadAwardsData().catch(() => []),
           loadBlogsData().catch(() => []),
           loadSocialLinksData().catch(() => []),
           loadMomentsData().catch(() => []),
@@ -121,11 +113,9 @@ const HomePage = () => {
         ]);
 
         setNews(newsData || []);
-        setPapers(researchData || []);
-        setAwards(awardsData || []);
         setBlogs(blogData || []);
         setMoments(momentsData || []);
-        setMediaMentions(mediaData || []);
+        setMediaMentions(mediaMentionsData || []);
 
         const sortedSocial = socialData || [];
         setSocialLinks(sortedSocial);
@@ -419,13 +409,7 @@ decoding="async"/>
           {/* Section 02: Latest News & Updates */}
           <HomeNews news={news} />
 
-          {/* Section 03: Research Spotlight */}
-          <HomeResearchSpotlight papers={papers} />
-
-          {/* Section 04: Recognition Preview */}
-          <HomeRecognitionPreview awards={awards} />
-
-          {/* Section 05: Key Media Mentions & Press Highlights */}
+          {/* Section 03: First six items from the full Media Mentions list */}
           <HomeMentionsPreview mediaMentions={mediaMentions} />
         </>
       )}

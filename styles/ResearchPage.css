@@ -497,24 +497,6 @@
   pointer-events: auto;
 }
 
-.pub-demo-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  padding: 0.22rem 0.5rem;
-  border-radius: 6px;
-  background: rgba(220, 38, 38, 0.9);
-  color: #fff;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  white-space: nowrap;
-}
-
 .pub-status-chip {
   font-size: 0.65rem;
   font-weight: 700;
@@ -538,6 +520,13 @@
   background: rgba(208, 244, 234, 0.2);
   border: 1px solid rgba(208, 244, 234, 0.5);
   color: #d0f4ea;
+}
+
+.pub-status-chip.status-workshop,
+.pub-status-chip.status-poster {
+  background: rgba(153, 180, 255, 0.18);
+  border: 1px solid rgba(153, 180, 255, 0.48);
+  color: #d5e1ff;
 }
 
 .pub-status-chip.status-ongoing {
@@ -566,6 +555,57 @@
   flex-direction: column;
   gap: 0.7rem;
   flex: 1;
+}
+
+.pub-card-text-badge-header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.pub-card-no-image {
+  background:
+    radial-gradient(ellipse at 92% 8%, rgba(177, 204, 116, 0.12), transparent 36%),
+    linear-gradient(145deg, #29251f, #1e1b18 72%);
+  border-color: rgba(177, 204, 116, 0.3);
+}
+
+.pub-card-no-image .pub-card-body,
+.pub-card-image-error .pub-card-body {
+  padding: 1.45rem 1.5rem 1.35rem;
+}
+
+.pub-card-no-image .pub-card-text-badge-header,
+.pub-card-image-error .pub-card-text-badge-header {
+  display: flex;
+}
+
+.pub-card-no-image .pub-card-title,
+.pub-card-image-error .pub-card-title {
+  min-height: 0;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.pub-card-cover-container:has(img[style*="display: none"]) {
+  display: none;
+}
+
+.pub-card-text-summary {
+  display: none;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.pub-card-no-image .pub-card-text-summary,
+.pub-card-image-error .pub-card-text-summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .pub-card-title {
@@ -769,6 +809,13 @@
   background: rgba(208, 244, 234, 0.15);
   border: 1px solid rgba(208, 244, 234, 0.35);
   color: #d0f4ea;
+}
+
+.pub-modal-status.status-workshop,
+.pub-modal-status.status-poster {
+  background: rgba(153, 180, 255, 0.14);
+  border: 1px solid rgba(153, 180, 255, 0.34);
+  color: #d5e1ff;
 }
 
 .pub-modal-status.status-ongoing {
@@ -1139,17 +1186,6 @@
 .pub-modal-btn.secondary-btn:hover {
   background: #38312b;
   border-color: rgba(177, 204, 116, 0.4);
-}
-
-.pub-modal-btn.demo-btn {
-  background: rgba(220, 38, 38, 0.15);
-  border: 1px solid rgba(220, 38, 38, 0.45);
-  color: #fca5a5;
-}
-
-.pub-modal-btn.demo-btn:hover {
-  background: #dc2626;
-  color: #fff;
 }
 
 .pub-modal-btn.code-btn {
@@ -2169,8 +2205,7 @@
 
   .pub-category-chip,
   .pub-status-chip,
-  .pub-year-chip,
-  .pub-demo-chip {
+  .pub-year-chip {
     font-size: 0.62rem;
     padding: 0.18rem 0.42rem;
   }
@@ -2217,6 +2252,7 @@
   gap: 0.75rem;
   transition: all 0.25s ease;
   backdrop-filter: blur(10px);
+  cursor: pointer;
 }
 
 .ongoing-work-card:hover {
@@ -2291,25 +2327,85 @@
   font-weight: 500;
 }
 
-.ongoing-card-bullet {
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: #cfc9c2;
-  margin: 0;
-  padding-left: 0.85rem;
-  position: relative;
-  text-align: justify;
+.ongoing-details-toggle {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding: 0.48rem 0.8rem;
+  border: 1px solid rgba(177, 204, 116, 0.28);
+  border-radius: 7px;
+  background: rgba(177, 204, 116, 0.09);
+  color: #d7eca2;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.ongoing-card-bullet::before {
-  content: '◦';
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--color-accent);
-  font-weight: bold;
+.ongoing-details-toggle:hover { background: rgba(177, 204, 116, 0.18); border-color: var(--color-accent); transform: translateY(-1px); }
+.ongoing-details-toggle:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 3px; }
+
+.ongoing-detail-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  overflow-y: auto;
+  background: rgba(10, 9, 8, 0.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
+.ongoing-detail-modal {
+  width: min(100%, 850px);
+  max-height: min(92vh, 900px);
+  max-height: min(92dvh, 900px);
+  overflow: auto;
+  border: 1px solid rgba(177, 204, 116, 0.32);
+  border-radius: 20px;
+  background: #24201c;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.72), 0 0 0 1px rgba(177, 204, 116, 0.08);
+  animation: ongoing-modal-in 180ms ease-out;
+}
+
+.ongoing-detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.45rem 1.6rem;
+  border-bottom: 1px solid rgba(177, 204, 116, 0.16);
+  background: linear-gradient(110deg, rgba(177, 204, 116, 0.09), rgba(28, 24, 21, 0.9));
+}
+
+.ongoing-detail-kicker { color: var(--color-accent); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.ongoing-detail-header h2 { margin: 0.35rem 0 0; color: var(--color-text); font: 700 clamp(1.45rem, 3vw, 2rem)/1.25 'EB Garamond', Garamond, Georgia, serif; }
+.ongoing-detail-close { display: grid; place-items: center; flex: 0 0 auto; width: 2.35rem; height: 2.35rem; border: 1px solid rgba(177, 204, 116, 0.2); border-radius: 9px; background: rgba(255, 255, 255, 0.04); color: var(--color-text-muted); cursor: pointer; }
+.ongoing-detail-close:hover { border-color: var(--color-accent); color: var(--color-text); }
+.ongoing-detail-content { padding: 1.5rem 1.6rem 1.8rem; }
+.ongoing-detail-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+.ongoing-detail-meta-item { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.95rem; border: 1px solid rgba(177, 204, 116, 0.16); border-radius: 11px; background: rgba(12, 11, 10, 0.32); color: var(--color-accent); }
+.ongoing-detail-meta-item div { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.ongoing-detail-meta-item span { color: var(--color-text-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.ongoing-detail-meta-item strong { color: var(--color-text); font-size: 0.9rem; font-weight: 550; line-height: 1.5; }
+.ongoing-detail-summary { margin-top: 1.5rem; padding: 1.2rem 1.25rem; border-left: 3px solid var(--color-accent); border-radius: 0 12px 12px 0; background: rgba(177, 204, 116, 0.055); }
+.ongoing-detail-summary h3 { margin: 0 0 0.6rem; color: var(--color-accent); font: 700 1.15rem 'EB Garamond', Garamond, Georgia, serif; }
+.ongoing-detail-summary p { margin: 0; color: #d2cdc4; font-size: 1rem; line-height: 1.75; }
+
+@keyframes ongoing-modal-in { from { opacity: 0; transform: translateY(8px) scale(0.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+@media (max-width: 640px) {
+  .ongoing-detail-backdrop { padding: 0.6rem; }
+  .ongoing-detail-modal { max-height: 95dvh; border-radius: 15px; }
+  .ongoing-detail-header { padding: 1.1rem 1rem; }
+  .ongoing-detail-content { padding: 1rem; }
+  .ongoing-detail-meta { grid-template-columns: 1fr; }
+}
 @media (max-width: 768px) {
   .ongoing-works-grid {
     grid-template-columns: 1fr;

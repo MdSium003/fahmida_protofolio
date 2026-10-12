@@ -358,10 +358,11 @@ export async function loadResearchData() {
   const raw = await loadCsv('research');
   const processed = (raw || []).map(p => {
     const topics = parseList(p.topics);
-    const normalizedImg = normalizeImagePath(p.thumbnail_url);
+    const mediaList = parseMedia(p.media);
+    const mediaImage = mediaList.find(media => media.media_type === 'image')?.media_url || '';
+    const normalizedImg = normalizeImagePath(p.thumbnail_url) || mediaImage;
     const authorsList = parseAuthors(p.authors);
     const linksList = parseLinks(p.links);
-    const mediaList = parseMedia(p.media);
     const hasDemo = normalizeBoolean(p.has_demo);
 
     // Identify genuine paper / PDF / DOI URL (excluding generic root domains)
@@ -401,9 +402,9 @@ export async function loadResearchData() {
       status: (p.status ? String(p.status).trim().toLowerCase() : 'published'),
       category: topics,
       topicsList: topics,
-      coverImage: normalizedImg || asset('/images/research_1.jpg'),
-      thumbnail_url: normalizedImg || asset('/images/research_1.jpg'),
-      displayImg: normalizedImg && !normalizedImg.includes('example.com') ? normalizedImg : asset('/images/research_1.jpg'),
+      coverImage: normalizedImg,
+      thumbnail_url: normalizedImg,
+      displayImg: normalizedImg && !normalizedImg.includes('example.com') ? normalizedImg : '',
       abstract: p.abstract ? String(p.abstract).trim() : '',
       description: p.description ? String(p.description).trim() : '',
       externalUrl: externalUrl,
@@ -495,8 +496,11 @@ export async function loadBlogsData() {
   });
 
   processed.sort((a, b) => {
-    if (a.featuredOrder !== b.featuredOrder) return a.featuredOrder - b.featuredOrder;
-    return new Date(b.published_date || 0) - new Date(a.published_date || 0);
+    const dateA = Date.parse(a.published_date || '');
+    const dateB = Date.parse(b.published_date || '');
+    const validDateA = Number.isNaN(dateA) ? 0 : dateA;
+    const validDateB = Number.isNaN(dateB) ? 0 : dateB;
+    return validDateB - validDateA;
   });
 
   return processed;
@@ -511,6 +515,16 @@ export async function loadSkillsData() {
     isPrimary: normalizeBoolean(s.is_primary),
     displayOrder: Number(s.display_order) || 999
   })).sort((a, b) => a.displayOrder - b.displayOrder);
+}
+
+export async function loadProfessionalTrainingData() {
+  const raw = await loadCsv('professional_training');
+  return (raw || []).map(item => ({
+    ...item,
+    id: String(item.id),
+    responsibilitiesList: parseList(item.responsibilities, /\r?\n/),
+    sortOrder: Number(item.sort_order) || 999
+  })).sort((a, b) => a.sortOrder - b.sortOrder);
 }
 
 export async function loadMomentsData() {
@@ -613,5 +627,19 @@ export async function loadMediaMentionsData() {
       displayOrder: Number(m.display_order) || 999
     };
   }).sort((a, b) => a.displayOrder - b.displayOrder);
+}
+
+export async function loadLinkedInFeaturedData() {
+  const raw = await loadCsv('linkedin_featured');
+  return (raw || []).map(item => ({
+    ...item,
+    id: String(item.id),
+    title: item.title ? String(item.title).trim() : '',
+    description: item.description ? String(item.description).trim() : '',
+    image_url: normalizeImagePath(item.image_url),
+    external_link: item.external_link ? String(item.external_link).trim() : '',
+    source_label: item.source_label ? String(item.source_label).trim() : '',
+    displayOrder: Number(item.display_order) || 999
+  })).sort((a, b) => a.displayOrder - b.displayOrder);
 }
 

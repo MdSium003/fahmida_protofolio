@@ -1424,107 +1424,75 @@
 }
 
 /* ==========================================================================
-   4. LEADERSHIP & CO-CURRICULAR STYLES (CLEAN STATIC GRID)
+   4. LEADERSHIP & CAMPUS GOVERNANCE (RESUME LIST)
    ========================================================================== */
 
-.leadership-static-grid {
+.leadership-resume-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 1.5rem;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.leadership-static-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
-  padding: 1.6rem 1.65rem;
-  background: var(--color-surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  backdrop-filter: blur(12px);
-  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-  box-sizing: border-box;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-}
-
-.leadership-static-card:hover {
-  border-color: rgba(177, 204, 116, 0.4);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.65), 0 0 16px rgba(177, 204, 116, 0.08);
-}
-
-.lead-card-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.lead-org-name {
-  font-family: 'EB Garamond', Garamond, 'Playfair Display', Georgia, serif;
-  font-size: 1.25rem;
-  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   color: var(--color-text);
-  line-height: 1.25;
-  margin: 0;
-  letter-spacing: -0.01em;
 }
 
-.lead-role-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--color-accent);
-  margin: 0;
-  line-height: 1.35;
+.leadership-resume-item {
+  position: relative;
+  min-width: 0;
+  padding: 1.2rem 1.35rem 1.15rem 1.55rem;
+  overflow: hidden;
+  border: 1px solid rgba(177, 204, 116, 0.24);
+  border-radius: 1rem;
+  background: linear-gradient(112deg, rgba(177, 204, 116, 0.1), rgba(38, 35, 31, 0.9) 24%, rgba(30, 33, 39, 0.96));
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18), inset 0 1px rgba(255, 255, 255, 0.035);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
-.lead-timespan-bar {
-  display: flex;
+.leadership-resume-item::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: linear-gradient(180deg, #d9ef9a, rgba(177, 204, 116, 0.18));
+  content: '';
+}
+
+.leadership-resume-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(217, 239, 154, 0.5);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.26), 0 0 22px rgba(177, 204, 116, 0.08);
+}
+
+.leadership-resume-roles { display: grid; gap: 0.55rem; }
+
+.leadership-resume-role-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--border);
-  margin-top: auto;
+  gap: 1rem;
 }
 
-.lead-timespan-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--color-accent);
+.leadership-resume-role-card {
+  padding: 0.62rem 0.8rem;
+  border: 1px solid rgba(177, 204, 116, 0.18);
+  border-radius: 0.72rem;
+  background: rgba(8, 13, 18, 0.3);
 }
 
-.lead-calendar-icon {
-  color: var(--color-accent);
-  flex-shrink: 0;
-}
-
-.lead-desc-text {
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: var(--color-text-muted);
-  margin: 0;
-  flex-grow: 1;
-}
-
-.lead-footer-link {
-  margin-top: 0.2rem;
-}
+.leadership-resume-role-org { min-width: 0; font-size: 1.04rem; line-height: 1.5; }
+.leadership-resume-role-org strong { color: #f0f5d2; font-weight: 750; }
+.leadership-resume-org { color: #a9c9ff; font-weight: 600; }
+.leadership-resume-group-org { margin-top: 0.6rem; font-size: 0.98rem; line-height: 1.45; }
+.leadership-resume-date { justify-self: end; padding: 0.32rem 0.62rem; border: 1px solid rgba(177, 204, 116, 0.27); border-radius: 999px; background: rgba(177, 204, 116, 0.1); color: #d3e99b; font-size: 0.8rem; font-weight: 700; text-align: right; white-space: nowrap; }
+.leadership-resume-role-card .leadership-resume-date { justify-self: end; margin-top: 0; white-space: nowrap; }
+.leadership-resume-description { margin: 0.8rem 0 0; padding-top: 0.7rem; border-top: 1px solid rgba(177, 204, 116, 0.16); color: var(--color-text-muted); font-size: 0.92rem; line-height: 1.65; white-space: pre-line; }
+.leadership-resume-responsibilities { margin: 0.55rem 0 0; color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.62; }
+.leadership-resume-responsibilities p { margin: 0.32rem 0 0; }
 
 @media (max-width: 640px) {
-  .leadership-static-grid {
-    grid-template-columns: 1fr;
-    gap: 1.15rem;
-  }
-
-  .leadership-static-card {
-    padding: 1.35rem 1.25rem;
-  }
+  .leadership-resume-item { padding: 1rem 0.9rem 1rem 1.1rem; }
+  .leadership-resume-role-row { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+  .leadership-resume-date,
+  .leadership-resume-role-card .leadership-resume-date { justify-self: start; text-align: left; white-space: normal; }
 }
 

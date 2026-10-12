@@ -42,12 +42,8 @@ const HomeMentionsPreview = ({ mediaMentions = [] }) => {
 
   if (!mediaMentions || mediaMentions.length === 0) return null;
 
-  // Curate top 3 featured media mentions
-  const featuredEntries = mediaMentions
-    .filter(item => item.isFeatured !== false)
-    .slice(0, 3);
-
-  const displayEntries = featuredEntries.length > 0 ? featuredEntries : mediaMentions.slice(0, 3);
+  // The loader uses the same display_order as the full Media Mentions page.
+  const displayEntries = mediaMentions.slice(0, 6);
 
   const renderTypeIcon = (type, size = 11) => {
     switch (type) {

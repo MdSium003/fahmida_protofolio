@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { Layers, ArrowRight, Building2, Tag, Image as ImageIcon } from 'lucide-react';
+import { ArrowRight, Building2, Tag, Search } from 'lucide-react';
 import { parseMedia } from '../../src/utils/csvLoader';
 import { cleanAwardTitle, getPlacementBadge } from './FeaturedAwards';
 import ScrollReveal from '../shared/ScrollReveal';
 
 const AwardArchive = ({ awards = [], onSelectAward }) => {
   const [selectedTopic, setSelectedTopic] = useState('all');
-  const [selectedYear, setSelectedYear] = useState('all');
+  const [yearQuery, setYearQuery] = useState('');
 
   // Extract unique topics from data
   const topics = useMemo(() => {
@@ -18,24 +18,14 @@ const AwardArchive = ({ awards = [], onSelectAward }) => {
     return Array.from(set);
   }, [awards]);
 
-  // Extract unique years from data
-  const years = useMemo(() => {
-    const set = new Set();
-    awards.forEach(a => {
-      const y = String(a.year || '').trim();
-      if (y) set.add(y);
-    });
-    return Array.from(set).sort((a, b) => Number(b) - Number(a));
-  }, [awards]);
-
-  // Filter awards based on selected topic and year
+  // Filter awards based on selected topic and a typed year query
   const filteredAwards = useMemo(() => {
     return awards.filter(award => {
       const matchTopic = selectedTopic === 'all' || award.topic === selectedTopic;
-      const matchYear = selectedYear === 'all' || String(award.year) === String(selectedYear);
+      const matchYear = !yearQuery || String(award.year || '').startsWith(yearQuery.trim());
       return matchTopic && matchYear;
     });
-  }, [awards, selectedTopic, selectedYear]);
+  }, [awards, selectedTopic, yearQuery]);
 
   // Group awards chronologically by Year
   const groupedByYear = useMemo(() => {
@@ -86,25 +76,26 @@ const AwardArchive = ({ awards = [], onSelectAward }) => {
             })}
           </div>
 
-          {/* Year Filter Pills */}
-          <div className="archive-year-filters" aria-label="Filter awards by year">
-            <button
-              className={`archive-year-btn ${selectedYear === 'all' ? 'active' : ''}`}
-              onClick={() => setSelectedYear('all')}
-              type="button"
-            >
-              All Years
-            </button>
-            {years.map(year => (
-              <button
-                key={year}
-                className={`archive-year-btn ${selectedYear === year ? 'active' : ''}`}
-                onClick={() => setSelectedYear(year)}
-                type="button"
-              >
-                {year}
-              </button>
-            ))}
+          <div className="archive-year-search">
+            <label className="archive-year-search-label" htmlFor="award-year-search">Search by year</label>
+            <div className="archive-year-search-input-wrap">
+              <Search size={16} aria-hidden="true" />
+              <input
+                id="award-year-search"
+                type="search"
+                inputMode="numeric"
+                maxLength={4}
+                placeholder="Enter a year, e.g. 2025"
+                value={yearQuery}
+                onChange={(event) => setYearQuery(event.target.value.replace(/\D/g, ''))}
+                aria-label="Search awards by year"
+              />
+              {yearQuery && (
+                <button className="archive-year-clear" onClick={() => setYearQuery('')} type="button" aria-label="Clear year search">
+                  Clear
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </ScrollReveal>
@@ -116,7 +107,7 @@ const AwardArchive = ({ awards = [], onSelectAward }) => {
             <p>No awards match the selected filters.</p>
             <button 
               className="btn-reset-filters" 
-              onClick={() => { setSelectedTopic('all'); setSelectedYear('all'); }}
+              onClick={() => { setSelectedTopic('all'); setYearQuery(''); }}
             >
               Reset Filters
             </button>

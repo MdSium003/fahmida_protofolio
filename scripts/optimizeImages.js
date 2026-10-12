@@ -25,7 +25,7 @@ function formatBytes(bytes) {
 }
 
 async function optimizeHeroPortrait() {
-  const inputPath = path.join(imagesDir, 'fahmida.png');
+  const inputPath = path.join(imagesDir, 'fahmida.jpeg');
   const outputPath = path.join(imagesDir, 'fahmida.webp');
 
   if (!fs.existsSync(inputPath)) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Play, BookOpen, ArrowRight, Calendar, MapPin, Clock } from 'lucide-react';
 import { asset } from '../../src/utils/assetUrl';
+import TravelDateRange from './TravelDateRange';
 
 const CoverStory = ({ story, onOpenStory }) => {
   if (!story) return null;
@@ -50,15 +51,19 @@ decoding="async"/>
                 </span>
               </>
             )}
-            <span className="cover-divider-dot">•</span>
-            <span className="cover-date">
-              <Calendar size={12} /> {dateFormatted}
-            </span>
+            {!story.travel_dates && <>
+              <span className="cover-divider-dot">•</span>
+              <span className="cover-date">
+                <Calendar size={12} /> {dateFormatted}
+              </span>
+            </>}
             <span className="cover-divider-dot">•</span>
             <span className="cover-type-badge">
               {isVideo ? <><Play size={11} fill="currentColor" /> VLOG</> : <><BookOpen size={11} /> {story.read_time || '6 min read'}</>}
             </span>
           </div>
+
+          {story.travel_dates && <TravelDateRange value={story.travel_dates} />}
 
           <h2 className="cover-story-title">{story.title}</h2>
           

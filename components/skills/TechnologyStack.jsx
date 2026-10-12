@@ -14,7 +14,6 @@ const getCategoryIcon = (category) => {
 };
 
 const TechnologyStack = ({ skills = [] }) => {
-  // Filter out Domain rows
   const techSkills = skills.filter(s => s.category !== 'Domains');
 
   // Group by subcategory preserving display order
@@ -27,11 +26,19 @@ const TechnologyStack = ({ skills = [] }) => {
     grouped[subcat].push(skill);
   });
 
+  const categoryOrder = [
+    'Programming Languages',
+    'Web and Database',
+    'Data Science & Machine Learning',
+    'Specialized Area',
+    'Soft Skills',
+    'Language'
+  ];
   const clusters = Object.entries(grouped).map(([category, items]) => ({
     category,
     icon: getCategoryIcon(category),
-    items
-  }));
+    items: items.sort((a, b) => a.displayOrder - b.displayOrder)
+  })).sort((a, b) => categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category));
 
   return (
     <section className="skills-section tech-stack-section" aria-label="Unified Technology Stack">

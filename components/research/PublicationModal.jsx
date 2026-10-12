@@ -5,7 +5,6 @@ import {
   ExternalLink, 
   Copy, 
   Check, 
-  Play, 
   BookOpen, 
   FileText, 
   Layers, 
@@ -14,7 +13,6 @@ import {
   Users,
   Code
 } from 'lucide-react';
-import ResearchFigureFallback from './ResearchFigureFallback';
 import { asset } from '../../src/utils/assetUrl';
 
 const PublicationModal = ({ publication, onClose }) => {
@@ -103,16 +101,16 @@ const PublicationModal = ({ publication, onClose }) => {
     abstract,
     description,
     externalUrl,
-    hasDemo,
-    demoUrl,
     authorsList = [],
     bibtex,
-    mediaList = [],
     linksList = []
   } = publication;
 
   const statusLower = String(status).toLowerCase();
-  const statusLabel = statusLower === 'published' ? 'Published' : (statusLower === 'preprint' ? 'Preprint' : 'Ongoing');
+  const statusLabel = statusLower === 'published' ? 'Published' :
+    statusLower === 'preprint' ? 'Preprint' :
+    statusLower === 'workshop' ? 'Workshop' :
+    statusLower === 'poster' ? 'Poster' : 'Ongoing';
   const categories = category.length > 0 ? category : (topicsList.length > 0 ? topicsList : ['Clinical AI']);
 
   const handleCopyCitation = async () => {
@@ -125,24 +123,8 @@ const PublicationModal = ({ publication, onClose }) => {
     }
   };
 
-  const rawVideoUrl = (demoUrl && (demoUrl.includes('youtu.be') || demoUrl.includes('youtube.com')) ? demoUrl : '') ||
-    (coverImage && (coverImage.includes('youtu.be') || coverImage.includes('youtube.com')) ? coverImage : '') ||
-    mediaList.find(m => m.media_type === 'youtube' || (m.media_url && (m.media_url.includes('youtube') || m.media_url.includes('youtu.be'))))?.media_url ||
-    linksList.find(l => l.url && (l.url.includes('youtube') || l.url.includes('youtu.be')))?.url || '';
-
-  const getYouTubeEmbedUrl = (url) => {
-    if (!url) return '';
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|live\/)([^#&?]*).*/;
-    const match = String(url).match(regExp);
-    return match && match[2] && match[2].length >= 11
-      ? `https://www.youtube-nocookie.com/embed/${match[2].substring(0, 11)}`
-      : '';
-  };
-
-  const youtubeEmbedUrl = getYouTubeEmbedUrl(rawVideoUrl);
-
   const finalImage = coverImage || thumbnail_url;
-  const hasValidImage = !youtubeEmbedUrl && finalImage && 
+  const hasValidImage = finalImage && 
     !finalImage.includes('example.com') && 
     !finalImage.endsWith('.pdf') &&
     (finalImage.match(/\.(jpeg|jpg|gif|png|webp|svg)/i) || finalImage.startsWith(asset('/wall/')) || finalImage.startsWith('http'));
@@ -254,7 +236,7 @@ const PublicationModal = ({ publication, onClose }) => {
               onClick={() => setActiveTab('abstract')}
             >
               <FileText size={14} />
-              <span>Overview & Media</span>
+              <span>Overview</span>
             </button>
             <button
               type="button"
@@ -290,27 +272,20 @@ const PublicationModal = ({ publication, onClose }) => {
                 </div>
               )}
 
-              {/* Media Display: Embedded Video below if available, otherwise Figure Image or Fallback */}
-              <div className={`pub-figure-container ${youtubeEmbedUrl ? 'pub-video-container' : ''}`}>
-                {youtubeEmbedUrl ? (
-                  <iframe 
-                    src={youtubeEmbedUrl} 
-                    title={`Video Demonstration for ${title}`}
-                    className="pub-modal-video-iframe"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                  />
-                ) : hasValidImage ? (
+              {hasValidImage && (
+                <div className="pub-figure-container">
                   <img 
                     src={finalImage} 
                     alt={title}
                     className="pub-modal-figure-img"
                     loading="lazy"
-decoding="async"/>
-                ) : (
-                  <ResearchFigureFallback paper={publication} className="pub-modal-figure-fallback" />
-                )}
-              </div>
+                    onError={(e) => {
+                      if (e.currentTarget.parentElement) e.currentTarget.parentElement.style.display = 'none';
+                    }}
+                    decoding="async"
+                  />
+                </div>
+              )}
             </div>
           )}
 
@@ -373,18 +348,6 @@ decoding="async"/>
               </a>
             )}
 
-            {/* Optional Demo Button */}
-            {hasDemo && demoUrl && (
-              <a 
-                href={demoUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="pub-modal-btn demo-btn"
-              >
-                <Play size={13} fill="currentColor" />
-                <span>View Demo ↗</span>
-              </a>
-            )}
           </div>
 
           <div className="pub-modal-right-actions">

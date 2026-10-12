@@ -1,9 +1,38 @@
 "id","role","organization","start_date","end_date","duration","category","description","responsibilities","skills_gained","external_link","logo_url","sort_order"
-"1","Dir. of Outreach Management","Bangladeshi Women in Computer Science and Engineering","2025-04-01","","Apr 2025 – Present","Women in Tech","Leading nationwide outreach and community engagement initiatives for women in computer science and engineering.","Driving strategic partnerships, outreach programs, and mentorship for female tech researchers and developers.","Community Outreach, Strategic Partnerships, Leadership, Mentorship","https://www.facebook.com/bwcse/","/images/undergrad.jpeg","1"
-"2","Campus Leader","Interactive Cares","2025-05-01","2025-09-30","May 2025 – Sep 2025","EdTech","Led campus community programs, represented Interactive Cares in university tech events, and coordinated educational workshops.","Hosted skill-building sessions and facilitated student engagement with online learning paths.","Campus Leadership, Student Outreach, Workshop Coordination","","/images/undergrad.jpeg","2"
-"3","Assistant General Secretary","IEEE BUET Student Branch WIE Affinity Group","2024-01-01","","Jan 2024 – Present","IEEE WIE","Serving as Assistant General Secretary (Dec 2024 – Present) and previously Membership Development Coordinator (Jan 2024 – Dec 2024).","Overseeing affinity group operations, membership development campaigns, and technical workshops.","Organizational Leadership, Event Management, IEEE Governance","https://wie.ieee.org/","/images/undergrad.jpeg","3"
-"4","Logistic Secretary","BUET Debating Club","2023-04-01","","Apr 2023 – Present","Debating","Serving as Logistic Secretary (Sep 2024 – Present) and previously Information Secretary (Apr 2023 – Sep 2024).","Spearheading logistics and event infrastructure for national tournaments and managing communication.","Logistics Management, Operations, Public Relations, Tournament Coordination","","/images/undergrad.jpeg","4"
-"5","Campus Ambassador","IEEEXtreme 18.0","2024-05-01","2025-03-31","May 2024 – Mar 2025","Competitive Programming","Promoted and coordinated participation for the global virtual competitive programming hackathon.","Mobilized student teams from BUET and organized informational hackathon sessions.","Competitive Programming Promotion, Community Building, Tech Advocacy","https://ieeextreme.org/","/images/undergrad.jpeg","5"
-"6","Campus Ambassador","Youth Opportunities","2023-01-01","2023-12-31","Jan 2023 – Dec 2023","Youth Development","Facilitated international and national youth opportunities, scholarships, and conference announcements for students.","Disseminated global opportunities, fellowships, and youth summits to the university community.","Youth Empowerment, Information Dissemination, Peer Mentoring","https://www.youthop.com/","/images/undergrad.jpeg","6"
-"7","Campus Ambassador","AppLink","2022-10-01","2023-12-31","Oct 2022 – Dec 2023","Developer Ecosystem","Promoted mobile app development ecosystem and developer monetization platform on campus.","Engaged student developer community with AppLink tools and hosted tech outreach sessions.","Developer Relations, Tech Community Outreach, Platform Adoption","https://applink.com.bd/","/images/undergrad.jpeg","7"
-"8","Co-ordinating Secretary","Holy Cross College English Language Club","2019-08-01","2020-04-30","Aug 2019 – Apr 2020","Language & Culture","Organized language workshops, inter-college language festivals, and managed student coordination.","Organized HCCELC Presents 1st Inter College English Language Festival and supervised executive teams.","Event Coordination, Team Leadership, Administration","http://www.hcc.edu.bd/","/images/college.jpeg","8"
+"1","Campus Leader","Interactive Cares","2025-05-01","2025-09-30","May 2025 - Sep 2025","","","","","","","1"
+"2","Dir. of Outreach Management","Bangladeshi Women in Computer Science and Engineering (BWCSE)","2025-04-01","2026-06-30","Apr 2025 - Jun 2026 · 1 yr 3 mos","","","-> Hosted podcast ""Adda with Ramisa Apu"" on 11 May, 2025
+-> collaborate BWCSE with PinkLifeLine","","","","2"
+"3","Founder & Chief Executive Officer","PinkLifeline","2024-05-01","","May 2024 - Present · 2 yrs 6 mos","","PinkLifeLine is a digital health platform that raises breast cancer awareness, promotes early detection, and connects women with trusted healthcare support","-> Founded and lead PinkLifeLine, developing an LED-based deep learning framework for early breast cancer detection and risk prediction using longitudinal spatiotemporal imaging
+-> Directed planning and execution across four flagship initiatives -- Bright Beginnings, PinkTalks, PinkSpark, and Research for Hope -- reaching 243 school students with sanitary product distribution and over 500,000 people community-wide","","","","3"
+"4","Assistant General Secretary
+Membership Development Coordinator","IEEE BUET Student Branch WIE Affinity Group","2024-01-01","2026-06-30","Dec 2024 - Jun 2026 · 1 yr 7 mos
+Jan 2024 - Dec 2024 · 1 yr","","Part-time · 2 yrs 6 mos","->  won best impact award in both 2024 IEEE WIE Climate Tech Big Idea Pitch Competition
+-> arranged workshop in collaboration with Applink and IEEE Computer Society BUET Student Branch Chapter on app development at BUET
+-> selected as IEEEXtreme 18.0 Ambassador
+-> won best impact award in 2023 IEEE WIE Climate Tech Big Idea Pitch Competition
+Skills: Online Content Creation, Social Media Communications","","","","4"
+"5","Logistic Secretary
+Information Secretary","BUET Debating Club (BUETDC)","2023-04-01","2025-04-30","Sep 2024 - Apr 2025 · 8 mos
+Apr 2023 - Sep 2024 · 1 yr 6 mos","","Part-time · 2 yrs 1 mo","-> worked as judge in World Scholar's Cup Debate Tournament Dhaka regional (hosted by IHSB)
+-> worked as a trainee adjudicator at United Asian Debating Championship 2023
+-> worked as a trainee adjudicator at Mukhtalif 2023
+-> worked as a trainee adjudicator and got break at HGDC NATIONALS 2023","","","","5"
+"6","Campus Ambassador","IEEEXtreme 18.0","2024-05-01","2025-03-31","May 2024 - Mar 2025 · 11 mos","","IEEEXtreme 18.0 is a prestigious global coding competition where students from around the world engage in a 24-hour programming marathon to solve real-world challenges. Representing the IEEE BUET Student Branch, this competition offers a unique platform for students to demonstrate their coding skills, collaborate globally, and push the boundaries of innovation under time pressure.
+
+As an ambassador for IEEEXtreme 18.0, my role includes:","-> Promoting the event within BUET and driving student participation.
+-> Assisting with registration and preparation.
+-> Organizing pre-event activities to build excitement and teamwork.
+-> Providing guidance and support during the competition for a seamless experience.","","","","6"
+"7","Campus Ambassador","Youth Opportunities","2023-01-01","2023-12-31","Jan 2023 - Dec 2023 · 1 yr","","Youth Opportunities is the largest opportunity discovery platform for youth across the world. Millions of youth have trusted Youth Opportunities as the most effective platform to find latest opportunities for free and avail important educational contents for continued self-development","-> circulated different news of competitions and inspired them to participate at national and international level
+Social Media Communications","","","","7"
+"8","Campus Ambassador","AppLink","2022-10-01","2023-12-31","Oct 2022 - Dec 2023 · 1 yr 3 mos","","The Applink Store is the common portal which showcases all the apps to the Banglalink community.","-> made an enthusiastic community for app development
+-> arranged workshops for the community for their skill development
+-> facilitated a partnership between AppLink and various student clubs at BUET
+Social Media Communications","","","","8"
+"9","Senior Human Resources Coordinator","ESOLUMATE","2022-10-01","2024-02-29","Oct 2022 - Feb 2024 · 1 yr 5 mos","","A digital product buying and selling platform","-> joined as Human Resource Coordinator at Human Resource Department
+-> led Human Resource Department
+-> promoted to Chief Human Resources Officer","","","","9"
+"10","Co-ordinating secretary","Holy Cross College English Language Club","2019-08-01","2020-04-30","Aug 2019 - Apr 2020 · 9 mos","","HCCELC is a prestigious club of Holy Cross College to enrich the skills of English.","-> arranged 1st HCCELC Inter College English Language Festival
+-> Inviting different colleges to participate in the festival
+-> Scheduling the various events and activities
+-> Coordinating with volunteers and team members for effective execution","","","","10"

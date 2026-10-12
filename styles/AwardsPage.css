@@ -657,34 +657,64 @@
   border-color: var(--color-accent);
 }
 
-.archive-year-filters {
+.archive-year-search {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  padding-top: 0.65rem;
+  align-items: center;
+  gap: 0.85rem;
+  padding-top: 0.85rem;
   border-top: 1px solid rgba(177, 204, 116, 0.1);
 }
 
-.archive-year-btn {
-  padding: 0.25rem 0.65rem;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 6px;
+.archive-year-search-label {
   color: var(--color-text-muted);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
-.archive-year-btn:hover {
-  color: var(--color-text);
-}
-
-.archive-year-btn.active {
-  background: rgba(177, 204, 116, 0.15);
+.archive-year-search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: min(100%, 280px);
+  padding: 0.55rem 0.75rem;
   color: var(--color-accent);
-  border-color: var(--border);
+  background: rgba(30, 27, 24, 0.65);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.archive-year-search-input-wrap:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(177, 204, 116, 0.12);
+}
+
+.archive-year-search-input-wrap input {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  color: var(--color-text);
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  font-size: 0.85rem;
+}
+
+.archive-year-search-input-wrap input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.8;
+}
+
+.archive-year-clear {
+  padding: 0.15rem 0.25rem;
+  color: var(--color-accent);
+  background: transparent;
+  border: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 /* Timeline & Year Grouping */
@@ -997,14 +1027,34 @@
 .award-modal-org .org-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(177, 204, 116, 0.34);
+  border-radius: 8px;
+  background: rgba(177, 204, 116, 0.1);
   color: var(--color-accent);
   text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.25;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .award-modal-org .org-link:hover {
-  text-decoration: underline;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(177, 204, 116, 0.24);
+}
+
+.award-modal-org .org-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 .award-modal-body {
@@ -1576,9 +1626,18 @@
     gap: 0.95rem;
   }
 
-  .archive-category-filters,
-  .archive-year-filters {
+  .archive-category-filters {
     gap: 0.35rem;
+  }
+
+  .archive-year-search {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .archive-year-search-input-wrap {
+    width: 100%;
   }
 
   .archive-filter-btn {

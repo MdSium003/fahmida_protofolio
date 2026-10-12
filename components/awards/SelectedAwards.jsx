@@ -1,28 +1,61 @@
 import React from 'react';
 import { Building2, ArrowRight, Tag } from 'lucide-react';
-import { cleanAwardTitle, getPlacementBadge } from './FeaturedAwards';
+import { getPlacementBadge } from './FeaturedAwards';
+
+// Keep this section intentionally curated: the full awards list remains below,
+// while Notable Distinctions shows only the entries requested for the homepage.
+const notableDistinctions = [
+  {
+    id: '57',
+    year: '2026',
+    title: 'IEEE WIE Big Idea Pitch Competition (Global) – Best Transformative Business Idea Pitch',
+    description: 'Awarded USD 1000.',
+  },
+  {
+    id: '52',
+    year: '2025',
+    title: '2nd ISETS–ESCAP & 3rd ISETS Global Competition of Youth Voice on Energy Transition (Global) – 2nd prize',
+    description: 'Fully funded trip to UN-ESCAP Headquarters in Bangkok out of 105 projects',
+  },
+  {
+    id: '43',
+    year: '2024',
+    title: 'ISETS-ESCAP Youth Voice Competition (Global) – South Asia Divisional 2nd',
+    description: 'Invited to Youth Dialogue at UN ESCAP, Bangkok; selected from 300 applicants across 77 teams',
+  },
+  {
+    id: '58',
+    year: '2024',
+    title: 'IEEE WIE Big Idea Pitch Competition (Global) – Best Impact Prize',
+    description: 'Awarded USD 500',
+  },
+  {
+    id: '35',
+    year: '2023',
+    title: 'IEEE WIE Big Idea Pitch Competition (Global) – Best Impact Prize',
+    description: 'Awarded USD 300.',
+  },
+  {
+    id: '4',
+    year: '2025',
+    title: 'SIGHPC Immersion Program for SC25',
+    description: '(16 Nov 2025 - 21 Nov 2025) - ACM SIGHPC Immersion Travel Grant to attend SC 2025, the International Conference on High Performance Computing, Networking, Storage, and Analysis in St. Louis, Missouri.',
+  },
+  {
+    id: '1',
+    year: '2024',
+    title: 'Global Changemaker Fellowship Cohort-4',
+    description: '(Sep 2024 - Jun 2025) - top 33 out of 7,000 from 115 countries',
+  },
+];
 
 const SelectedAwards = ({ awards = [], onSelectAward }) => {
-  // Exclude items featured in the top Premier Accomplishments section (Johns Hopkins)
-  const selectedList = awards
-    .filter(a => !(a.isFeatured || a.is_featured === true || String(a.is_featured).toLowerCase() === 'true'))
-    .filter(a => {
-      const text = `${a.title || ''} ${a.description || ''} ${a.topic || ''}`.toLowerCase();
-      return (
-        text.includes('sighpc') ||
-        text.includes('changemaker') ||
-        text.includes('global') ||
-        text.includes('isets') ||
-        text.includes('wie') ||
-        text.includes('iscea') ||
-        text.includes('commonwealth') ||
-        text.includes('startup') ||
-        text.includes('fellowship') ||
-        text.includes('orange corner') ||
-        text.includes('womentor') ||
-        text.includes('hult')
-      );
-    });
+  const selectedList = notableDistinctions
+    .map((notable) => {
+      const award = awards.find((item) => String(item.id) === notable.id);
+      return award ? { ...award, ...notable } : null;
+    })
+    .filter(Boolean);
 
   if (selectedList.length === 0) return null;
 
@@ -35,10 +68,7 @@ const SelectedAwards = ({ awards = [], onSelectAward }) => {
       <div className="selected-grid">
         {selectedList.map((award) => {
           const placement = getPlacementBadge(award.title);
-          const cleanDesc = (award.description || '')
-            .replace(/^[-•>]\s*/gm, '')
-            .replace(/\n+/g, ' ')
-            .trim();
+          const cleanDesc = award.description;
 
           return (
             <article 
@@ -58,7 +88,7 @@ const SelectedAwards = ({ awards = [], onSelectAward }) => {
                   {award.year && <span className="selected-year">{award.year}</span>}
                 </div>
 
-                <h3 className="selected-title">{cleanAwardTitle(award.title)}</h3>
+                <h3 className="selected-title">{award.title}</h3>
 
                 {award.organization_name && (
                   <div className="selected-org">
@@ -69,7 +99,7 @@ const SelectedAwards = ({ awards = [], onSelectAward }) => {
 
                 {cleanDesc && (
                   <p className="selected-desc">
-                    {cleanDesc.length > 150 ? `${cleanDesc.slice(0, 150)}...` : cleanDesc}
+                    {cleanDesc}
                   </p>
                 )}
 

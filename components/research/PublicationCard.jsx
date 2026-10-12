@@ -1,16 +1,6 @@
 import React from 'react';
-import { ExternalLink, ArrowRight, Play, BookOpen, FileText } from 'lucide-react';
-import ResearchFigureFallback from './ResearchFigureFallback';
+import { ExternalLink, ArrowRight, BookOpen, FileText } from 'lucide-react';
 import { asset } from '../../src/utils/assetUrl';
-
-const getYouTubeEmbedUrl = (url) => {
-  if (!url) return '';
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|live\/)([^#&?]*).*/;
-  const match = url.match(regExp);
-  return match && match[2] && match[2].length >= 11
-    ? `https://img.youtube.com/vi/${match[2].substring(0, 11)}/maxresdefault.jpg`
-    : '';
-};
 
 /**
  * Format authors concisely for the collapsed card (e.g., "**F. Sultana**, M. Shawon, et al.")
@@ -71,15 +61,14 @@ const PublicationCard = ({ publication, onSelect }) => {
     topicsList = [],
     coverImage,
     thumbnail_url,
+    abstract,
+    description,
     externalUrl,
-    hasDemo,
     authorsList = []
   } = publication;
 
   const primaryCategory = category[0] || topicsList[0] || 'Clinical AI';
-  const isVideo = coverImage && (coverImage.includes('youtube') || coverImage.includes('youtu.be'));
-  const videoThumb = isVideo ? getYouTubeEmbedUrl(coverImage) : '';
-  const finalImage = videoThumb || coverImage || thumbnail_url;
+  const finalImage = coverImage || thumbnail_url;
 
   const hasValidImage = finalImage && 
     !finalImage.includes('example.com') && 
@@ -87,7 +76,10 @@ const PublicationCard = ({ publication, onSelect }) => {
     (finalImage.match(/\.(jpeg|jpg|gif|png|webp|svg)/i) || finalImage.startsWith(asset('/wall/')) || finalImage.startsWith('http'));
 
   const statusLower = String(status).toLowerCase();
-  const statusLabel = statusLower === 'published' ? 'Published' : (statusLower === 'preprint' ? 'Preprint' : 'Ongoing');
+  const statusLabel = statusLower === 'published' ? 'Published' :
+    statusLower === 'preprint' ? 'Preprint' :
+    statusLower === 'workshop' ? 'Workshop' :
+    statusLower === 'poster' ? 'Poster' : 'Ongoing';
 
   // Handle direct paper link click without opening modal
   const handleDirectLink = (e) => {
@@ -101,7 +93,7 @@ const PublicationCard = ({ publication, onSelect }) => {
 
   return (
     <article 
-      className="pub-card group"
+      className={`pub-card group${hasValidImage ? '' : ' pub-card-no-image'}`}
       onClick={() => onSelect && onSelect(publication)}
       tabIndex={0}
       role="button"
@@ -113,62 +105,59 @@ const PublicationCard = ({ publication, onSelect }) => {
         }
       }}
     >
-      {/* 1. Cover Image (16:9 Aspect Ratio) with Overlaid Badges */}
-      <div className="pub-card-cover-container">
-        {hasValidImage ? (
+      {/* Only render a cover when the record has a real image URL. */}
+      {hasValidImage && (
+        <div className="pub-card-cover-container">
           <img 
             src={finalImage} 
             alt={title}
             className="pub-card-cover-img"
             loading="lazy"
             onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              const parent = e.currentTarget.parentElement;
-              if (parent) {
-                parent.classList.add('fallback-active');
-              }
+              const card = e.currentTarget.closest('.pub-card');
+              if (card) card.classList.add('pub-card-image-error');
+              if (e.currentTarget.parentElement) e.currentTarget.parentElement.style.display = 'none';
             }}            decoding="async"
           />
-        ) : (
-          <ResearchFigureFallback paper={publication} className="pub-card-fallback" />
-        )}
 
-        {/* Gradient Scrim for Legibility */}
-        <div className="pub-cover-scrim" />
+          {/* Gradient Scrim for Legibility */}
+          <div className="pub-cover-scrim" />
 
-        {/* Overlaid Badges Header (Flex containment prevents any badge collision) */}
-        <div className="pub-card-badge-header">
-          <div className="pub-badge-left">
-            <span className="pub-category-chip" title={primaryCategory}>
-              {primaryCategory}
-            </span>
-          </div>
-
-          <div className="pub-badge-right">
-            {hasDemo && (
-              <span className="pub-demo-chip" title="Interactive Demo / Video Available">
-                <Play size={10} fill="currentColor" />
-                <span>Demo</span>
+          {/* Overlaid Badges Header (Flex containment prevents any badge collision) */}
+          <div className="pub-card-badge-header">
+            <div className="pub-badge-left">
+              <span className="pub-category-chip" title={primaryCategory}>
+                {primaryCategory}
               </span>
-            )}
-            <span className={`pub-status-chip status-${statusLower}`}>
-              {statusLabel}
-            </span>
-            {year && (
-              <span className="pub-year-chip">
-                {year}
+            </div>
+
+            <div className="pub-badge-right">
+              <span className={`pub-status-chip status-${statusLower}`}>
+                {statusLabel}
               </span>
-            )}
+              {year && <span className="pub-year-chip">{year}</span>}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* 2. Card Content Body */}
       <div className="pub-card-body">
+        <div className="pub-card-text-badge-header">
+          <span className="pub-category-chip" title={primaryCategory}>{primaryCategory}</span>
+          <div className="pub-badge-right">
+            <span className={`pub-status-chip status-${statusLower}`}>{statusLabel}</span>
+            {year && <span className="pub-year-chip">{year}</span>}
+          </div>
+        </div>
         {/* Title: Bold Serif with 2-line clamp */}
         <h3 className="pub-card-title font-serif" title={title}>
           {title}
         </h3>
+
+        {(abstract || description) && (
+          <p className="pub-card-text-summary">{abstract || description}</p>
+        )}
 
         {/* Venue Line: Directly under title, styled distinctly */}
         <div className="pub-venue-line">

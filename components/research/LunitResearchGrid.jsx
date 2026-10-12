@@ -101,9 +101,14 @@ const LunitResearchGrid = ({
     return filteredPublications.filter(p => (p.status || '').toLowerCase() === 'published');
   }, [filteredPublications]);
 
-  // Section 2: Preprints & Ongoing Research
+  // Workshop and poster entries have their own section after published works.
+  const workshopPublications = useMemo(() => {
+    return filteredPublications.filter(p => ['workshop', 'poster'].includes((p.status || '').toLowerCase()));
+  }, [filteredPublications]);
+
+  // Section 3: Preprints & Ongoing Research
   const ongoingAndPreprints = useMemo(() => {
-    return filteredPublications.filter(p => (p.status || '').toLowerCase() !== 'published');
+    return filteredPublications.filter(p => !['published', 'workshop', 'poster'].includes((p.status || '').toLowerCase()));
   }, [filteredPublications]);
 
   if (isLoading) {
@@ -155,7 +160,38 @@ const LunitResearchGrid = ({
         </section>
       )}
 
-      {/* 2. Section 2: Preprints & Under Review */}
+      {/* 2. Workshops & Posters */}
+      {workshopPublications.length > 0 && (
+        <section className="research-status-group workshop-group" aria-labelledby="heading-workshops-posters">
+          <ScrollReveal>
+            <div className="research-group-header">
+              <h2 id="heading-workshops-posters" className="research-group-title">
+                WORKSHOPS <span className="text-highlight">&amp; POSTERS</span>
+              </h2>
+              <p className="research-group-subtitle">
+                Workshop and poster presentations ({workshopPublications.length})
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <StaggerReveal
+            className="publication-cards-grid"
+            staggerDelay={0.04}
+            threshold={0}
+            margin="0px 0px -20px 0px"
+          >
+            {workshopPublications.map((pub) => (
+              <PublicationCard
+                key={pub.id}
+                publication={pub}
+                onSelect={(p) => setActiveModalPaper(p)}
+              />
+            ))}
+          </StaggerReveal>
+        </section>
+      )}
+
+      {/* 3. Section 3: Preprints & Under Review */}
       {ongoingAndPreprints.length > 0 && (
         <section className="research-status-group ongoing-group" aria-labelledby="heading-ongoing-preprints">
           <ScrollReveal>
@@ -186,7 +222,7 @@ const LunitResearchGrid = ({
         </section>
       )}
 
-      {/* 3. Section 3: Ongoing Works & Active Research Tracks */}
+      {/* 4. Section 4: Ongoing Works & Active Research Tracks */}
       <OngoingWorks 
         searchQuery={searchQuery}
         selectedCategory={selectedCategory}

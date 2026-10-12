@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { parseLinks, parseMedia } from '../../src/utils/csvLoader';
 import BlogContentRenderer from './BlogContentRenderer';
+import TravelDateRange from './TravelDateRange';
 
 const getYouTubeEmbedUrl = (url) => {
   if (!url) return '';
@@ -131,7 +132,9 @@ const BlogDetailModal = ({ story, onClose }) => {
                   <MapPin size={12} /> {story.location}
                 </span>
               )}
-              {story.published_date && (
+              {story.travel_dates ? (
+                <TravelDateRange value={story.travel_dates} variant="modal" />
+              ) : story.published_date && (
                 <span className="blog-modal-badge date-badge">
                   <Calendar size={12} /> {story.published_date}
                 </span>

@@ -55,7 +55,7 @@ const CareerPage = () => {
       // Ensure volunteer is sorted latest to past
       const sortedVol = (volData || []).slice().sort((a, b) => new Date(b.start_date || 0) - new Date(a.start_date || 0));
       // Ensure leadership is sorted latest to past
-      const sortedLead = (leadData || []).slice().sort((a, b) => new Date(b.start_date || 0) - new Date(a.start_date || 0));
+      const sortedLead = (leadData || []).slice().sort((a, b) => a.sortOrder - b.sortOrder);
 
       setExperiences(sortedExp);
       setEducation(sortedEdu);
@@ -707,58 +707,38 @@ const CareerPage = () => {
                 </div>
               </div>
 
-              {/* Leadership Static Grid (Uniform, No Expand, Concise Paragraph, Time Span) */}
-              <div className="leadership-static-grid">
-                {leadership.map((lead, index) => {
-                  const dateRange = `${formatDate(lead.start_date)} – ${formatDate(lead.end_date)}`;
+              <ol className="leadership-resume-list">
+                {leadership.map((lead) => {
+                  const roles = String(lead.role || '').split('\n').filter(Boolean);
+                  const dateRanges = String(lead.duration || '').split('\n').filter(Boolean);
+                  const responsibilities = String(lead.responsibilities || '').split('\n').filter(Boolean);
 
                   return (
-                    <div 
-                      key={lead.id || index}
-                      className="leadership-static-card"
-                    >
-                      {/* Organization & Role Header */}
-                      <div className="lead-card-header">
-                        <div className="lead-org-name">{lead.organization}</div>
-                        <h3 className="lead-role-title">{lead.role}</h3>
+                    <li key={lead.id} className="leadership-resume-item">
+                      <div className="leadership-resume-roles">
+                        {roles.map((role, index) => (
+                          <div className={`leadership-resume-role-row${roles.length > 1 ? ' leadership-resume-role-card' : ''}`} key={`${lead.id}-${index}`}>
+                            <div className="leadership-resume-role-org">
+                              <strong>{role}</strong>
+                              {roles.length === 1 && <span className="leadership-resume-org">, {lead.organization}</span>}
+                            </div>
+                            <span className="leadership-resume-date">{dateRanges[index]}</span>
+                          </div>
+                        ))}
+                        {roles.length > 1 && <div className="leadership-resume-org leadership-resume-group-org">{lead.organization}</div>}
                       </div>
-
-                      {/* Short Description Paragraph */}
-                      {lead.description && (
-                        <p className="lead-desc-text">
-                          {lead.description}
-                        </p>
-                      )}
-
-                      {/* Time Span: From when to when & Category */}
-                      <div className="lead-timespan-bar">
-                        <div className="lead-timespan-item">
-                          <Calendar size={13} className="lead-calendar-icon" />
-                          <span>{dateRange}</span>
-                        </div>
-                        {lead.category && (
-                          <span className="vol-cat-pill">{lead.category}</span>
-                        )}
-                      </div>
-
-                      {/* External Link */}
-                      {lead.external_link && (
-                        <div className="lead-footer-link">
-                          <a 
-                            href={lead.external_link} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="vol-link-action"
-                          >
-                            <span>Organization Link</span>
-                            <ArrowUpRight size={13} />
-                          </a>
+                      {lead.description && <p className="leadership-resume-description">{lead.description}</p>}
+                      {responsibilities.length > 0 && (
+                        <div className="leadership-resume-responsibilities">
+                          {responsibilities.map((responsibility, index) => (
+                            <p key={`${lead.id}-responsibility-${index}`}>{responsibility}</p>
+                          ))}
                         </div>
                       )}
-                    </div>
+                    </li>
                   );
                 })}
-              </div>
+              </ol>
             </section>
           </ScrollReveal>
 

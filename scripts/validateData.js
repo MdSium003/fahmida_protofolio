@@ -39,6 +39,12 @@ const DATA_CONFIGS = [
     numericFields: ['display_order'],
   },
   {
+    fileName: 'professional_training.csv',
+    requiredFields: ['id', 'title', 'institution'],
+    booleanFields: [],
+    numericFields: ['sort_order'],
+  },
+  {
     fileName: 'education.csv',
     requiredFields: ['id', 'institution', 'degree_level'],
     booleanFields: [],

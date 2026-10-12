@@ -1,6 +1,6 @@
 # 📊 Portfolio CSV Data Guide
 
-All portfolio content is stored in **10 clean, self-contained CSV files** located in this directory (`public/data/`). You can easily open, edit, add, or delete items using **Microsoft Excel**, **Google Sheets**, or any spreadsheet/text editor.
+Portfolio content is stored in self-contained CSV files in this directory (`public/data/`). You can easily open, edit, add, or delete items using **Microsoft Excel**, **Google Sheets**, or any spreadsheet/text editor.
 
 ---
 
@@ -14,13 +14,27 @@ All portfolio content is stored in **10 clean, self-contained CSV files** locate
 | **`research.csv`** | Research Papers | Academic papers, publications, abstracts, authors, topics |
 | **`awards.csv`** | Awards & Achievements | Honors, competitions, certificates, photos, videos |
 | **`blogs.csv`** | Blog & Vlogs | Articles, video logs, links, gallery media |
-| **`skills.csv`** | Skills & Expertise | Programming languages (with % score), frameworks, tools |
+| **`skills.csv`** | Skills & Expertise | Technical skills, specialized areas, and languages |
+| **`professional_training.csv`** | Skills & Expertise | Professional development and training records |
 | **`experience.csv`** | Experience & Career Timeline | Work experience, job titles, companies, dates, descriptions |
 | **`education.csv`** | Education & Career Timeline | Degrees, institutions, GPA, clubs, achievements |
 | **`volunteer.csv`** | Volunteer & Career Timeline | Community work, leadership roles, responsibilities |
 | **`social_links.csv`** | Homepage & Footer | Social media profiles, resume/CV link |
 | **`upcycling.csv`** | Upcycling Projects | Creative craft & DIY upcycling portfolio items |
 | **`news.csv`** | Homepage News & Milestones | Monthly news updates and announcements |
+| **`linkedin_featured.csv`** | Homepage LinkedIn Featured | LinkedIn featured interviews, press coverage, posts, and images |
+
+---
+
+### `linkedin_featured.csv`
+Used in the **Homepage LinkedIn Featured** card grid.
+- **`id`**: Unique numeric identifier.
+- **`title`**: Featured card title as shown on LinkedIn.
+- **`description`**: The supporting text shown with the LinkedIn item.
+- **`image_url`**: Local image path for the card preview.
+- **`external_link`**: Destination opened when the card is selected.
+- **`source_label`**: Outlet, organization, or LinkedIn post label.
+- **`display_order`**: Display position, starting at `1`.
 
 ---
 
@@ -91,14 +105,21 @@ Used in the **Blog / Vlog page**.
 
 ### 5. `skills.csv`
 Used in the **Skills page**.
-- **`id`**: Unique ID (e.g., `lang_1`, `frame_1`, `tool_1`).
-- **`category`**: One of `Languages`, `Frameworks`, or `Tools`.
-- **`name`**: Skill name (e.g., `Python`, `React`, `Unity`, `Docker`).
-- **`proficiency`**:
-  * For **Languages**: Numeric percentage (e.g., `90` for 90%).
-  * For **Frameworks**: Sub-category (e.g., `Machine Learning`, `Frontend`).
-  * For **Tools**: Tool category (e.g., `Game Engine`, `Version Control`).
-- **`display_order`**: Numeric sorting order (`1`, `2`, `3`...).
+- **`id`**: Unique ID for the skill.
+- **`category`**: Broad skill category.
+- **`subcategory`**: Display group on the Skills page (for example, `Programming Languages` or `Soft Skills`).
+- **`name`**: Exact skill or language label shown on the page.
+- **`display_order`**: Order within the display group.
+
+### `professional_training.csv`
+Used in the **Professional Training** section on the Skills page.
+- **`id`**: Unique training record ID.
+- **`title`**: Training programme title.
+- **`institution`**: Institution or organizer.
+- **`date_range`**: Programme dates and schedule details.
+- **`description`**: Short programme description.
+- **`responsibilities`**: Focus areas or additional training details, one item per line.
+- **`sort_order`**: Display order.
 
 ---
 

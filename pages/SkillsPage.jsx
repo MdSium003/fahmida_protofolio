@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import SkillsHero from '../components/skills/SkillsHero';
-import CoreExpertise from '../components/skills/CoreExpertise';
 import TechnologyStack from '../components/skills/TechnologyStack';
-import SkillsInPractice from '../components/skills/SkillsInPractice';
+import ProfessionalTraining from '../components/skills/ProfessionalTraining';
 import SkillsCTA from '../components/skills/SkillsCTA';
 import ScrollReveal from '../components/shared/ScrollReveal';
-import { loadSkillsData, loadProjectsData, loadResearchData } from '../src/utils/csvLoader';
+import { loadSkillsData, loadProfessionalTrainingData } from '../src/utils/csvLoader';
 import '../styles/SkillsPage.css';
 import LoadingState from '../components/shared/LoadingState';
 import { usePageMeta } from '../src/hooks/usePageMeta';
@@ -14,27 +13,24 @@ const SkillsPage = () => {
   usePageMeta({
     title: 'Skills & Expertise',
     description:
-      "Technical stack, core expertise and applied engineering practice across machine learning, cloud and data systems.",
+      "Programming languages, web and database technologies, data science and machine learning, specialized areas, soft skills, languages, and professional training.",
     path: '/skills',
   });
 
   const [skills, setSkills] = useState([]);
-  const [projects, setProjects] = useState([]);
-  const [research, setResearch] = useState([]);
+  const [training, setTraining] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const [skillsData, projData, resData] = await Promise.all([
+        const [skillsData, trainingData] = await Promise.all([
           loadSkillsData(),
-          loadProjectsData(),
-          loadResearchData()
+          loadProfessionalTrainingData()
         ]);
         setSkills(skillsData || []);
-        setProjects(projData || []);
-        setResearch(resData || []);
+        setTraining(trainingData || []);
       } catch (err) {
         console.error('Error loading skills page data:', err);
       } finally {
@@ -53,19 +49,14 @@ const SkillsPage = () => {
         <LoadingState variant="grid" count={6} label="Loading technical stack" />
       ) : (
         <>
-          {/* 01 — Core Expertise & Architecture (Merged Iconic Domain & Tech Tree) */}
-          <ScrollReveal>
-            <CoreExpertise skills={skills} />
-          </ScrollReveal>
-
-          {/* 02 — Technology Stack (Typographic clusters) */}
+          {/* Technical skills */}
           <ScrollReveal delay={0.05}>
             <TechnologyStack skills={skills} />
           </ScrollReveal>
 
-          {/* 03 — Skills In Practice (Image-First Proof of Work) */}
+          {/* Professional development */}
           <ScrollReveal delay={0.05}>
-            <SkillsInPractice projects={projects} research={research} />
+            <ProfessionalTraining training={training} />
           </ScrollReveal>
 
           {/* Closing Strip */}

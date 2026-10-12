@@ -2068,6 +2068,17 @@
   transition: all 0.25s ease;
 }
 
+.home-mentions-card-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.home-mentions-card-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
 .home-mentions-card:hover {
   border-color: var(--color-accent);
   transform: translateY(-3px);

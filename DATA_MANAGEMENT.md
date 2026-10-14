@@ -1,11 +1,11 @@
 # Portfolio Data Management & Authoring Guide
 
 > [!IMPORTANT]
-> **100% DATA-DRIVEN ARCHITECTURE — ZERO HARDCODED CONTENT**
+> **CSV-first content management**
 > 
-> All portfolio content (projects, research publications, awards, blog posts, skills, career history, media coverage, news updates, moments, and social links) is driven entirely by **14 CSV files** located in `public/data/`.
+> Most editable portfolio records are stored in **16 CSV files** under `public/data/`. Some interface copy and data sets are still defined in code; check the “Connected?” column in Section 9 before adding a row.
 > 
-> **NEVER edit React components (`.jsx` files) to update text, dates, links, or images.** Simply append or modify rows in the appropriate CSV file, validate, test locally, and push to deploy.
+> For a connected CSV, add or edit a row in that file instead of changing React components. A CSV file does not appear on the site unless a loader and page/component use it.
 
 ---
 
@@ -15,7 +15,7 @@
 2. [Step-by-Step Guide: Appending New Data Rows](#2-step-by-step-guide-appending-new-data-rows)
 3. [CSV Formatting & Syntax Rules](#3-csv-formatting--syntax-rules)
 4. [Micro-Syntaxes Reference (Links, Authors, Media, Tags)](#4-micro-syntaxes-reference)
-5. [Complete Column-by-Column Reference for All 14 CSV Files](#5-complete-column-by-column-reference)
+5. [Column Reference for the CSV Files](#5-complete-column-by-column-reference)
    - 5.1 [`projects.csv`](#51-projectscsv--software--engineering-projects)
    - 5.2 [`research.csv`](#52-researchcsv--academic-publications--preprints)
    - 5.3 [`awards.csv`](#53-awardscsv--honors-competitions--grants)
@@ -30,9 +30,12 @@
    - 5.12 [`media_mentions.csv`](#512-media_mentionscsv--press-tv--news-features)
    - 5.13 [`news.csv`](#513-newscsv--monthly-announcements--updates)
    - 5.14 [`upcycling.csv`](#514-upcyclingcsv--sustainability-craft-projects)
+   - 5.15 [`linkedin_featured.csv`](#515-linkedin_featuredcsv--linkedin-featured-items)
+   - 5.16 [`professional_training.csv`](#516-professional_trainingcsv--professional-training)
 6. [Image and Asset Guidelines](#6-image-and-asset-guidelines)
 7. [Automated Data Validation & Pre-Build Gatekeeper](#7-automated-data-validation)
 8. [Troubleshooting & Common Errors](#8-troubleshooting--common-errors)
+9. [Display Order: What Appears First](#9-display-order-what-appears-first)
 
 ---
 
@@ -48,7 +51,7 @@ PapaParse Engine (src/utils/csvLoader.js)
        │
        ├── Normalizes booleans: "true" / "false" -> native boolean
        ├── Normalizes numbers: "2026", "1" -> native integer/float
-       ├── Resolves image paths: "public/foo.jpg" -> "/fahmida_protofolio/foo.jpg"
+       ├── Resolves local image paths against the configured Vite/GitHub Pages base path
        ├── Parses compound strings (links, authors, media, tags)
        └── Stores parsed array in in-memory Map cache
        │
@@ -61,34 +64,40 @@ React 19 Pages & Components (Homepage, Projects, Research, Modals)
 
 ## 2. Step-by-Step Guide: Appending New Data Rows
 
-Follow these simple steps whenever you want to add a new project, paper, award, or experience:
+Use this workflow for any CSV-backed section. The ordering rules in Section 9 determine where the new record appears; appending it to the bottom of the file does not necessarily make it appear at the bottom of the page.
 
 ### Step 1: Open the CSV File
 - Locate the appropriate CSV file in `public/data/` (e.g. `public/data/projects.csv`).
 - Open it in your favorite spreadsheet editor (**Microsoft Excel**, **Google Sheets**, **Apple Numbers**) or a text editor (**VS Code**, **Notepad**).
 
-### Step 2: Add a New Row at the Bottom
-- **Assign a globally unique `id`:** Look at the existing IDs in that file and choose a new unique ID (e.g., if IDs `1` through `11` exist, use `12`).
-- **Fill in the columns:** Enter information for each column according to the column schema specifications detailed in [Section 5](#5-complete-column-by-column-reference).
-- **Handle empty/optional fields:** If an optional field does not apply, leave it blank (`""` or empty between commas).
+### Step 2: Add a New Row
+- Keep the existing header row and column order unchanged. Each record must have the same number of columns as the header.
+- Give the record an `id` that is unique within that CSV. IDs do not need to be unique across different CSV files.
+- Fill required fields using the schema in Section 5. Leave optional fields blank when they do not apply.
+- Set the ordering field using Section 9. The page sorts records by its configured field, not by where the row was inserted in the file.
+- Append the row at the end of the file to make review and version-control diffs easier.
 
 ### Step 3: Add Media Files (If Applicable)
-- If your new item includes an image, place the image in `public/images/` or `public/wall/`.
-- Reference it in the CSV as `/images/your_image_name.jpg` or `/wall/your_image_name.jpg`.
+- Put images inside `public/images/`, `public/wall/`, or an appropriate subfolder (for example, `public/images/campus/`).
+- Use a site-root path in the CSV, such as `/images/your_image_name.jpg`, `/images/campus/logo.png`, or `/wall/photo.jpg`. Never use a computer-specific drive path. The loader resolves local paths against the GitHub Pages base path.
+- Match filename capitalization and extension exactly. GitHub Pages is case-sensitive. Confirm the file exists at the referenced path.
 
 ### Step 4: Validate Your Data
-Before running or building, run the built-in validation script in your terminal:
+Run the validator and production build in your terminal:
 ```bash
 npm run validate:data
+npm run build
 ```
-If you made any formatting mistake (duplicate ID, missing required field, bad boolean value), the validator will pinpoint the exact file and row number.
+The validator reports malformed CSV, duplicate or missing IDs, missing configured required fields, and invalid configured boolean/numeric values. It currently covers 15 datasets; `linkedin_featured.csv` is not configured. It does not check image paths, URL validity, date formats, or whether a CSV is connected to a page, so check those manually.
 
-### Step 5: Test Locally
+### Step 5: Preview Locally
 Start your local dev server:
 ```bash
 npm run dev
 ```
 Open `http://localhost:5173/fahmida_protofolio/` to inspect your newly added item.
+
+Check the relevant page and, when applicable, its homepage preview. Confirm the image loads, links open the intended destination, text is visible, and the item appears in the intended order. Stop the dev server with `Ctrl+C` when finished.
 
 ---
 
@@ -276,15 +285,15 @@ Used in `projects.csv`, `research.csv`, `skills.csv`, `experience.csv`.
 | `location` | No | String | `Bangkok, Thailand` | Geographic location tag. |
 | `category` | No | String | `Reflection` | Tag: `Reflection`, `Tech Vlog`, `AI & Research`, `Travel`. |
 | `read_time` | No | String | `8 min read` | Read time or watch duration (`8 min read`, `15 min watch`). |
-| `is_featured` | No | Boolean | `true` | Show in top featured journal spotlight. |
-| `featured_order` | No | Integer | `1` | Ranking in featured spotlight. |
+| `is_featured` | No | Boolean | `true` | Retained in the schema; it currently does not change the Blog page's date-sorted list. |
+| `featured_order` | No | Integer | `1` | Retained in the schema; the current Blog loader sorts by `published_date`, not this field. |
 | `links` | No | String | `external:https://un.org|UN ESCAP Report` | Compound reference links. |
 | `media` | No | String | `youtube:https://youtu.be/...|Watch Vlog` | Compound video or gallery attachments. |
 
 ---
 
 ### 5.5 `skills.csv` — Technical Skills & Domains
-*Powers the `/skills` page: Domain Specialization cards (Core Expertise) and Interactive Technology Stack pills.*
+*Powers the `/skills` page's Languages, Frameworks & Tooling groups. Rows with `category=Domains` are excluded from this section.*
 
 | Column | Required? | Type | Example | Description |
 |---|---|---|---|---|
@@ -316,7 +325,7 @@ Used in `projects.csv`, `research.csv`, `skills.csv`, `experience.csv`.
 | `skills_used` | No | String | `Teaching, Curriculum Design, AI` | Comma-separated list of competencies utilized. |
 | `external_link` | No | URL | `https://stamforduniversity.edu.bd` | Company or department website. |
 | `logo_url` | No | Path/URL | `/images/undergrad.jpeg` | Institution or company logo image path. |
-| `sort_order` | No | Integer | `1` | Priority sorting order (items also sort by `start_date` descending). |
+| `sort_order` | No | Integer | `1` | Present in the CSV schema, but the current Career page sorts experience by `start_date` descending; this field currently does not control its position. |
 
 ---
 
@@ -356,7 +365,7 @@ Used in `projects.csv`, `research.csv`, `skills.csv`, `experience.csv`.
 | `skills_gained` | No | String | `Public Speaking, Mentorship` | Comma-separated competencies developed. |
 | `external_link` | No | URL | `https://agami.org` | Non-profit website URL. |
 | `logo_url` | No | Path/URL | `/images/agami_logo.png` | Organization logo image path. |
-| `sort_order` | No | Integer | `1` | Display sequence. |
+| `sort_order` | No | Integer | `1` | Present in the CSV schema, but volunteer entries currently sort by `start_date` descending; this field currently does not control their position. |
 
 ---
 
@@ -377,7 +386,7 @@ Used in `projects.csv`, `research.csv`, `skills.csv`, `experience.csv`.
 | `skills_gained` | No | String | `Strategic Partnerships, Leadership` | Comma-separated leadership competencies. |
 | `external_link` | No | URL | `https://www.facebook.com/bwcse/` | Official organization link or page. |
 | `logo_url` | No | Path/URL | `/images/bwcse_logo.png` | Organization emblem or logo path. |
-| `sort_order` | No | Integer | `1` | Display sequence. |
+| `sort_order` | No | Integer | `1` | Career page order, ascending. Use `1` for the first entry; blank or `0` defaults to `999` and generally appears last. |
 
 ---
 
@@ -395,7 +404,7 @@ Used in `projects.csv`, `research.csv`, `skills.csv`, `experience.csv`.
 ---
 
 ### 5.11 `moments.csv` — Photo Wall Snapshots
-*Powers the interactive 3D DriftWall gallery on the Homepage and the Moments strip on the Blog page.*
+*Powers the interactive DriftWall gallery on the Homepage. The Blog page's Media Mentions section uses `media_mentions.csv`, not this file.*
 
 | Column | Required? | Type | Example | Description |
 |---|---|---|---|---|
@@ -407,7 +416,7 @@ Used in `projects.csv`, `research.csv`, `skills.csv`, `experience.csv`.
 ---
 
 ### 5.12 `media_mentions.csv` — Press, TV & News Features
-*Powers TV interview cards, press coverage, and newspaper clipping previews on the Homepage and Blog.*
+*Powers the full Media Mentions section on the Blog page and the first six ordered cards on the Homepage.*
 
 | Column | Required? | Type | Example | Description |
 |---|---|---|---|---|
@@ -421,12 +430,12 @@ Used in `projects.csv`, `research.csv`, `skills.csv`, `experience.csv`.
 | `date` | No | Date (`YYYY-MM-DD`) | `2026-02-18` | Broadcast / publication date. |
 | `caption` | No | String | `Broadcast interview spotlighting PinkLifeLine...` | Comprehensive summary of the coverage. |
 | `display_order` | No | Integer | `1` | Display sequence. |
-| `is_featured` | No | Boolean | `true` | Set to `true` to highlight on Homepage. |
+| `is_featured` | No | Boolean | `true` | Retained in the schema, but the current homepage preview shows the first six records by `display_order`; this flag does not change that selection. |
 
 ---
 
 ### 5.13 `news.csv` — Monthly Announcements & Updates
-*Powers the Latest News & Announcements widget on the Homepage.*
+*Powers the Homepage News & Monthly Updates marquee; all rows are shown in newest-date-first order.*
 
 | Column | Required? | Type | Example | Description |
 |---|---|---|---|---|
@@ -438,13 +447,13 @@ Used in `projects.csv`, `research.csv`, `skills.csv`, `experience.csv`.
 | `details` | No | String | `Commenced teaching undergraduate courses...` | Full expanded text for detail modals. |
 | `image_url` | No | Path/URL | `/images/undergrad.jpeg` | Accompanying thumbnail photo. |
 | `external_link` | No | URL | `https://stamforduniversity.edu.bd` | Related official link. |
-| `is_featured` | No | Boolean | `true` | Show in Homepage News section. |
-| `sort_order` | No | Integer | `1` | Priority order. |
+| `is_featured` | No | Boolean | `true` | Retained in the schema; the current homepage displays all news rows and does not filter by this flag. |
+| `sort_order` | No | Integer | `1` | Present in the CSV schema, but the current homepage sorts news by `date` descending; this field currently does not control order. |
 
 ---
 
 ### 5.14 `upcycling.csv` — Sustainability & Craft Projects
-*Powers the Upcycling and Creative Craft portfolio items.*
+*CSV and validation schema exist, but no current page or component loads this file. Adding a row alone will not display it on the website.*
 
 | Column | Required? | Type | Example | Description |
 |---|---|---|---|---|
@@ -454,6 +463,36 @@ Used in `projects.csv`, `research.csv`, `skills.csv`, `experience.csv`.
 | `image_url` | No | Path/URL | `/images/up_1.jpeg` | Photo of the creation. |
 | `instagram_link` | No | URL | `https://instagram.com/p/...` | Instagram post or video link. |
 | `display_order` | No | Integer | `1` | Display order. |
+
+---
+
+### 5.15 `linkedin_featured.csv` — LinkedIn Featured Items
+*A loader and card component exist, but the component is not currently connected to a page. Adding a row alone will not display it. This file is also not included in `scripts/validateData.js`.*
+
+| Column | Required? | Type | Example | Description |
+|---|---|---|---|---|
+| `id` | Yes | String/Int | `29` | Unique identifier within this file. |
+| `title` | Yes in practice | String | `Global Changemaker Fellowship Cohort 4.0` | Featured post/card title. |
+| `description` | No | String | `Selected as one of 33 fellows...` | Supporting text. |
+| `image_url` | No | Path/URL | `/images/featured/fellowship.jpg` | Local thumbnail or full image URL. |
+| `external_link` | No | URL | `https://www.linkedin.com/feed/update/...` | Destination opened by the card. |
+| `source_label` | No | String | `Connecting Dreams Foundation` | Organization or platform label. |
+| `display_order` | No | Integer | `1` | Loader sorts ascending. Note: the unused homepage component re-sorts descending and shows six, so confirm which order is desired before connecting it. |
+
+---
+
+### 5.16 `professional_training.csv` — Professional Training
+*Powers the Professional Training section on the Skills page.*
+
+| Column | Required? | Type | Example | Description |
+|---|---|---|---|---|
+| `id` | Yes | String/Int | `2` | Unique identifier within this file. |
+| `title` | Yes | String | `Faculty Development (Foundation) Training (FT-N9)` | Programme title. |
+| `institution` | Yes | String | `Institutional Quality Assurance Cell (IQAC), Stamford University Bangladesh` | Provider or institution. |
+| `date_range` | No | String | `22 September–7 November 2026 | 6 Scheduled days` | Display-ready schedule text. |
+| `description` | No | String | `Selected for the foundation-level faculty development programme...` | Programme summary. |
+| `responsibilities` | No | Multiline string | `Teaching–learning methodologies\nAssessment and evaluation` | Focus areas, one per line. Quote the entire CSV field when it contains line breaks. |
+| `sort_order` | No | Integer | `1` | Display order ascending; blank or `0` defaults to `999`. |
 
 ---
 
@@ -476,11 +515,13 @@ Used in `projects.csv`, `research.csv`, `skills.csv`, `experience.csv`.
 
 ## 7. Automated Data Validation
 
-The repository includes a validation script (`scripts/validateData.js`) that automatically checks all 14 CSV files for:
+The repository includes a validation script (`scripts/validateData.js`) that checks 15 configured CSV files (there are 16 CSVs in `public/data/`). It checks:
 - Unique `id` values with zero duplicates.
-- All required columns present and non-empty.
-- Valid boolean values (`true` or `false`).
-- Valid numeric formats (`year`, `display_order`, `featured_order`, `sort_order`).
+- Required fields configured in the validator are present and non-empty.
+- Valid boolean values (`true`, `false`, `1`, `0`, `yes`, or `no`); use lowercase `true` or `false` for new rows.
+- Valid numeric formats for configured numeric fields (`year`, `display_order`, `featured_order`, `sort_order`).
+
+The validator does not check `linkedin_featured.csv`, image-file paths, external URLs, date formats, whether a dataset is used by a page, or whether ordering matches your intended presentation. Check those while previewing the site.
 
 ### Running the Validator
 ```bash
@@ -498,7 +539,36 @@ npm run validate:data
 |---|---|---|
 | `❌ Duplicate ID detected: "5"` | Two rows in the same CSV share the same ID. | Change the ID of the new row to an unused integer or string. |
 | `❌ Missing required field "title"` | A mandatory column was left blank. | Fill in the required column value for that row. |
-| `❌ Invalid boolean value for "is_featured": "yes"` | Value must be `true` or `false`. | Replace `"yes"` with `"true"`. |
+| `❌ Invalid boolean value for "is_featured": "maybe"` | Value is not a recognized boolean. | Use lowercase `true` or `false` for clarity. |
 | `❌ Invalid numeric value for "year": "2024-05"` | `year` column received a date string instead of a 4-digit number. | Change value to `2024`. Use the `date` column for full `YYYY-MM-DD` dates. |
 | Broken image on live site | Typo in file name or missing image file. | Check `public/images/` to confirm the exact filename and case sensitivity (e.g. `.jpg` vs `.jpeg`). |
 | Card links not clicking properly | Malformed syntax in `sources` or `links`. | Ensure links use `type:url|Label` format separated by ` ; `. |
+
+---
+
+## 9. Display Order: What Appears First
+
+Appending a CSV row at the bottom makes diffs easier to review, but **the row's sort field or date determines its display position**. Current ordering is implemented in `src/utils/csvLoader.js` and, for career records, `pages/CareerPage.jsx`.
+
+| CSV | Connected to a page now? | Current display order | To place a new record near the top |
+|---|---|---|---|
+| `awards.csv` | Yes: Awards page and homepage recognition preview | `featured_order` ascending, then `year` newest first. Homepage recognition preview also requires `showcase_home=true`. | Set a low positive `featured_order`; use `showcase_home=true` if it should appear on the homepage. |
+| `blogs.csv` | Yes: Blog page | `published_date` newest first. `featured_order` does not currently set the list order. | Enter the correct latest date in `YYYY-MM-DD` format. |
+| `education.csv` | Yes: Career page | `start_year` newest first. | Use the latest `start_year`. |
+| `experience.csv` | Yes: Career page | `start_date` newest first. `sort_order` is currently ignored. | Use the latest `start_date` in `YYYY-MM-DD` format. |
+| `leadership.csv` | Yes: Career page | `sort_order` ascending. The page applies this order after loading. | Use a low positive `sort_order` (for example, `1`). |
+| `linkedin_featured.csv` | **No**: loader/component exist, but no page currently uses them | Loader sorts `display_order` ascending. An unused homepage component reverses the order and selects six. | Not displayed yet. Connect the component to a page before adding items for display. |
+| `media_mentions.csv` | Yes: Blog Media Mentions and homepage preview | `display_order` ascending; homepage shows the first six. `is_featured` does not currently filter the homepage preview. | Use a low positive `display_order` to place it earlier and potentially within the homepage six. |
+| `moments.csv` | Yes: Homepage DriftWall | `display_order` ascending. | Use a low positive `display_order`. |
+| `news.csv` | Yes: Homepage news carousel | `date` newest first. `sort_order` is currently ignored. | Use the latest valid `date` in `YYYY-MM-DD` format. |
+| `professional_training.csv` | Yes: Skills page | `sort_order` ascending. | Use a low positive `sort_order`. |
+| `projects.csv` | Yes: Projects page and project highlights | `featured_order` ascending, then `year` newest first. `is_featured=true` controls featured-project highlights. | Use a low positive `featured_order`; set `is_featured=true` for featured placements. |
+| `research.csv` | Yes: Research page and research highlights | `featured_order` ascending, then `year` newest first. `is_featured=true` controls research spotlights. | Use a low positive `featured_order`; set `is_featured=true` for spotlight placements. |
+| `skills.csv` | Yes: Skills page | Grouped by skill category/subcategory, then `display_order` ascending within each rendered group. | Add the record to the intended category/subcategory and set its relative `display_order`. |
+| `social_links.csv` | Yes: Homepage and footer | `sort_order` ascending. | Use a low positive `sort_order`. |
+| `upcycling.csv` | **No**: no current page/component loads this file | No website display order because it is not connected. | Not displayed yet. Connect a page/loader before adding items for display. |
+| `volunteer.csv` | Yes: Career page | `start_date` newest first. `sort_order` is currently ignored. | Use the latest `start_date` in `YYYY-MM-DD` format. |
+
+**Numeric order fields:** use positive integers beginning at `1`. The current loaders convert blank or `0` order values to `999`, which usually puts those records last. When two records have the same order value, their relative order may depend on the secondary date/year sort or original CSV order; use distinct values when a precise sequence matters.
+
+**Before publishing:** verify the file's display order by opening the relevant page locally. This catches cases where a sort field exists in the CSV but the page currently sorts by a different field, or where a CSV is not connected at all.

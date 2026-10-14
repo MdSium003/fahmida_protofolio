@@ -34,7 +34,7 @@ const DEFAULT_WALL_IMAGES = Array.from({ length: 31 }, (_, i) =>
 
 const HomePage = () => {
   usePageMeta({
-    title: 'Strategic Finance & AI Research Portfolio',
+    title: 'AI in Healthcare Researcher & Entrepreneur',
     description:
       "ACCA candidate and strategic finance professional working across AI and vision research. Publications, projects, recognitions and writing.",
     path: '/',

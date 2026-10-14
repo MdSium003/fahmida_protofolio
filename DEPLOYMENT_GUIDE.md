@@ -13,10 +13,10 @@ All deployment automation has **already been fully configured and wired up**.
 Every time you commit and push changes to the **`main`** branch on GitHub:
 1. GitHub automatically triggers the **Deploy to GitHub Pages** GitHub Actions workflow.
 2. The workflow checks out your code, sets up Node.js 22, and runs `npm ci`.
-3. It runs `npm run lint` and `npm run validate:data` to guarantee that your code and all 14 CSV data files are 100% error-free.
+3. It runs `npm run lint` and `npm run build`. The build's `prebuild` hook runs `scripts/validateData.js`, which currently validates 15 of the 16 CSV files in `public/data/` (`linkedin_featured.csv` is not included).
 4. It compiles an optimized production bundle with Vite into `dist/`.
 5. It uploads the bundle and publishes it directly to GitHub Pages CDN.
-6. Your live site updates automatically in **under 60 seconds**.
+6. Your live site updates after the workflow succeeds. Deployment time varies; check the Actions run rather than relying on a fixed time estimate.
 
 ---
 
@@ -27,24 +27,24 @@ Deploying new content, research papers, projects, or code changes requires only 
 ```
  ┌──────────────────────┐      ┌──────────────────────┐      ┌──────────────────────┐
  │  1. Local Validation │ ───► │  2. Git Commit & Push│ ───► │ 3. GitHub Auto-Deploy│
- │  npm run build       │      │  git push origin main│      │ Live in ~60 seconds  │
+ │  npm run build       │      │  git push origin main│      │ Check Actions status │
  └──────────────────────┘      └──────────────────────┘      └──────────────────────┘
 ```
 
 ---
 
-### Step 1: Validate & Test Locally (Recommended)
+### Step 1: Validate and Build Locally (Recommended)
 
 Before pushing to GitHub, ensure that your data and code pass all automated checks. Run these commands in your project terminal:
 
 ```bash
-# 1. Check that all CSV data files are valid and error-free
+# 1. Validate the configured CSV datasets (see DATA_MANAGEMENT.md for coverage)
 npm run validate:data
 
 # 2. Check for any linting errors
 npm run lint
 
-# 3. Test the production build locally
+# 3. Build the production bundle locally
 npm run build
 ```
 
@@ -78,7 +78,7 @@ git push origin main
    **[https://github.com/mdsium003/fahmida_protofolio](https://github.com/mdsium003/fahmida_protofolio)**
 2. Click on the **Actions** tab at the top.
 3. You will see a workflow run named **Deploy to GitHub Pages** with a yellow spinning circle (indicating that it is building).
-4. In about 45–60 seconds, the status will turn into a **green checkmark (Success)**.
+4. Wait for the workflow to finish. The **green checkmark (Success)** confirms that the build and deployment completed.
 5. Open your live site:  
    **[https://mdsium003.github.io/fahmida_protofolio/](https://mdsium003.github.io/fahmida_protofolio/)**
 
@@ -120,7 +120,7 @@ The repository is already configured to deploy using GitHub Actions. If you ever
 
 ## 5. Under the Hood: The GitHub Actions Workflow
 
-The CI/CD pipeline is defined in [`.github/workflows/deploy.yml`](file:///d:/Git/Temp_fahmida/fahmida_protofolio/.github/workflows/deploy.yml):
+The CI/CD pipeline is defined in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
 
 ```yaml
 name: Deploy to GitHub Pages
@@ -173,7 +173,7 @@ jobs:
 ### Why This Pipeline is Robust:
 - **`npm ci`:** Installs exact versions from `package-lock.json` for deterministic, reproducible builds.
 - **Blocking Linter (`npm run lint`):** Ensures no syntax regressions or broken imports reach production.
-- **Pre-Build Data Validator (`scripts/validateData.js`):** Runs automatically as part of `npm run build`. If any CSV contains a duplicate ID or missing required column, the build aborts before publishing broken HTML.
+- **Pre-Build Data Validator (`scripts/validateData.js`):** Runs automatically as part of `npm run build`. It checks CSV parsing, duplicate/missing IDs, configured required fields, booleans, and numbers in 15 configured datasets. It does not validate `linkedin_featured.csv`, image-file existence, or URL/date correctness.
 - **Concurrency Protection:** Ensures only one deployment runs at a time so that a half-published build is never served.
 
 ---

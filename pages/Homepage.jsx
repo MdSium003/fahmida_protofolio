@@ -293,6 +293,7 @@ const HomePage = () => {
             dim={0.65}
             grayscale={false}
             overlayColor="#0a0a0a"
+            responsiveColumns
           />
           <div className="driftwall-overlay-gradient" />
         </div>

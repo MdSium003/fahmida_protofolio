@@ -708,6 +708,7 @@
    4. Moments From The Journey & Media Mentions (Visual Gallery Strip)
    ========================================================================== */
 .moments-strip-section {
+  scroll-margin-top: 5rem;
   margin-top: 5rem;
   padding-top: 2.25rem;
   border-top: 1px solid var(--border);

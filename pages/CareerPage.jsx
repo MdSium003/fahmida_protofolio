@@ -715,17 +715,24 @@ const CareerPage = () => {
 
                   return (
                     <li key={lead.id} className="leadership-resume-item">
-                      <div className="leadership-resume-roles">
-                        {roles.map((role, index) => (
-                          <div className={`leadership-resume-role-row${roles.length > 1 ? ' leadership-resume-role-card' : ''}`} key={`${lead.id}-${index}`}>
-                            <div className="leadership-resume-role-org">
-                              <strong>{role}</strong>
-                              {roles.length === 1 && <span className="leadership-resume-org">, {lead.organization}</span>}
+                      <div className="leadership-resume-heading">
+                        <div className="leadership-resume-roles">
+                          {roles.map((role, index) => (
+                            <div className={`leadership-resume-role-row${roles.length > 1 ? ' leadership-resume-role-card' : ''}`} key={`${lead.id}-${index}`}>
+                              <div className="leadership-resume-role-org">
+                                <strong>{role}</strong>
+                                {roles.length === 1 && <span className="leadership-resume-org">, {lead.organization}</span>}
+                              </div>
+                              <span className="leadership-resume-date">{dateRanges[index]}</span>
                             </div>
-                            <span className="leadership-resume-date">{dateRanges[index]}</span>
+                          ))}
+                          {roles.length > 1 && <div className="leadership-resume-org leadership-resume-group-org">{lead.organization}</div>}
+                        </div>
+                        {lead.logo_url && (
+                          <div className="leadership-resume-logo-wrap">
+                            <img className="leadership-resume-logo" src={lead.logo_url} alt={`${lead.organization} logo`} loading="lazy" />
                           </div>
-                        ))}
-                        {roles.length > 1 && <div className="leadership-resume-org leadership-resume-group-org">{lead.organization}</div>}
+                        )}
                       </div>
                       {lead.description && <p className="leadership-resume-description">{lead.description}</p>}
                       {responsibilities.length > 0 && (

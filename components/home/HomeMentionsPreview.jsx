@@ -108,7 +108,7 @@ const HomeMentionsPreview = ({ mediaMentions = [] }) => {
 
         <ScrollReveal>
           <div className="home-section-bottom-action">
-            <Link to="/blog" className="home-view-all-link">
+            <Link to="/blog#media-mentions" className="home-view-all-link">
               <span>Explore All Moments & Press Features</span>
               <ArrowUpRight size={15} />
             </Link>

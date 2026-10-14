@@ -48,6 +48,7 @@ const DriftWall = ({
   grayscale = false,
   overlayColor = '#111111',
   interactive = false, // Pure background mode
+  responsiveColumns = false,
   className = '',
   style
 }) => {
@@ -65,6 +66,9 @@ const DriftWall = ({
   const lastTsRef = useRef(null);
 
   const [containerHeight, setContainerHeight] = useState(600);
+  const [containerWidth, setContainerWidth] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth : 0
+  );
   const [activeId, setActiveId] = useState(null);
   const activeIdRef = useRef(null);
   // Seeded lazily from the media query rather than set inside an effect,
@@ -103,11 +107,17 @@ const DriftWall = ({
     }));
   }, [items]);
 
+  // Add columns only on wide desktop viewports so the wall bleeds past both
+  // edges. The existing column count stays untouched at 1600px and below.
+  const columnCount = responsiveColumns && containerWidth > 1600
+    ? Math.max(columns, Math.ceil(containerWidth / ((tileWidth + gap) * 1.48 * 0.94)) + 2)
+    : columns;
+
   const columnItems = useMemo(() => {
-    const cols = Array.from({ length: columns }, () => []);
-    safeItems.forEach((item, i) => cols[i % columns].push(item));
+    const cols = Array.from({ length: columnCount }, () => []);
+    safeItems.forEach((item, i) => cols[i % columnCount].push(item));
     return cols.map(col => (col.length ? col : safeItems.slice(0, 1)));
-  }, [safeItems, columns]);
+  }, [safeItems, columnCount]);
 
   const columnMeta = useMemo(() => {
     const unit = tileHeight + gap;
@@ -122,6 +132,7 @@ const DriftWall = ({
     if (!containerRef.current) return;
     const ro = new ResizeObserver(([entry]) => {
       setContainerHeight(entry.contentRect.height || 600);
+      setContainerWidth(entry.contentRect.width || 0);
     });
     ro.observe(containerRef.current);
     return () => ro.disconnect();

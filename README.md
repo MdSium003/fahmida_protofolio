@@ -1,114 +1,118 @@
-# Mst. Fahmida Sultana Naznin — Portfolio
+# Fahmida Sultana Naznin — Portfolio
 
-Personal portfolio site: research publications, projects, career history, recognitions and writing.
+Personal academic and professional portfolio for **Mst. Fahmida Sultana Naznin**, featuring research, projects, awards, career and leadership experience, skills, writing, and media coverage.
 
-**Live:** https://mdsium003.github.io/fahmida_protofolio/
+**Live website:** [mdsium003.github.io/fahmida_protofolio](https://mdsium003.github.io/fahmida_protofolio/)
 
-Built with React 19, Vite 7, React Router 7 and Motion. All content is authored in
-CSV files under `public/data/` — no CMS, no database, no backend.
+The site is a static, client-rendered application built with React and Vite. Most portfolio records are managed in CSV files under `public/data/`; there is no application server or database.
 
----
+## Site sections
 
-## Getting started
+- **Home** — profile, photo wall, news updates, and selected media mentions.
+- **Career** — education, employment, volunteering, and leadership experience.
+- **Projects** — software and engineering work.
+- **Research** — publications, abstracts, authors, and related links.
+- **Awards** — honors, competitions, grants, and related media.
+- **Skills** — programming and technical skills, languages, and professional training.
+- **Blog** — articles, travel stories, vlogs, and media mentions.
+
+## Technology
+
+- React 19 and React Router 7
+- Vite 7
+- Motion for interactive transitions
+- PapaParse for CSV loading
+- Lucide React icons
+- GitHub Pages for hosting and GitHub Actions for deployment
+
+## Local development
+
+Requirements: Node.js 22 and npm.
 
 ```bash
-npm install
+git clone https://github.com/mdsium003/fahmida_protofolio.git
+cd fahmida_protofolio
+npm ci
 npm run dev
 ```
 
-| Script | What it does |
+Open the local URL printed by Vite. Since this is a GitHub Pages project site, the configured base path is `/fahmida_protofolio/`; use that path if the root URL does not load the app.
+
+### Available commands
+
+| Command | Purpose |
 | --- | --- |
-| `npm run dev` | Vite dev server with HMR |
-| `npm run build` | Validates every CSV, then builds to `dist/` |
-| `npm run preview` | Serves the production build locally |
-| `npm run lint` | ESLint over the whole repo |
-| `npm run validate:data` | CSV schema + integrity check (also runs on `prebuild`) |
-| `npm run optimize:images` | Regenerates `public/wall/thumbs/` WebP thumbnails |
+| `npm run dev` | Start Vite with hot module replacement. |
+| `npm run validate:data` | Check the configured CSV datasets for parsing and data-integrity problems. |
+| `npm run lint` | Run ESLint. |
+| `npm run build` | Validate data through the `prebuild` hook and create the production bundle in `dist/`. |
+| `npm run preview` | Serve the production build locally. |
+| `npm run optimize:images` | Generate optimized photo-wall thumbnails under `public/wall/thumbs/`. |
 
-### Environment variables
+## Editing portfolio content
 
-**There are none.** The site is fully static and reads its content from the CSVs
-in `public/data/`. No `.env` file is needed to build or deploy, which is why the
-repo has no `.env.example`. If you ever add one, note that anything prefixed
-`VITE_` is **embedded in the public JavaScript bundle** and is not a secret.
+Edit the relevant CSV under `public/data/`. Keep its header and column order unchanged, use a unique ID within that file, and follow that file’s sort rules. A CSV is displayed only when the application has a loader and page/component connected to it.
 
----
+Start with:
 
-## Editing content
+- [`DATA_MANAGEMENT.md`](DATA_MANAGEMENT.md) — complete authoring guide, field reference, image rules, and display-order behavior.
+- [`public/data/README.md`](public/data/README.md) — quick overview of data files.
 
-All content lives in `public/data/*.csv` and can be edited in Excel, Google
-Sheets, or any text editor. See [`public/data/README.md`](public/data/README.md)
-for the column reference and [`DATA_MANAGEMENT.md`](DATA_MANAGEMENT.md) for the
-full authoring guide.
+There are 16 CSV files in the repository. The current validator checks 15; `linkedin_featured.csv` is not yet included in the validator and is not currently connected to a page. `upcycling.csv` also has no connected page, so adding rows to either file alone will not make them appear on the website. See the data guide for details.
 
-`npm run build` validates every file first, so a malformed CSV fails the build
-rather than shipping a broken page.
+### Images and local assets
 
-### Image paths
+Place images in `public/images/` or `public/wall/` (or an appropriate subfolder). In CSVs, use site-root paths such as `/images/research/paper-figure.png` or `/wall/travel-photo.jpg`. Do not use a local drive path or hardcode the GitHub Pages prefix. Filenames are case-sensitive on the live host; match capitalization and extension exactly.
 
-Write image paths site-root-absolute, e.g. `/images/foo.jpg` or `/wall/(3).jpg`.
-They are resolved against the deployment base at runtime — never hardcode
-`/fahmida_protofolio/` into a CSV or a component.
+## Build and deployment
 
----
+Pushing to `main` triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow installs dependencies with `npm ci`, runs ESLint, builds the site, and deploys `dist/` to GitHub Pages. The build runs the CSV validator through npm’s `prebuild` lifecycle.
 
-## Deployment
+Before pushing a content or code change, run:
 
-Pushing to `main` triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml),
-which runs `npm ci`, lints, validates the data, builds, and publishes `dist/`
-to GitHub Pages.
-
-One-time setup: **Settings → Pages → Source → GitHub Actions**.
-
-### Base path
-
-The site is a GitHub Pages *project* site, so it is served from a sub-path and
-`base` is set accordingly in [`vite.config.js`](vite.config.js):
-
-```js
-const BASE = '/fahmida_protofolio/';
+```bash
+npm run validate:data
+npm run lint
+npm run build
 ```
 
-That single value drives Vite's asset rewriting, the React Router `basename`,
-and [`src/utils/assetUrl.js`](src/utils/assetUrl.js), which resolves every
-runtime path (CSV-supplied images, hardcoded fallbacks, the CV link).
+The validator checks CSV parsing, duplicate or missing IDs, configured required fields, and configured boolean/numeric fields. It does not verify image-file paths, external URLs, date formats, or whether a dataset is connected to a page. Preview the changed section locally before publishing.
 
-**Moving to a custom domain?** Change `BASE` to `'/'`, add a `public/CNAME`
-containing the domain, and update the absolute URLs in `index.html`
-(`og:url`, `og:image`, `twitter:image`, `canonical`), `public/robots.txt`,
-`public/sitemap.xml`, `public/site.webmanifest` and `public/404.html`.
+GitHub Pages must be configured to use **GitHub Actions** as its deployment source. See [`DEPLOYMENT_GUIDE.md`](DEPLOYMENT_GUIDE.md) for setup, deployment monitoring, and troubleshooting.
 
-### SPA routing on GitHub Pages
+### GitHub Pages base path
 
-Pages has no rewrite rules, so a direct hit on `/research` would 404. The
-standard shim handles it: [`public/404.html`](public/404.html) encodes the
-requested path into a query string and bounces to the app root, and
-[`src/spaRestore.js`](src/spaRestore.js) unpacks it before the router mounts.
-Genuinely unknown routes land on the in-app 404 page.
+This repository is deployed as a project site at `/fahmida_protofolio/`. The base is set in [`vite.config.js`](vite.config.js) and is shared by Vite, React Router, and [`src/utils/assetUrl.js`](src/utils/assetUrl.js). If the site moves to a custom domain or a user site, update the base path and follow the metadata and DNS checklist in the deployment guide.
 
-### Security headers
+### Client-side routing and external resources
 
-GitHub Pages cannot send HTTP response headers, so the Content Security Policy
-is delivered via `<meta http-equiv>` in [`index.html`](index.html). Two
-consequences are worth knowing:
+GitHub Pages does not provide SPA rewrite rules. The [`public/404.html`](public/404.html) and [`src/spaRestore.js`](src/spaRestore.js) files preserve direct visits and refreshes on application routes.
 
-- `frame-ancestors`, `X-Frame-Options` and `Permissions-Policy` are **ignored**
-  in meta form. Clickjacking protection therefore comes from
-  [`src/frameGuard.js`](src/frameGuard.js) instead.
-- The policy allow-lists only Google Fonts, `www.youtube-nocookie.com` and the
-  YouTube thumbnail hosts. **Adding any new external resource requires updating
-  the CSP**, or the browser will silently block it.
+The Content Security Policy is set in `index.html`. When adding an external font, image, video, or other resource host, update the policy if required; otherwise, the browser may block the resource.
 
----
+## Repository structure
 
-## Project layout
-
+```text
+components/             Shared and section-specific React components
+pages/                  Route-level page components
+styles/                 Page styles and shared design system
+src/                    App entry, router, hooks, CSV and asset utilities
+public/data/             CSV content records
+public/images/           Portfolio images, logos, and thumbnails
+public/wall/             Photo-wall originals and generated thumbnails
+public/CV/               CV and related documents
+scripts/                 CSV validation and image optimization
+.github/workflows/       GitHub Actions deployment workflow
 ```
-components/   feature components, grouped by page area
-pages/        one component per route
-styles/       one stylesheet per page, plus global.css (design tokens)
-src/          entry point, router, CSV loader, path helpers
-public/data/  all site content as CSV
-public/       images, CV, wall gallery, favicons, robots/sitemap
-scripts/      data validation and image optimisation tooling
-```
+
+## Routes
+
+| Path | Section |
+| --- | --- |
+| `/` | Home |
+| `/career` | Career |
+| `/projects` | Projects |
+| `/research` | Research |
+| `/awards` | Awards |
+| `/skills` | Skills |
+| `/blog` | Blog |

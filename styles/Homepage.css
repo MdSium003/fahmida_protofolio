@@ -76,6 +76,97 @@
   margin-top: 2.25rem;
 }
 
+/* Research interests and collaboration sections */
+.home-research-profile {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(20, 19, 17, 0.18), rgba(31, 29, 25, 0.38));
+  border-top: 1px solid rgba(177, 204, 116, 0.12);
+  border-bottom: 1px solid rgba(177, 204, 116, 0.12);
+}
+
+.home-research-profile .home-section {
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+}
+
+.research-interest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.research-interest-card,
+.collaboration-card {
+  min-width: 0;
+  border: 1px solid rgba(177, 204, 116, 0.18);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(43, 39, 33, 0.76), rgba(30, 29, 27, 0.68));
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.13), inset 0 1px rgba(255, 255, 255, 0.025);
+}
+
+.research-interest-card {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 0.85rem;
+  padding: 1.3rem 1.4rem;
+}
+
+.research-interest-number {
+  color: var(--color-accent);
+  font-family: 'EB Garamond', Garamond, Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.research-interest-card h3,
+.collaboration-card h3 {
+  margin: 0;
+  color: var(--color-text);
+  font-family: 'EB Garamond', Garamond, Georgia, serif;
+  font-size: 1.3rem;
+  line-height: 1.2;
+}
+
+.research-interest-card p,
+.collaboration-card p {
+  margin: 0.65rem 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.91rem;
+  line-height: 1.7;
+}
+
+.collaboration-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.collaboration-card {
+  padding: 1.3rem 1.5rem;
+}
+
+.collaboration-card-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.7rem;
+}
+
+.collaboration-card-heading a {
+  color: var(--color-accent);
+  font-size: 0.92rem;
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: rgba(177, 204, 116, 0.42);
+  text-underline-offset: 0.18em;
+}
+
+.collaboration-card-heading a:hover {
+  color: #e8f3bd;
+  text-decoration-color: currentColor;
+}
+
 .home-view-all-link {
   display: inline-flex;
   align-items: center;
@@ -314,6 +405,38 @@
   background-clip: text;
   animation: shimmer-text 6s linear infinite;
   filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.8));
+}
+
+.hero-profile-intro {
+  max-width: 58rem;
+  margin: 0.1rem 0 1.25rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(217, 239, 154, 0.11);
+  border-radius: 0.75rem;
+  background: linear-gradient(115deg, rgba(13, 15, 14, 0.34), rgba(19, 21, 22, 0.24));
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2), inset 0 1px rgba(255, 255, 255, 0.025);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  color: #f0f1e8;
+  font-size: clamp(0.78rem, 0.85vw, 0.9rem);
+  line-height: 1.62;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 1), 0 3px 8px rgba(0, 0, 0, 0.96), 0 8px 20px rgba(0, 0, 0, 0.82);
+  text-wrap: pretty;
+}
+
+.hero-profile-intro a {
+  color: var(--color-accent);
+  font-weight: 650;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 1), 0 3px 8px rgba(0, 0, 0, 0.96);
+  text-decoration: underline;
+  text-decoration-color: rgba(177, 204, 116, 0.46);
+  text-underline-offset: 0.18em;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+.hero-profile-intro a:hover {
+  color: #e8f3bd;
+  text-decoration-color: currentColor;
 }
 
 @keyframes shimmer-text {
@@ -2683,6 +2806,19 @@
 }
 
 @media (max-width: 768px) {
+  .research-interest-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .research-interest-card {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    padding: 1.1rem;
+  }
+
+  .collaboration-card {
+    padding: 1.1rem;
+  }
+
   .hero {
     padding: 6rem 1.25rem 4rem;
   }
@@ -2707,6 +2843,15 @@
 
   .hero-intro-lead {
     justify-content: center;
+  }
+
+  .hero-profile-intro {
+    max-width: 42rem;
+    margin: 0 auto 1.25rem;
+    padding: 0.75rem 0.85rem;
+    background: rgba(13, 15, 14, 0.38);
+    font-size: 0.82rem;
+    text-align: left;
   }
 
   .hero-role-line {

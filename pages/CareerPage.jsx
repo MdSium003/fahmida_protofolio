@@ -251,10 +251,24 @@ const CareerPage = () => {
                       <div className="athos-primary-row">
                         {/* Left: Role / Job Title & Company */}
                         <div className="athos-left-col">
-                          <div className="athos-degree-title">
-                            {exp.job_title}
+                          {exp.logo_url && (
+                            <div className="vol-logo-box experience-logo-box">
+                              <img
+                                src={exp.logo_url}
+                                alt={`${exp.company} logo`}
+                                className="vol-logo-img"
+                                loading="lazy"
+                                decoding="async"
+                                onError={(event) => { event.currentTarget.closest('.experience-logo-box')?.remove(); }}
+                              />
+                            </div>
+                          )}
+                          <div className="experience-identity">
+                            <div className="athos-degree-title">
+                              {exp.job_title}
+                            </div>
+                            <div className="athos-sub-degree">{exp.company}</div>
                           </div>
-                          <div className="athos-sub-degree">{exp.company}</div>
                         </div>
 
                         {/* Right: Location & Duration */}

@@ -7,6 +7,7 @@ import DriftWall from '../components/shared/DriftWall';
 import { asset, wallThumb } from '../src/utils/assetUrl';
 import HomePositioning from '../components/home/HomePositioning';
 import HomeNews from '../components/home/HomeNews';
+import HomeResearchProfile from '../components/home/HomeResearchProfile';
 import HomeMentionsPreview from '../components/home/HomeMentionsPreview';
 import HomeContactCTA from '../components/home/HomeContactCTA';
 import { 
@@ -343,11 +344,25 @@ decoding="async"/>
               <span className="hero-name-gradient">Mst. Fahmida Sultana Naznin</span>
             </motion.h1>
 
+            <motion.p
+              className="hero-profile-intro"
+              initial={{ opacity: 0, y: 18 }}
+              animate={isHeroRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+              transition={{ duration: 0.6, delay: 0.48, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              I am a Lecturer in the Department of Computer Science and Engineering at{' '}
+              <a href="https://stamforduniversity.edu.bd/" target="_blank" rel="noopener noreferrer">Stamford University Bangladesh</a>, a Research Assistant at the{' '}
+              <a href="https://www.buet.ac.bd/" target="_blank" rel="noopener noreferrer">Bangladesh University of Engineering and Technology (BUET)</a>{' '}
+              working on a UGC-ICSETEP Research and Development Grant (RDG) project on Graph Machine Learning and Networks, and a former in-person Visiting Scholar at the{' '}
+              <a href="https://nus.edu.sg/" target="_blank" rel="noopener noreferrer">National University of Singapore</a>. I completed my B.Sc. in Computer Science and Engineering at{' '}
+              <a href="https://www.buet.ac.bd/" target="_blank" rel="noopener noreferrer">BUET</a> in June 2026 and am currently preparing for PhD studies, with research interests in AI in Healthcare, Computer Vision, Natural Language Processing, and Explainable and Trustworthy AI.
+            </motion.p>
+
             <motion.div
               className="hero-role-line"
               initial={{ opacity: 0, y: 18 }}
               animate={isHeroRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-              transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.6, delay: 0.58, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <span className="role-segment role-primary">AI in Healthcare Researcher</span>
               <span className="role-dot">•</span>
@@ -361,7 +376,7 @@ decoding="async"/>
               className="hero-actions-row"
               initial={{ opacity: 0, y: 18 }}
               animate={isHeroRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-              transition={{ duration: 0.6, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.6, delay: 0.66, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <button onClick={scrollToFirstSection} className="btn-hero-primary" type="button">
                 <span>Explore My Work</span>
@@ -409,6 +424,9 @@ decoding="async"/>
         <>
           {/* Section 02: Latest News & Updates */}
           <HomeNews news={news} />
+
+          {/* Research focus and international collaborators */}
+          <HomeResearchProfile />
 
           {/* Section 03: First six items from the full Media Mentions list */}
           <HomeMentionsPreview mediaMentions={mediaMentions} />
